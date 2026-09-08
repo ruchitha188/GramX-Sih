@@ -410,7 +410,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                     <div className="p-8 rounded-2xl bg-gradient-to-br from-white via-blue-50 to-indigo-950/40 border-2 border-blue-300/30 shadow-2xl min-h-[320px] flex flex-col justify-between">
                       <div>
                         <div className="flex items-center justify-between text-[11px] text-slate-600 border-b border-slate-200/80 pb-2 mb-4">
-                          <span>BharatContent AI Executive Slide Deck</span>
+                          <span>GramX Executive Slide Deck</span>
                           <span className="font-bold text-blue-700">SLIDE {currentSlide.slideNumber}</span>
                         </div>
                         <h4 className="text-xl font-extrabold text-slate-900 mb-4">
@@ -736,7 +736,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                       </div>
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <h4 className="text-xs font-bold text-slate-900">BharatContent Official Dispatch</h4>
+                          <h4 className="text-xs font-bold text-slate-900">GramX Official Dispatch</h4>
                           <span className="text-[10px] text-slate-500">• 1st</span>
                         </div>
                         <p className="text-[11px] text-slate-600">National Cyber Threat & Governance Updates</p>
@@ -806,9 +806,9 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                             </div>
                             <div>
                               <div className="flex items-center gap-1">
-                                <span className="text-xs font-bold text-slate-900">BharatContent AI</span>
+                                <span className="text-xs font-bold text-slate-900">GramX</span>
                                 <span className="w-3 h-3 rounded-full bg-blue-500 flex items-center justify-center text-[8px] text-slate-900">✓</span>
-                                <span className="text-[11px] text-slate-500">@BharatContent</span>
+                                <span className="text-[11px] text-slate-500">@GramX</span>
                               </div>
                             </div>
                           </div>
@@ -875,7 +875,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                       <span>Certified against National Critical Infrastructure Directive</span>
                     </div>
                     <span className="font-mono text-[11px] text-slate-500">
-                      Issued via BharatContent AI Grounding Engine
+                      Issued via GramX Grounding Engine
                     </span>
                   </div>
                 </div>

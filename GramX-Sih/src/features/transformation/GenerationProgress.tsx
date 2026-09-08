@@ -38,7 +38,7 @@ export const GenerationProgress: React.FC<GenerationProgressProps> = ({
             <Sparkles className="w-6 h-6 text-slate-900 animate-spin" />
           </div>
           <h3 className="text-lg font-bold text-slate-900 tracking-tight">
-            BharatContent AI Transformation Engine
+            GramX Transformation Engine
           </h3>
           <p className="text-xs text-slate-600">
             Processing <span className="text-blue-600 font-medium">{sourceName}</span> into {selectedTypes.length} deliverables

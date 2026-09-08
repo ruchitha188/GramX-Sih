@@ -38,10 +38,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <div className="space-y-2 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-600/10 border border-blue-300/30 text-blue-600 text-xs font-semibold">
               <Sparkles className="w-3.5 h-3.5 text-blue-700" />
-              <span>SIH 2026 Problem Statement ID: SIH26154</span>
+              <span>2026 AI Content Engine</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              {user ? `Welcome back, ${user.user_metadata?.full_name?.split(' ')[0] || user.email?.split('@')[0]} 👋` : 'Welcome to BharatContent AI 👋'}
+              {user ? `Welcome back, ${user.user_metadata?.full_name?.split(' ')[0] || user.email?.split('@')[0]} 👋` : 'Welcome to GramX 👋'}
             </h1>
             <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
               Transform single source materials (reports, advisories, research papers, news, prompts) into synchronized multi-channel deliverables with source traceability and human review.
@@ -124,15 +124,15 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <div>
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-600/20 text-blue-600 border border-blue-300/40 uppercase">
-                Problem Statement ID: SIH26154
+                AI Content Engine
               </span>
-              <span className="text-xs text-slate-600">Team GRAMX</span>
+              <span className="text-xs text-slate-600">GramX</span>
             </div>
             <h3 className="text-base sm:text-lg font-extrabold text-slate-900 mt-1">
               Gen AI Platform for Automated Content Transformation
             </h3>
             <p className="text-xs text-slate-700 mt-1 max-w-4xl leading-relaxed">
-              Organisations frequently need to convert information available in different forms (news articles, reports, advisories, threat intelligence, policy documents, research papers, announcements, incident reports, or prompts) into specific communication deliverables. BharatContent AI automates deep semantic analysis, grounding, and simultaneous multi-output generation.
+              Organisations frequently need to convert information available in different forms (news articles, reports, advisories, threat intelligence, policy documents, research papers, announcements, incident reports, or prompts) into specific communication deliverables. GramX automates deep semantic analysis, grounding, and simultaneous multi-output generation.
             </p>
           </div>
           <button
@@ -262,7 +262,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             <div className="border-b border-slate-200 pb-3">
               <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-700" />
-                The BharatContent AI Advantage
+                The GramX Advantage
               </h3>
               <p className="text-[11px] text-slate-600 mt-0.5">
                 Core architectural capabilities built for SIH26154

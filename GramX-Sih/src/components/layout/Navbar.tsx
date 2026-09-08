@@ -41,6 +41,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     await supabase.auth.signOut();
   };
 
+  const isAdmin = user?.email === 'ruchithasai.r188@gmail.com' || user?.user_metadata?.role === 'admin';
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md px-4 lg:px-6 py-3">
       <div className="flex items-center justify-between gap-4">
@@ -51,13 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-lg font-bold tracking-tight text-slate-900">BharatContent AI</span>
-              <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-600/10 text-blue-700 border border-blue-300/20">
-                SIH26154
-              </span>
-              <span className="hidden md:inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-300">
-                Team GRAMX
-              </span>
+              <span className="text-lg font-bold tracking-tight text-slate-900">GramX</span>
             </div>
             <p className="text-[12px] text-slate-600 hidden sm:block">
               Gen AI Platform for Automated Content Transformation
@@ -65,29 +61,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
-        {/* Right Actions: Workspace Selector, Role Switcher & 2-Min Demo CTA */}
+        {/* Right Actions: Workspace Selector & Auth */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Google LLM Engine Status Indicator */}
-          <button
-            onClick={onOpenCloudSettings}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border bg-emerald-50 text-emerald-700 border-emerald-500/30 hover:bg-emerald-100 transition-all"
-            title="Google LLM Engine Status (Gemini & Gemma)"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span className="hidden sm:inline">Google LLM Active</span>
-            <span className="sm:hidden">Google LLM</span>
-          </button>
-
-          {/* Quick 2-Minute Demo Flow Trigger */}
-          <button
-            onClick={onRunDemoFlow}
-            className="flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 text-xs font-semibold text-slate-900 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 rounded-lg shadow-md shadow-emerald-900/30 transition-all border border-emerald-400/30 active:scale-95"
-            title="Automatically run the recommended 2-minute Smart India Hackathon demo flow"
-          >
-            <Play className="w-3.5 h-3.5 fill-white" />
-            <span className="hidden sm:inline">2-Minute SIH Demo</span>
-            <span className="sm:hidden">Demo</span>
-          </button>
+          {/* Google LLM Engine Status Indicator (Admin Only) */}
+          {isAdmin && (
+            <button
+              onClick={onOpenCloudSettings}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border bg-emerald-50 text-emerald-700 border-emerald-500/30 hover:bg-emerald-100 transition-all"
+              title="Google LLM Engine Status (Gemini & Gemma)"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="hidden sm:inline">Google LLM Active</span>
+              <span className="sm:hidden">Google LLM</span>
+            </button>
+          )}
 
           {/* Workspace Switcher */}
           <div className="relative group">

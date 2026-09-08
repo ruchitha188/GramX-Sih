@@ -125,7 +125,7 @@ export const INITIAL_VERSION_HISTORY: VersionHistoryItem[] = [
   {
     versionNumber: 1,
     label: 'Version 1 — AI Generated',
-    modifiedBy: 'BharatContent AI Engine',
+    modifiedBy: 'GramX Engine',
     timestamp: 'Today, 08:35 IST',
     snippet: 'Initial multi-output generation of 6 deliverables from Cybersecurity_Incident_Report.pdf. AI Fact Preservation score 96%.',
     diffSummary: '6 deliverables generated across Social, Documents, Presentation, and Video Package.'

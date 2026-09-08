@@ -137,7 +137,7 @@ export const realLlmService = {
     const activeKey = (config.apiKey || DEFAULT_GOOGLE_KEY).trim();
     const genAI = new GoogleGenerativeAI(activeKey);
 
-    const prompt = `You are BharatContent AI's Media Ingestion & Deep Analysis Engine (SIH Problem Statement ID: SIH26154).
+    const prompt = `You are GramX's Media Ingestion & Deep Analysis Engine (SIH AI Content Engine).
 An operator has provided a ${type.toUpperCase()} link to transform into official communications:
 - Media Link: ${url}
 - Title / Headline: ${titleHint}
@@ -334,7 +334,7 @@ Return strictly raw JSON.`;
     selectedTypes: DeliverableType[],
     llmConfig: LlmConfig
   ): Promise<{ deliverables: DeliverableOutput[]; verification: VerificationReport }> {
-    const prompt = `You are BharatContent AI, an enterprise-grade AI transformation platform for Team GRAMX (SIH Problem Statement ID: SIH26154).
+    const prompt = `You are GramX, an enterprise-grade AI transformation platform for GramX (SIH AI Content Engine).
 Transform the provided SOURCE CONTENT into the selected communication deliverables simultaneously.
 
 ### SOURCE CONTENT:
@@ -596,7 +596,7 @@ Return strictly raw JSON without markdown code fences.`;
           structuredData.thread = [
             { tweetNumber: 1, text: `1/3 🚨 Official Update: ${source.title || source.filename} 🧵👇` },
             { tweetNumber: 2, text: `2/3 📋 Context: ${(source.contextSummary || '').slice(0, 200)}` },
-            { tweetNumber: 3, text: `3/3 ℹ️ Verified via BharatContent AI with 100% source traceability.` }
+            { tweetNumber: 3, text: `3/3 ℹ️ Verified via GramX with 100% source traceability.` }
           ];
         }
       }

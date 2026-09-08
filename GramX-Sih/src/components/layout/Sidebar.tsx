@@ -156,8 +156,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
         )}
 
         <div className="text-[10px] text-slate-600 flex items-center justify-between px-1">
-          <span>BharatContent v2.4</span>
-          <span className="text-blue-700 font-semibold">SIH 2026</span>
+          <span>GramX v2.4</span>
+          <span className="text-blue-700 font-semibold">2026</span>
         </div>
       </div>
     </aside>

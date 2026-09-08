@@ -28,7 +28,7 @@ interface DemoStep {
 const DEMO_STEPS: DemoStep[] = [
   { step: 1, title: 'Login as Ruchitha — Admin', actionDesc: 'Set active profile to Ruchitha (Admin) in the top navbar.', targetTab: 'dashboard' },
   { step: 2, title: 'Open GRAMX Communications', actionDesc: 'Ensure enterprise workspace is active with RAG Knowledge Vault enabled.', targetTab: 'dashboard' },
-  { step: 3, title: 'Open Transformation Studio', actionDesc: 'Navigate to Transformation Studio, the hero screen of BharatContent AI.', targetTab: 'transform' },
+  { step: 3, title: 'Open Transformation Studio', actionDesc: 'Navigate to Transformation Studio, the hero screen of GramX.', targetTab: 'transform' },
   { step: 4, title: 'Upload Cybersecurity Incident Report.pdf', actionDesc: 'Ingest the primary 8-page 2.8 MB threat mitigation document.', targetTab: 'transform' },
   { step: 5, title: 'Verify AI Extraction', actionDesc: 'Inspect 32 facts, 6 dates, 8 entities, and 4 numerical values detected.', targetTab: 'transform' },
   { step: 6, title: 'Configure Parameters', actionDesc: 'Audience: General Public | Tone: Professional | Language: English + Telugu | Objective: Awareness.', targetTab: 'transform' },

@@ -172,7 +172,7 @@ function createDynamicDeliverable(
         status: 'Ready',
         version: 1,
         reviewStatus: 'Draft',
-        contentEn: `📢 Key Briefing: ${title}\n\nAudience: ${config.audience} | Objective: ${config.objective}\n\nKey Insights:\n• Context: ${context}\n• Action Items: Review verified documentation and ensure organizational alignment.\n• Compliance: Grounded against official directives with 100% source auditability.\n${extraContext}\n\n#BharatContentAI #${config.objective} #Governance #India2026`,
+        contentEn: `📢 Key Briefing: ${title}\n\nAudience: ${config.audience} | Objective: ${config.objective}\n\nKey Insights:\n• Context: ${context}\n• Action Items: Review verified documentation and ensure organizational alignment.\n• Compliance: Grounded against official directives with 100% source auditability.\n${extraContext}\n\n#GramXAI #${config.objective} #Governance #India2026`,
         contentTe: `📢 అధికారిక సమాచారం: ${title}\n\nముఖ్య వివరాలు:\n• సారాంశం: ${context}\n• సంస్థాగత మార్గదర్శకాలను పాటించవలసిందిగా కోరుతున్నాం.\n\n#భారత్‌కంటెంట్‌ఏఐ #డిజిటల్‌ఇండియా`,
         sourceClaims: [
           {
@@ -198,13 +198,13 @@ function createDynamicDeliverable(
         status: 'Ready',
         version: 1,
         reviewStatus: 'Draft',
-        contentEn: `1/3 🚨 Official Update: ${title}. Key details for ${config.audience.toLowerCase()} 🧵👇\n\n2/3 📋 Context: ${context}\n\n3/3 ℹ️ All details verified via BharatContent AI with 100% source traceability.`,
+        contentEn: `1/3 🚨 Official Update: ${title}. Key details for ${config.audience.toLowerCase()} 🧵👇\n\n2/3 📋 Context: ${context}\n\n3/3 ℹ️ All details verified via GramX with 100% source traceability.`,
         contentTe: `1/3 🚨 అధికారిక ప్రకటన: ${title} 🧵👇\n\n2/3 📋 ముఖ్య సమాచారం: ${context}\n\n3/3 ℹ️ పూర్తి వివరాల కోసం అధికారిక పోర్టల్‌ను సందర్శించండి.`,
         structuredData: {
           thread: [
             { tweetNumber: 1, text: `1/3 🚨 Official Update: ${title}. Key details for ${config.audience.toLowerCase()} 🧵👇` },
             { tweetNumber: 2, text: `2/3 📋 Context: ${context}` },
-            { tweetNumber: 3, text: `3/3 ℹ️ All details verified via BharatContent AI with 100% source traceability.` }
+            { tweetNumber: 3, text: `3/3 ℹ️ All details verified via GramX with 100% source traceability.` }
           ]
         },
         sourceClaims: []
@@ -235,7 +235,7 @@ function createDynamicDeliverable(
               'Review verified deliverables.',
               'Adhere to statutory guidelines.'
             ],
-            references: [`BharatContent AI Verified Feed (${source.filename})`]
+            references: [`GramX Verified Feed (${source.filename})`]
           }
         },
         sourceClaims: []
@@ -422,7 +422,7 @@ function createDynamicDeliverable(
         status: 'Ready',
         version: 1,
         reviewStatus: 'Draft',
-        contentEn: `*🔴 OFFICIAL ANNOUNCEMENT: ${title.toUpperCase()}*\n\n*Summary:* ${context}\n*Target:* ${config.audience}\n\n*Action Required:* Please review official advisory guidelines.\n\n_Generated via BharatContent AI (Team GRAMX)_`,
+        contentEn: `*🔴 OFFICIAL ANNOUNCEMENT: ${title.toUpperCase()}*\n\n*Summary:* ${context}\n*Target:* ${config.audience}\n\n*Action Required:* Please review official advisory guidelines.\n\n_Generated via GramX (GramX)_`,
         contentTe: `*🔴 అధికారిక ప్రకటన: ${title}*\n\n*ముఖ్య వివరాలు:* ${context}\n\n*గమనిక:* దయచేసి అధికారిక సమాచారాన్ని అనుసరించండి.`,
         sourceClaims: []
       };
@@ -437,7 +437,7 @@ function createDynamicDeliverable(
         status: 'Ready',
         version: 1,
         reviewStatus: 'Draft',
-        contentEn: `Subject: [NOTICE] ${title} — Official Information Bulletin\n\nDear Team / Stakeholders,\n\nPlease find the official transformation briefing regarding ${title}.\n\nContext:\n${context}\n\nTarget Audience: ${config.audience}\nTone: ${config.tone}\n\nRegards,\nBharatContent AI Platform`,
+        contentEn: `Subject: [NOTICE] ${title} — Official Information Bulletin\n\nDear Team / Stakeholders,\n\nPlease find the official transformation briefing regarding ${title}.\n\nContext:\n${context}\n\nTarget Audience: ${config.audience}\nTone: ${config.tone}\n\nRegards,\nGramX Platform`,
         contentTe: `విషయం: [ప్రకటన] ${title}\n\nగౌరవనీయ సభ్యులకు,\n${title} కి సంబంధించిన అధికారిక సమాచారాన్ని మీకు తెలియజేస్తున్నాం.\n\nసారాంశం: ${context}\n\nభవదీయులు,\nభారత్‌కంటెంట్ ఏఐ`,
         sourceClaims: []
       };

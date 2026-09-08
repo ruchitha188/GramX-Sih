@@ -219,7 +219,7 @@ export const CloudSettingsModal: React.FC<CloudSettingsModalProps> = ({
                   <Key className="w-3.5 h-3.5 text-blue-700" />
                   Google LLM Core Key
                 </label>
-                <span className="text-[11px] text-emerald-700 font-medium">✓ Pre-configured for Team GRAMX</span>
+                <span className="text-[11px] text-emerald-700 font-medium">✓ Pre-configured for GramX</span>
               </div>
               <div className="relative">
                 <input

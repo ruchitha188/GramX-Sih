@@ -57,7 +57,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
                 <div className="flex justify-between items-center p-5 border-b border-slate-200 bg-slate-50">
                     <h3 className="font-bold text-slate-800 text-lg">
-                        {isLogin ? 'Sign in to BharatContent AI' : 'Create an Account'}
+                        {isLogin ? 'Sign in to GramX' : 'Create an Account'}
                     </h3>
                     <button onClick={onClose} className="p-1 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-200">
                         <X className="w-5 h-5" />
