@@ -1,13 +1,13 @@
 import React from 'react';
-import { 
-  Sparkles, 
-  FileText, 
-  Layers, 
-  CheckCircle2, 
-  Clock, 
-  ArrowRight, 
-  FolderKanban, 
-  ShieldCheck, 
+import {
+  Sparkles,
+  FileText,
+  Layers,
+  CheckCircle2,
+  Clock,
+  ArrowRight,
+  FolderKanban,
+  ShieldCheck,
   Zap,
   TrendingUp,
   Cpu,
@@ -21,12 +21,14 @@ interface DashboardViewProps {
   onNavigate: (tab: NavTab) => void;
   currentRole: UserRole;
   onLaunchTransformation: () => void;
+  user?: any;
 }
 
 export const DashboardView: React.FC<DashboardViewProps> = ({
   onNavigate,
   currentRole,
-  onLaunchTransformation
+  onLaunchTransformation,
+  user
 }) => {
   return (
     <div className="space-y-6">
@@ -39,7 +41,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               <span>SIH 2026 Problem Statement ID: SIH26154</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              Welcome back, Ruchitha 👋
+              {user ? `Welcome back, ${user.user_metadata?.full_name?.split(' ')[0] || user.email?.split('@')[0]} 👋` : 'Welcome to BharatContent AI 👋'}
             </h1>
             <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
               Transform single source materials (reports, advisories, research papers, news, prompts) into synchronized multi-channel deliverables with source traceability and human review.
@@ -233,13 +235,12 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   <h4 className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
                     {project.title}
                   </h4>
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
-                    project.status === 'Approved'
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${project.status === 'Approved'
                       ? 'bg-emerald-100 text-emerald-300'
                       : project.status === 'In Review'
-                      ? 'bg-amber-100 text-amber-300'
-                      : 'bg-slate-100 text-slate-600'
-                  }`}>
+                        ? 'bg-amber-100 text-amber-300'
+                        : 'bg-slate-100 text-slate-600'
+                    }`}>
                     {project.status}
                   </span>
                 </div>

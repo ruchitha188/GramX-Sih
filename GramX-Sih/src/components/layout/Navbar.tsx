@@ -1,10 +1,10 @@
 import React from 'react';
-import { 
-  Building2, 
-  Sparkles, 
-  UserCheck, 
-  ShieldCheck, 
-  Play, 
+import {
+  Building2,
+  Sparkles,
+  UserCheck,
+  ShieldCheck,
+  Play,
   Layers,
   ChevronDown,
   Cpu,
@@ -20,6 +20,8 @@ interface NavbarProps {
   onRunDemoFlow: () => void;
   onOpenCloudSettings: () => void;
   isLiveAiActive: boolean;
+  user?: any;
+  onOpenAuth?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -29,8 +31,16 @@ export const Navbar: React.FC<NavbarProps> = ({
   onRoleChange,
   onRunDemoFlow,
   onOpenCloudSettings,
-  isLiveAiActive
+  isLiveAiActive,
+  user,
+  onOpenAuth
 }) => {
+  const handleSignOut = async () => {
+    // import supabase inline to avoid circular deps if any
+    const { supabase } = await import('../../services/supabaseClient');
+    await supabase.auth.signOut();
+  };
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md px-4 lg:px-6 py-3">
       <div className="flex items-center justify-between gap-4">
@@ -92,9 +102,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
               <button
                 onClick={() => onWorkspaceChange('GRAMX Communications')}
-                className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-slate-100 transition-colors ${
-                  currentWorkspace === 'GRAMX Communications' ? 'text-blue-700 font-semibold bg-blue-600/10' : 'text-slate-700'
-                }`}
+                className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-slate-100 transition-colors ${currentWorkspace === 'GRAMX Communications' ? 'text-blue-700 font-semibold bg-blue-600/10' : 'text-slate-700'
+                  }`}
               >
                 <div className="flex items-center gap-2">
                   <Building2 className="w-4 h-4 text-blue-700" />
@@ -104,9 +113,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
               <button
                 onClick={() => onWorkspaceChange('Personal Account')}
-                className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-slate-100 transition-colors ${
-                  currentWorkspace === 'Personal Account' ? 'text-blue-700 font-semibold bg-blue-600/10' : 'text-slate-700'
-                }`}
+                className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-slate-100 transition-colors ${currentWorkspace === 'Personal Account' ? 'text-blue-700 font-semibold bg-blue-600/10' : 'text-slate-700'
+                  }`}
               >
                 <div className="flex items-center gap-2">
                   <UserCheck className="w-4 h-4 text-slate-600" />
@@ -117,47 +125,34 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          {/* Role Switcher */}
-          <div className="relative group">
-            <button className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-slate-800 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg transition-colors">
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-700" />
-              <span className="hidden lg:inline">{currentRole === 'Admin' ? 'Ruchitha (Admin)' : currentRole === 'Editor' ? 'Siddharth (Editor)' : 'Dr. Ananya (Reviewer)'}</span>
-              <span className="lg:hidden">{currentRole}</span>
-              <ChevronDown className="w-3.5 h-3.5 text-slate-500" />
-            </button>
-            <div className="absolute right-0 mt-1 w-52 py-1 bg-slate-50 border border-slate-200 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
-              <div className="px-3 py-2 text-[11px] font-semibold text-slate-600 uppercase tracking-wider border-b border-slate-200">
-                Simulate Role
+          {/* Auth Button */}
+          {user ? (
+            <div className="relative group">
+              <button className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-lg transition-colors">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span className="hidden lg:inline">{user.user_metadata?.full_name?.split(' ')[0] || user.email?.split('@')[0]}</span>
+                <ChevronDown className="w-3.5 h-3.5" />
+              </button>
+              <div className="absolute right-0 mt-1 w-48 py-1 bg-white border border-slate-200 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+                <div className="px-3 py-2 text-[10px] font-semibold text-slate-600 uppercase tracking-wider border-b border-slate-200">
+                  {user.email}
+                </div>
+                <button
+                  onClick={handleSignOut}
+                  className="w-full text-left px-3 py-2 text-xs text-rose-600 hover:bg-rose-50 font-semibold transition-colors rounded-b-lg"
+                >
+                  Sign Out
+                </button>
               </div>
-              <button
-                onClick={() => onRoleChange('Admin')}
-                className={`w-full text-left px-3 py-2 text-xs flex items-center gap-2 hover:bg-slate-100 transition-colors ${
-                  currentRole === 'Admin' ? 'text-amber-700 font-semibold bg-amber-50' : 'text-slate-700'
-                }`}
-              >
-                <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-                <span>Ruchitha — Admin</span>
-              </button>
-              <button
-                onClick={() => onRoleChange('Editor')}
-                className={`w-full text-left px-3 py-2 text-xs flex items-center gap-2 hover:bg-slate-100 transition-colors ${
-                  currentRole === 'Editor' ? 'text-blue-400 font-semibold bg-blue-500/10' : 'text-slate-700'
-                }`}
-              >
-                <span className="w-2 h-2 rounded-full bg-blue-400"></span>
-                <span>Siddharth — Editor</span>
-              </button>
-              <button
-                onClick={() => onRoleChange('Reviewer')}
-                className={`w-full text-left px-3 py-2 text-xs flex items-center gap-2 hover:bg-slate-100 transition-colors ${
-                  currentRole === 'Reviewer' ? 'text-emerald-700 font-semibold bg-emerald-50' : 'text-slate-700'
-                }`}
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                <span>Dr. Ananya — Reviewer</span>
-              </button>
             </div>
-          </div>
+          ) : (
+            <button
+              onClick={onOpenAuth}
+              className="flex items-center gap-1.5 px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg text-xs font-semibold shadow-md transition-all"
+            >
+              Sign In / Sign Up
+            </button>
+          )}
         </div>
       </div>
     </header>

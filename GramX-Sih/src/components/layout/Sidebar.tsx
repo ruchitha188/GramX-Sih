@@ -1,20 +1,20 @@
 import React from 'react';
-import { 
-  Home, 
-  Sparkles, 
-  FolderKanban, 
-  Database, 
-  CheckSquare, 
-  BarChart3, 
-  History, 
-  Settings, 
+import {
+  Home,
+  Sparkles,
+  FolderKanban,
+  Database,
+  CheckSquare,
+  BarChart3,
+  History,
+  Settings,
   HelpCircle,
   Cpu,
   CheckCircle2
 } from 'lucide-react';
 import { UserRole } from '../../types';
 
-export type NavTab = 
+export type NavTab =
   | 'dashboard'
   | 'transform'
   | 'deliverables'
@@ -32,6 +32,8 @@ interface SidebarProps {
   currentRole: UserRole;
   currentWorkspace: string;
   hasGeneratedOutputs: boolean;
+  user?: any;
+  onOpenAuth?: () => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -39,7 +41,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onTabChange,
   currentRole,
   currentWorkspace,
-  hasGeneratedOutputs
+  hasGeneratedOutputs,
+  user,
+  onOpenAuth
 }) => {
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Home },
@@ -72,24 +76,22 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <button
                   key={item.id}
                   onClick={() => onTabChange(item.id as NavTab)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium transition-all group ${
-                    isActive
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium transition-all group ${isActive
                       ? 'bg-blue-700/15 text-blue-600 border border-blue-300/30 shadow-sm shadow-blue-200/50'
                       : 'text-slate-600 hover:text-slate-800 hover:bg-slate-50/80 border border-transparent'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center gap-3">
                     <Icon className={`w-4 h-4 transition-colors ${isActive ? 'text-blue-700' : 'text-slate-600 group-hover:text-slate-700'}`} />
                     <span>{item.label}</span>
                   </div>
                   {item.badge && (
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
-                      item.badge === 'Hero'
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${item.badge === 'Hero'
                         ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
                         : item.badge === '96%'
-                        ? 'bg-emerald-100 text-emerald-300 border border-emerald-500/30'
-                        : 'bg-slate-100 text-slate-700'
-                    }`}>
+                          ? 'bg-emerald-100 text-emerald-300 border border-emerald-500/30'
+                          : 'bg-slate-100 text-slate-700'
+                      }`}>
                       {item.badge}
                     </span>
                   )}
@@ -119,23 +121,42 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Bottom Profile & Workspace Status */}
       <div className="p-4 border-t border-slate-200/80 space-y-3 bg-white/80">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 to-indigo-600 flex items-center justify-center font-bold text-xs text-slate-900 shadow">
-            {currentRole === 'Admin' ? 'RC' : currentRole === 'Editor' ? 'SD' : 'AN'}
+        {user ? (
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-emerald-400 flex items-center justify-center font-bold text-xs text-white shadow">
+              {(user.user_metadata?.full_name?.[0] || user.email?.[0] || 'U').toUpperCase()}
+            </div>
+            <div className="overflow-hidden">
+              <p className="text-xs font-semibold text-slate-800 truncate">
+                {user.user_metadata?.full_name || user.email?.split('@')[0]}
+              </p>
+              <p className="text-[11px] text-slate-600 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                Online • {currentWorkspace === 'GRAMX Communications' ? 'GRAMX Org' : 'Personal'}
+              </p>
+            </div>
           </div>
-          <div className="overflow-hidden">
-            <p className="text-xs font-semibold text-slate-800 truncate">
-              {currentRole === 'Admin' ? 'Ruchitha' : currentRole === 'Editor' ? 'Siddharth' : 'Dr. Ananya'}
-            </p>
-            <p className="text-[11px] text-slate-600 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              {currentRole} • {currentWorkspace === 'GRAMX Communications' ? 'GRAMX Org' : 'Personal'}
-            </p>
+        ) : (
+          <div
+            onClick={onOpenAuth}
+            className="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 cursor-pointer border border-transparent hover:border-slate-200 transition-colors"
+          >
+            <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs text-slate-500 shadow-inner">
+              ?
+            </div>
+            <div className="overflow-hidden">
+              <p className="text-xs font-semibold text-blue-700 truncate hover:underline">
+                Sign in to save history
+              </p>
+              <p className="text-[10px] text-slate-500">
+                Guest Mode (Not logging)
+              </p>
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="text-[10px] text-slate-600 flex items-center justify-between px-1">
-          <span>BharatContent AI v2.4</span>
+          <span>BharatContent v2.4</span>
           <span className="text-blue-700 font-semibold">SIH 2026</span>
         </div>
       </div>

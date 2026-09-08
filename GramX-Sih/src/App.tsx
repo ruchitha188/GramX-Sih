@@ -15,12 +15,14 @@ import { ExportModal } from './components/shared/ExportModal';
 import { QuickDemoGuideModal } from './components/shared/QuickDemoGuideModal';
 import { CloudSettingsModal } from './components/shared/CloudSettingsModal';
 import { realLlmService, LlmConfig } from './services/realLlmService';
+import { supabase } from './services/supabaseClient';
+import { AuthModal } from './components/auth/AuthModal';
 
-import { 
-  DeliverableOutput, 
-  SourceDocument, 
-  UserRole, 
-  VerificationReport 
+import {
+  DeliverableOutput,
+  SourceDocument,
+  UserRole,
+  VerificationReport
 } from './types';
 import { SAMPLE_SOURCES } from './data/sampleSources';
 import { PRIMARY_SAMPLE_DELIVERABLES } from './data/sampleDeliverables';
@@ -41,7 +43,23 @@ export function App() {
   const [isExportModalOpen, setIsExportModalOpen] = useState<boolean>(false);
   const [isDemoGuideOpen, setIsDemoGuideOpen] = useState<boolean>(false);
   const [isCloudSettingsOpen, setIsCloudSettingsOpen] = useState<boolean>(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
   const [llmConfig, setLlmConfig] = useState<LlmConfig | null>(() => realLlmService.getStoredConfig());
+
+  // Supabase Auth State
+  const [user, setUser] = useState<any>(null);
+
+  React.useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   // Handlers
   const handleGenerationComplete = (
@@ -170,6 +188,8 @@ export function App() {
         onRunDemoFlow={() => setIsDemoGuideOpen(true)}
         onOpenCloudSettings={() => setIsCloudSettingsOpen(true)}
         isLiveAiActive={!!llmConfig?.apiKey}
+        user={user}
+        onOpenAuth={() => setIsAuthModalOpen(true)}
       />
 
       {/* Main Body with Left Sidebar + Content Area */}
@@ -181,6 +201,8 @@ export function App() {
           currentRole={currentRole}
           currentWorkspace={currentWorkspace}
           hasGeneratedOutputs={deliverables.length > 0}
+          user={user}
+          onOpenAuth={() => setIsAuthModalOpen(true)}
         />
 
         {/* Dynamic Center Stage View */}
@@ -191,6 +213,7 @@ export function App() {
                 onNavigate={setActiveTab}
                 currentRole={currentRole}
                 onLaunchTransformation={() => setActiveTab('transform')}
+                user={user}
               />
             )}
 
@@ -280,6 +303,12 @@ export function App() {
         isOpen={isCloudSettingsOpen}
         onClose={() => setIsCloudSettingsOpen(false)}
         onConfigUpdated={(cfg) => setLlmConfig(cfg)}
+      />
+
+      {/* Auth Modal */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
       />
     </div>
   );
