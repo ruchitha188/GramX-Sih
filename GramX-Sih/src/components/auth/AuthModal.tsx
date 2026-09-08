@@ -9,6 +9,8 @@ interface AuthModalProps {
 
 export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     const [isLogin, setIsLogin] = useState(true);
+    const [verificationStep, setVerificationStep] = useState(false);
+    const [otpCode, setOtpCode] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
@@ -43,10 +45,31 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                     }
                 });
                 if (authError) throw authError;
-                setMessage('Check your email for the verification link!');
+                setMessage('A verification code has been sent to your email.');
+                setVerificationStep(true);
             }
         } catch (err: any) {
             setError(err.message || 'An error occurred during authentication.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleVerifyOtp = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        setError('');
+
+        try {
+            const { error: authError } = await supabase.auth.verifyOtp({
+                email,
+                token: otpCode,
+                type: 'signup'
+            });
+            if (authError) throw authError;
+            onClose(); // Successfully verified and signed in!
+        } catch (err: any) {
+            setError(err.message || 'Invalid verification code.');
         } finally {
             setLoading(false);
         }
@@ -57,7 +80,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
                 <div className="flex justify-between items-center p-5 border-b border-slate-200 bg-slate-50">
                     <h3 className="font-bold text-slate-800 text-lg">
-                        {isLogin ? 'Sign in to GramX' : 'Create an Account'}
+                        {verificationStep ? 'Enter Verification Code' : isLogin ? 'Sign in to GramX' : 'Create an Account'}
                     </h3>
                     <button onClick={onClose} className="p-1 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-200">
                         <X className="w-5 h-5" />
@@ -77,74 +100,103 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                         </div>
                     )}
 
-                    <form onSubmit={handleAuth} className="space-y-4">
-                        {!isLogin && (
+                    {verificationStep ? (
+                        <form onSubmit={handleVerifyOtp} className="space-y-4">
                             <div>
-                                <label className="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
-                                <div className="relative">
-                                    <input
-                                        type="text"
-                                        required
-                                        value={name}
-                                        onChange={e => setName(e.target.value)}
-                                        className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                                        placeholder="John Doe"
-                                    />
-                                    <div className="absolute left-3 top-2.5 text-slate-400">
-                                        <Mail className="w-4 h-4 opacity-0" />
+                                <label className="block text-xs font-semibold text-slate-700 mb-1">6-Digit Code</label>
+                                <input
+                                    type="text"
+                                    required
+                                    maxLength={6}
+                                    value={otpCode}
+                                    onChange={e => setOtpCode(e.target.value)}
+                                    className="w-full text-center tracking-[0.5em] font-mono text-xl py-3 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                                    placeholder="••••••"
+                                />
+                                <p className="text-[10px] text-slate-500 text-center mt-2">
+                                    We sent a code to {email}. Please check your spam folder.
+                                </p>
+                            </div>
+                            <button
+                                type="submit"
+                                disabled={loading || otpCode.length < 6}
+                                className="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-300 text-white font-semibold rounded-lg text-sm shadow-md transition-colors mt-2"
+                            >
+                                {loading ? 'Verifying...' : 'Verify Email'}
+                            </button>
+                        </form>
+                    ) : (
+                        <>
+                            <form onSubmit={handleAuth} className="space-y-4">
+                                {!isLogin && (
+                                    <div>
+                                        <label className="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
+                                        <div className="relative">
+                                            <input
+                                                type="text"
+                                                required
+                                                value={name}
+                                                onChange={e => setName(e.target.value)}
+                                                className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                                                placeholder="John Doe"
+                                            />
+                                            <div className="absolute left-3 top-2.5 text-slate-400">
+                                                <Mail className="w-4 h-4 opacity-0" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div>
+                                    <label className="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
+                                    <div className="relative">
+                                        <input
+                                            type="email"
+                                            required
+                                            value={email}
+                                            onChange={e => setEmail(e.target.value)}
+                                            className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                                            placeholder="name@company.com"
+                                        />
+                                        <Mail className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
                                     </div>
                                 </div>
+
+                                <div>
+                                    <label className="block text-xs font-semibold text-slate-700 mb-1">Password</label>
+                                    <div className="relative">
+                                        <input
+                                            type="password"
+                                            required
+                                            value={password}
+                                            onChange={e => setPassword(e.target.value)}
+                                            className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                                            placeholder="••••••••"
+                                        />
+                                        <Lock className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
+                                    </div>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    disabled={loading}
+                                    className="w-full py-2.5 bg-blue-700 hover:bg-blue-800 disabled:bg-blue-400 text-white font-semibold rounded-lg text-sm shadow-md transition-colors mt-2"
+                                >
+                                    {loading ? 'Please wait...' : isLogin ? 'Sign In' : 'Sign Up'}
+                                </button>
+                            </form>
+
+                            <div className="mt-5 text-center text-xs text-slate-600">
+                                {isLogin ? "Don't have an account? " : "Already have an account? "}
+                                <button
+                                    onClick={() => { setIsLogin(!isLogin); setError(''); setMessage(''); }}
+                                    className="font-bold text-blue-700 hover:underline"
+                                >
+                                    {isLogin ? 'Sign up' : 'Sign in'}
+                                </button>
                             </div>
-                        )}
-
-                        <div>
-                            <label className="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
-                            <div className="relative">
-                                <input
-                                    type="email"
-                                    required
-                                    value={email}
-                                    onChange={e => setEmail(e.target.value)}
-                                    className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                                    placeholder="name@company.com"
-                                />
-                                <Mail className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
-                            </div>
-                        </div>
-
-                        <div>
-                            <label className="block text-xs font-semibold text-slate-700 mb-1">Password</label>
-                            <div className="relative">
-                                <input
-                                    type="password"
-                                    required
-                                    value={password}
-                                    onChange={e => setPassword(e.target.value)}
-                                    className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                                    placeholder="••••••••"
-                                />
-                                <Lock className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
-                            </div>
-                        </div>
-
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="w-full py-2.5 bg-blue-700 hover:bg-blue-800 disabled:bg-blue-400 text-white font-semibold rounded-lg text-sm shadow-md transition-colors mt-2"
-                        >
-                            {loading ? 'Please wait...' : isLogin ? 'Sign In' : 'Sign Up'}
-                        </button>
-                    </form>
-
-                    <div className="mt-5 text-center text-xs text-slate-600">
-                        {isLogin ? "Don't have an account? " : "Already have an account? "}
-                        <button
-                            onClick={() => { setIsLogin(!isLogin); setError(''); setMessage(''); }}
-                            className="font-bold text-blue-700 hover:underline"
-                        >
-                            {isLogin ? 'Sign up' : 'Sign in'}
-                        </button>
-                    </div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
