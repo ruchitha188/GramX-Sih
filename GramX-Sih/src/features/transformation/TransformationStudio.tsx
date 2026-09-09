@@ -1,20 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Sparkles,
-  ShieldCheck,
-  CheckCircle2
-} from 'lucide-react';
-import {
-  SourceDocument,
-  TransformationConfig,
-  DeliverableType,
-  DeliverableOutput,
-  VerificationReport
-} from '../../types';
-import { SAMPLE_SOURCES } from '../../data/sampleSources';
-import { SourceInput } from './SourceInput';
-import { ConfigurationPanel } from './ConfigurationPanel';
-import { OutputSelector } from './OutputSelector';
+import React, { useState, useRef, useEffect } from 'react';
+import { ArrowRight, Paperclip, Sparkles, X, File, Video, Music } from 'lucide-react';
+import { SourceDocument, TransformationConfig, DeliverableType, DeliverableOutput, VerificationReport } from '../../types';
 import { GenerationProgress } from './GenerationProgress';
 import { transformationEngine, GenerationStep } from '../../services/transformationEngine';
 import { realLlmService, LlmConfig } from '../../services/realLlmService';
@@ -27,136 +13,92 @@ interface TransformationStudioProps {
 
 export const TransformationStudio: React.FC<TransformationStudioProps> = ({
   onGenerationComplete,
-  onOpenCloudSettings,
   llmConfig
 }) => {
-  // Source Document state (default to primary demo: Cybersecurity_Incident_Report.pdf)
-  const [source, setSource] = useState<SourceDocument>({
-    id: 'empty',
-    title: '',
-    filename: 'No input provided',
-    type: 'text',
-    pages: 0,
-    size: '0 KB',
-    uploadedAt: '',
-    detectedFacts: { total: 0, dates: 0, entities: 0, numericalValues: 0 },
-    contextSummary: '',
-    intent: '',
-    rawContent: '',
-    paragraphs: []
-  });
+  const [prompt, setPrompt] = useState('');
+  const [attachedFile, setAttachedFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Transformation Configuration state
-  const [config, setConfig] = useState<TransformationConfig>({
-    audience: 'General Public',
-    tone: 'Professional',
-    language: 'English + Telugu',
-    detailLevel: 'Medium',
-    objective: 'Executive Briefing',
-    contentStyle: 'Official',
-    organizationKnowledgeEnabled: true
-  });
-
-  // Selected Deliverable Types (all 7 deliverables from SIH Problem Statement!)
-  const [selectedTypes, setSelectedTypes] = useState<DeliverableType[]>([
-    'executive_summary',
-    'video_package',
-    'linkedin',
-    'twitter_thread',
-    'advisory',
-    'infographic',
-    'presentation'
-  ]);
-
-  // Generation state
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [generationSteps, setGenerationSteps] = useState<GenerationStep[]>([]);
   const [activeEngine, setActiveEngine] = useState<LlmConfig>(() => realLlmService.getStoredConfig());
 
+  // In GramX V2, we automatically select all 7 core deliverables to provide maximum value based on the prompt.
+  const coreDeliverables: DeliverableType[] = [
+    'executive_summary', 'video_package', 'linkedin', 'twitter_thread', 'advisory', 'infographic', 'presentation'
+  ];
+
   useEffect(() => {
-    const config = llmConfig || realLlmService.getStoredConfig();
-    setActiveEngine(config);
+    if (llmConfig) setActiveEngine(llmConfig);
   }, [llmConfig]);
 
-  const handleToggleType = (type: DeliverableType) => {
-    if (selectedTypes.includes(type)) {
-      setSelectedTypes(selectedTypes.filter(t => t !== type));
-    } else {
-      setSelectedTypes([...selectedTypes, type]);
-    }
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) setAttachedFile(file);
+    if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
-  const handleSelectAll = () => {
-    setSelectedTypes([
-      'executive_summary',
-      'video_package',
-      'linkedin',
-      'twitter_thread',
-      'advisory',
-      'infographic',
-      'presentation',
-      'whatsapp',
-      'email'
-    ]);
-  };
-
-  const handleSelectSihCore = () => {
-    setSelectedTypes([
-      'executive_summary',
-      'video_package',
-      'linkedin',
-      'twitter_thread',
-      'advisory',
-      'infographic',
-      'presentation'
-    ]);
-  };
-
-  const handleDeselectAll = () => {
-    setSelectedTypes([]);
-  };
+  const handleRemoveFile = () => setAttachedFile(null);
 
   const handleGenerate = async () => {
-    if (selectedTypes.length === 0 || isGenerating) return;
+    if ((!prompt.trim() && !attachedFile) || isGenerating) return;
 
-    const engine = activeEngine || realLlmService.getStoredConfig();
+    // Create a Source Document dynamically from input
+    const isVideo = attachedFile?.type.includes('video');
+    const isAudio = attachedFile?.type.includes('audio');
+    const typeAlias = isVideo ? 'video' : isAudio ? 'audio' : attachedFile ? 'pdf' : 'text';
+
+    const source: SourceDocument = {
+      id: Date.now().toString(),
+      title: attachedFile ? attachedFile.name : (prompt.substring(0, 30) + '...'),
+      filename: attachedFile ? attachedFile.name : 'text_input.txt',
+      type: typeAlias,
+      pages: 1,
+      size: attachedFile ? (attachedFile.size / 1024 / 1024).toFixed(2) + ' MB' : '1 KB',
+      uploadedAt: new Date().toLocaleTimeString(),
+      detectedFacts: { total: 0, dates: 0, entities: 0, numericalValues: 0 },
+      contextSummary: '',
+      intent: prompt,
+      rawContent: prompt,
+      paragraphs: []
+    };
+
+    const config: TransformationConfig = {
+      audience: 'General Public',
+      tone: 'Professional',
+      language: 'English',
+      detailLevel: 'Medium',
+      objective: 'Executive Briefing',
+      contentStyle: 'Official',
+      organizationKnowledgeEnabled: true
+    };
+
     setIsGenerating(true);
 
     try {
-      // Real Live Google LLM execution
       setGenerationSteps([
-        { id: '1', label: `Connecting to Google LLM (${engine.model || 'gemini-flash-latest'})...`, status: 'in_progress' },
-        { id: '2', label: 'Deep Ingestion & Fact Extraction...', status: 'pending' },
-        { id: '3', label: `Simultaneous Synthesis of ${selectedTypes.length} Deliverables (English & Telugu)...`, status: 'pending' },
-        { id: '4', label: 'Provenance Verification & Claim Grounding...', status: 'pending' }
+        { id: '1', label: `Initializing Google LLM Engine (${activeEngine.model})...`, status: 'in_progress' },
+        { id: '2', label: 'Processing Prompt & Analyzing Attached Source...', status: 'pending' },
+        { id: '3', label: `Generating 7 Unified Deliverables from Source...`, status: 'pending' },
+        { id: '4', label: 'Executing Traceability & Fact Verification...', status: 'pending' }
       ]);
 
-      const stepTimer1 = setTimeout(() => {
-        setGenerationSteps(prev => prev.map((s, i) => i === 0 ? { ...s, status: 'completed' } : i === 1 ? { ...s, status: 'in_progress' } : s));
-      }, 500);
+      setTimeout(() => setGenerationSteps(p => p.map((s, i) => i === 0 ? { ...s, status: 'completed' } : i === 1 ? { ...s, status: 'in_progress' } : s)), 500);
+      setTimeout(() => setGenerationSteps(p => p.map((s, i) => i <= 1 ? { ...s, status: 'completed' } : i === 2 ? { ...s, status: 'in_progress' } : s)), 1200);
 
-      const stepTimer2 = setTimeout(() => {
-        setGenerationSteps(prev => prev.map((s, i) => i <= 1 ? { ...s, status: 'completed' } : i === 2 ? { ...s, status: 'in_progress' } : s));
-      }, 1200);
+      const result = await realLlmService.generateWithLlm(source, config, coreDeliverables, activeEngine);
 
-      const result = await realLlmService.generateWithLlm(source, config, selectedTypes, engine);
-
-      clearTimeout(stepTimer1);
-      clearTimeout(stepTimer2);
-
-      setGenerationSteps(prev => prev.map(s => ({ ...s, status: 'completed' })));
+      setGenerationSteps(p => p.map(s => ({ ...s, status: 'completed' })));
 
       setTimeout(() => {
         setIsGenerating(false);
         onGenerationComplete(result.deliverables, result.verification, source);
-      }, 300);
-    } catch (err: any) {
-      console.error('LLM generation error, falling back to local engine:', err);
-      // Seamless graceful fallback
+      }, 500);
+
+    } catch (err) {
+      console.error('LLM generation error, seamless local fallback initiated:', err);
       const result = await transformationEngine.generateDeliverables(
-        source,
-        config,
-        selectedTypes,
+        source, config, coreDeliverables,
         (steps) => setGenerationSteps(steps)
       );
       setIsGenerating(false);
@@ -165,97 +107,86 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
   };
 
   return (
-    <div className="space-y-6">
-      {/* Hero Header */}
-      <div className="bg-zinc-950/70 backdrop-blur-3xl border border-zinc-800 rounded-2xl p-6 shadow-2xl shadow-black/80">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-gradient-to-r from-zinc-9000/20 to-purple-500/20 text-zinc-400 border border-zinc-500/30 uppercase tracking-wide">
-                Transformation Studio
-              </span>
-              <span className="text-xs text-zinc-400">One Source ➔ Multi-Output</span>
-            </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-zinc-100 tracking-tight">
-              Transformation Studio
-            </h1>
-            <p className="text-xs sm:text-sm text-zinc-300 mt-1">
-              Transform one source into multiple audience-ready deliverables.
-            </p>
-          </div>
+    <div className="relative w-full h-full flex flex-col items-center justify-center -mt-16">
 
-          <div className="flex items-center gap-3 bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-xs text-zinc-400">
-            <ShieldCheck className="w-4 h-4 text-emerald-700" />
-            <span>SIH Problem ID: <strong className="text-zinc-200">SIH26154</strong></span>
-          </div>
-        </div>
+      {/* Centered OmniBar Logic (Perplexity Clone) */}
+      <div className="w-full max-w-3xl px-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <h1 className="text-3xl md:text-4xl font-semibold text-zinc-100 mb-8 text-center tracking-tight">
+          What do you want to create?
+        </h1>
 
-        {/* AI Engine Status Card */}
-        <div className="mt-4 pt-4 border-t border-zinc-800/80">
-          <div className="p-4 rounded-xl bg-gradient-to-r from-zinc-900 via-zinc-950 to-black border border-blue-300/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-zinc-300 text-black/10 border border-blue-300/20 flex items-center justify-center text-zinc-300 shrink-0 shadow-lg shadow-indigo-500/10">
-                <Sparkles className="w-5 h-5 text-zinc-300" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-zinc-100 tracking-tight">Google LLM Native Core</span>
-                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-500/20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Active ({activeEngine?.model || 'gemini-flash-latest'})
-                  </span>
-                  <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-zinc-900 text-zinc-300 border border-zinc-700">
-                    Official SDK
-                  </span>
-                </div>
-                <p className="text-[11px] text-zinc-400 mt-0.5">
-                  Autonomous transformation engine powered by Google Generative AI with zero-hallucination provenance and bilingual Telugu translation.
-                </p>
+        <div className="bg-zinc-900 border border-zinc-700/60 rounded-2xl p-4 shadow-2xl focus-within:border-zinc-500 transition-all flex flex-col gap-3">
+
+          {/* File Attachment Chip */}
+          {attachedFile && (
+            <div className="flex items-center gap-2 self-start bg-zinc-800 text-zinc-300 py-1.5 px-3 rounded-xl border border-zinc-700/50 text-xs font-medium">
+              {attachedFile.type.includes('video') ? <Video className="w-3.5 h-3.5 text-blue-400" /> :
+                attachedFile.type.includes('audio') ? <Music className="w-3.5 h-3.5 text-emerald-400" /> :
+                  <File className="w-3.5 h-3.5 text-purple-400" />}
+              <span className="truncate max-w-[200px]">{attachedFile.name}</span>
+              <span className="text-zinc-500">({(attachedFile.size / 1024 / 1024).toFixed(1)}MB)</span>
+              <button onClick={handleRemoveFile} className="ml-1 hover:text-white transition-colors">
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
+
+          {/* Core Text Input */}
+          <textarea
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleGenerate();
+              }
+            }}
+            placeholder="Type your prompt, paste a link, or dictate a summary task..."
+            className="w-full bg-transparent text-zinc-100 resize-none outline-none text-base md:text-lg min-h-[72px] placeholder:text-zinc-600"
+          />
+
+          {/* Bottom Toolbar */}
+          <div className="flex items-center justify-between pt-2">
+            <div className="flex items-center gap-2">
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                accept="audio/*,video/*,application/pdf,text/plain"
+                className="hidden"
+              />
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="flex items-center gap-2 text-zinc-400 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:text-zinc-200 px-3 py-1.5 rounded-full transition-colors font-medium text-xs shadow-sm"
+              >
+                <Paperclip size={14} />
+                <span>Attach</span>
+              </button>
+
+              <div className="hidden sm:flex items-center gap-2 text-[11px] text-zinc-500 ml-2">
+                Supports Video, Audio & PDFs
               </div>
             </div>
-            <div className="flex items-center gap-2 shrink-0">
-              <span className="text-[11px] text-zinc-300 flex items-center gap-1.5 bg-black/80 border border-zinc-800 px-3 py-1.5 rounded-lg">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
-                <span>Zero Setup Required</span>
-              </span>
-            </div>
+
+            <button
+              onClick={handleGenerate}
+              disabled={(!prompt.trim() && !attachedFile) || isGenerating}
+              className="flex items-center justify-center w-9 h-9 sm:w-auto sm:h-auto sm:px-4 sm:py-2 rounded-full font-medium transition-all shadow-md active:scale-95 disabled:opacity-50 disabled:active:scale-100 bg-zinc-200 text-black hover:bg-white"
+            >
+              <span className="hidden sm:block mr-2 font-bold text-sm">Generate</span>
+              <ArrowRight className="w-4 h-4 sm:w-4 sm:h-4" />
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Step 1: Source Ingestion */}
-      <SourceInput
-        currentSource={source}
-        onSelectSource={(newSource) => setSource(newSource)}
-      />
-
-      {/* Step 2: Configure Output */}
-      <ConfigurationPanel
-        config={config}
-        onChange={(newConfig) => setConfig(newConfig)}
-      />
-
-      {/* Step 3: Multi-Output Selection & CTA */}
-      <OutputSelector
-        selectedTypes={selectedTypes}
-        onToggleType={handleToggleType}
-        onSelectAll={handleSelectAll}
-        onDeselectAll={handleDeselectAll}
-        onSelectSihCore={handleSelectSihCore}
-        onGenerate={handleGenerate}
-        isGenerating={isGenerating}
-      />
-
-      {/* Generation Progress Overlay Modal */}
       {isGenerating && (
         <GenerationProgress
           steps={generationSteps}
-          selectedTypes={selectedTypes}
-          sourceName={source.filename}
+          selectedTypes={coreDeliverables}
+          sourceName={attachedFile ? attachedFile.name : 'Ad-hoc Prompt'}
         />
       )}
-
-
     </div>
   );
 };

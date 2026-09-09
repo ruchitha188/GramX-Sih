@@ -24,7 +24,8 @@ import {
   DeliverableOutput,
   SourceDocument,
   UserRole,
-  VerificationReport
+  VerificationReport,
+  ProjectItem
 } from './types';
 import { SAMPLE_SOURCES } from './data/sampleSources';
 import { PRIMARY_SAMPLE_DELIVERABLES } from './data/sampleDeliverables';
@@ -53,6 +54,7 @@ export function App() {
   });
   const [deliverables, setDeliverables] = useState<DeliverableOutput[]>([]);
   const [verificationReport, setVerificationReport] = useState<VerificationReport | null>(null);
+  const [projects, setProjects] = useState<ProjectItem[]>(INITIAL_PROJECTS);
 
   // Modals State
   const [isExportModalOpen, setIsExportModalOpen] = useState<boolean>(false);
@@ -87,16 +89,16 @@ export function App() {
     setCurrentSource(source);
 
     // Persist as a new project in local memory so the user sees it in their Projects tab
-    INITIAL_PROJECTS.unshift({
+    setProjects(prev => [{
       id: Date.now().toString(),
-      title: source.title || 'Live Transformation Project',
+      title: source.filename !== 'No input provided' ? source.filename : 'Ad-hoc AI Generation',
       description: `Auto-generated multi-output content package containing ${newDeliverables.length} professional deliverables.`,
       sourceName: source.filename || 'Source Document',
       deliverablesCount: newDeliverables.length,
       updatedAt: 'Just now',
       status: 'Draft',
       team: [user?.user_metadata?.full_name?.split(' ')[0] || user?.email?.split('@')[0] || 'You']
-    });
+    }, ...prev]);
 
     INITIAL_VERSION_HISTORY.unshift({
       versionNumber: INITIAL_VERSION_HISTORY.length + 1,
@@ -243,6 +245,7 @@ export function App() {
           hasGeneratedOutputs={deliverables.length > 0}
           user={user}
           onOpenAuth={() => setIsAuthModalOpen(true)}
+          projects={projects}
         />
 
         {/* Dynamic Center Stage View */}

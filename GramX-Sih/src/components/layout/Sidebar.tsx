@@ -11,9 +11,10 @@ import {
   HelpCircle,
   Cpu,
   CheckCircle2,
-  Flame
+  Flame,
+  Plus
 } from 'lucide-react';
-import { UserRole } from '../../types';
+import { UserRole, ProjectItem } from '../../types';
 
 export type NavTab =
   | 'dashboard'
@@ -36,6 +37,7 @@ interface SidebarProps {
   hasGeneratedOutputs: boolean;
   user?: any;
   onOpenAuth?: () => void;
+  projects: ProjectItem[];
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -45,7 +47,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   currentWorkspace,
   hasGeneratedOutputs,
   user,
-  onOpenAuth
+  onOpenAuth,
+  projects
 }) => {
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Home },
@@ -67,6 +70,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <aside className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-zinc-800 bg-zinc-950 flex flex-col justify-between shrink-0 lg:min-h-[calc(100vh-61px)]">
       {/* Top navigation links */}
       <div className="p-4 space-y-6">
+        <button
+          onClick={() => onTabChange('transform')}
+          className="w-full flex items-center justify-between p-3 bg-zinc-200 hover:bg-white text-black font-bold rounded-xl transition-colors shadow-md shadow-white/5 active:scale-95"
+        >
+          <div className="flex items-center gap-2">
+            <Plus className="w-4 h-4" />
+            <span>New Transformation</span>
+          </div>
+          <span className="text-[10px] bg-black/10 px-1.5 py-0.5 rounded text-black/70 font-mono">⌘K</span>
+        </button>
+
         <div>
           <div className="px-3 mb-2 text-[10px] font-bold tracking-wider text-zinc-400 uppercase">
             Platform Navigation
@@ -103,6 +117,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
             })}
           </nav>
         </div>
+
+        {/* Recent Projects (Like Perplexity Threads) */}
+        {projects.length > 0 && (
+          <div className="mt-4 flex-1 overflow-y-auto pr-2">
+            <div className="px-3 mb-2 text-[10px] font-bold tracking-wider text-zinc-500 uppercase">
+              Recent Generation Threads
+            </div>
+            <div className="space-y-0.5">
+              {projects.slice(0, 10).map(p => (
+                <button
+                  key={p.id}
+                  onClick={() => onTabChange('projects')}
+                  className="w-full text-left px-3 py-1.5 text-[11px] text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900 rounded-lg truncate transition-colors"
+                >
+                  {p.title}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* RAG Context Status Box */}
         <div className="p-3.5 rounded-xl bg-zinc-950/70 backdrop-blur-3xl border border-blue-300/20 text-xs space-y-2">
