@@ -13,8 +13,8 @@ import {
 import { UserRole } from '../../types';
 
 interface NavbarProps {
-  currentWorkspace: 'GRAMX Communications' | 'Personal Account';
-  onWorkspaceChange: (ws: 'GRAMX Communications' | 'Personal Account') => void;
+  currentWorkspace: string;
+  onWorkspaceChange: (ws: string) => void;
   currentRole: UserRole;
   onRoleChange: (role: UserRole) => void;
   onRunDemoFlow: () => void;
@@ -88,17 +88,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                 Switch Workspace
               </div>
               <button
-                onClick={() => onWorkspaceChange('GRAMX Communications')}
-                className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-slate-100 transition-colors ${currentWorkspace === 'GRAMX Communications' ? 'text-blue-700 font-semibold bg-blue-600/10' : 'text-slate-700'
-                  }`}
-              >
-                <div className="flex items-center gap-2">
-                  <Building2 className="w-4 h-4 text-blue-700" />
-                  <span>GRAMX Communications</span>
-                </div>
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-600/20 text-blue-600">Org</span>
-              </button>
-              <button
                 onClick={() => onWorkspaceChange('Personal Account')}
                 className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-slate-100 transition-colors ${currentWorkspace === 'Personal Account' ? 'text-blue-700 font-semibold bg-blue-600/10' : 'text-slate-700'
                   }`}
@@ -107,8 +96,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <UserCheck className="w-4 h-4 text-slate-600" />
                   <span>Personal Account</span>
                 </div>
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">Free</span>
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-200 text-slate-700">Active</span>
               </button>
+
+              <div className="border-t border-slate-200 mt-1 pt-1">
+                <button
+                  onClick={() => alert('Workspace creation flow coming soon!')}
+                  className="w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-slate-100 transition-colors text-emerald-600 font-medium"
+                >
+                  <div className="flex items-center gap-2">
+                    <Building2 className="w-4 h-4" />
+                    <span>Create Workspace...</span>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
 

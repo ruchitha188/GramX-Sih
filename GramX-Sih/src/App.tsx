@@ -30,7 +30,7 @@ import { INITIAL_VERIFICATION_REPORT } from './data/verificationData';
 
 export function App() {
   // Global Workspace & Role State
-  const [currentWorkspace, setCurrentWorkspace] = useState<'GRAMX Communications' | 'Personal Account'>('GRAMX Communications');
+  const [currentWorkspace, setCurrentWorkspace] = useState<string>('Personal Account');
   const [currentRole, setCurrentRole] = useState<UserRole>('Admin');
   const [activeTab, setActiveTab] = useState<NavTab>('dashboard');
 
@@ -143,7 +143,7 @@ export function App() {
         setActiveTab('dashboard');
         break;
       case 2:
-        setCurrentWorkspace('GRAMX Communications');
+        setCurrentWorkspace('Personal Account');
         setActiveTab('dashboard');
         break;
       case 3:

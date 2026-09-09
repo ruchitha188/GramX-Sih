@@ -77,8 +77,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   key={item.id}
                   onClick={() => onTabChange(item.id as NavTab)}
                   className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium transition-all group ${isActive
-                      ? 'bg-blue-700/15 text-blue-600 border border-blue-300/30 shadow-sm shadow-blue-200/50'
-                      : 'text-slate-600 hover:text-slate-800 hover:bg-slate-50/80 border border-transparent'
+                    ? 'bg-blue-700/15 text-blue-600 border border-blue-300/30 shadow-sm shadow-blue-200/50'
+                    : 'text-slate-600 hover:text-slate-800 hover:bg-slate-50/80 border border-transparent'
                     }`}
                 >
                   <div className="flex items-center gap-3">
@@ -87,10 +87,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   </div>
                   {item.badge && (
                     <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${item.badge === 'Hero'
-                        ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
-                        : item.badge === '96%'
-                          ? 'bg-emerald-100 text-emerald-300 border border-emerald-500/30'
-                          : 'bg-slate-100 text-slate-700'
+                      ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                      : item.badge === '96%'
+                        ? 'bg-emerald-100 text-emerald-300 border border-emerald-500/30'
+                        : 'bg-slate-100 text-slate-700'
                       }`}>
                       {item.badge}
                     </span>
@@ -132,7 +132,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </p>
               <p className="text-[11px] text-slate-600 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                Online • {currentWorkspace === 'GRAMX Communications' ? 'GRAMX Org' : 'Personal'}
+                Online • {currentWorkspace}
               </p>
             </div>
           </div>
