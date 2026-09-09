@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Sparkles, 
-  ShieldCheck, 
+import {
+  Sparkles,
+  ShieldCheck,
   CheckCircle2
 } from 'lucide-react';
-import { 
-  SourceDocument, 
-  TransformationConfig, 
-  DeliverableType, 
+import {
+  SourceDocument,
+  TransformationConfig,
+  DeliverableType,
   DeliverableOutput,
-  VerificationReport 
+  VerificationReport
 } from '../../types';
 import { SAMPLE_SOURCES } from '../../data/sampleSources';
 import { SourceInput } from './SourceInput';
@@ -31,7 +31,20 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
   llmConfig
 }) => {
   // Source Document state (default to primary demo: Cybersecurity_Incident_Report.pdf)
-  const [source, setSource] = useState<SourceDocument>(SAMPLE_SOURCES[0]);
+  const [source, setSource] = useState<SourceDocument>({
+    id: 'empty',
+    title: '',
+    filename: 'No input provided',
+    type: 'text',
+    pages: 0,
+    size: '0 KB',
+    uploadedAt: '',
+    detectedFacts: { total: 0, dates: 0, entities: 0, numericalValues: 0 },
+    contextSummary: '',
+    intent: '',
+    rawContent: '',
+    paragraphs: []
+  });
 
   // Transformation Configuration state
   const [config, setConfig] = useState<TransformationConfig>({

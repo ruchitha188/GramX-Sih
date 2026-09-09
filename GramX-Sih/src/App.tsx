@@ -18,6 +18,7 @@ import { CloudSettingsModal } from './components/shared/CloudSettingsModal';
 import { realLlmService, LlmConfig } from './services/realLlmService';
 import { supabase } from './services/supabaseClient';
 import { AuthModal } from './components/auth/AuthModal';
+import { INITIAL_PROJECTS, INITIAL_VERSION_HISTORY } from './data/workspaceData';
 
 import {
   DeliverableOutput,
@@ -36,9 +37,22 @@ export function App() {
   const [activeTab, setActiveTab] = useState<NavTab>('transform');
 
   // Transformation Data State
-  const [currentSource, setCurrentSource] = useState<SourceDocument>(SAMPLE_SOURCES[0]);
-  const [deliverables, setDeliverables] = useState<DeliverableOutput[]>(PRIMARY_SAMPLE_DELIVERABLES);
-  const [verificationReport, setVerificationReport] = useState<VerificationReport>(INITIAL_VERIFICATION_REPORT);
+  const [currentSource, setCurrentSource] = useState<SourceDocument>({
+    id: 'empty',
+    title: '',
+    filename: 'No input provided',
+    type: 'text',
+    pages: 0,
+    size: '0 KB',
+    uploadedAt: new Date().toLocaleTimeString(),
+    detectedFacts: { total: 0, dates: 0, entities: 0, numericalValues: 0 },
+    contextSummary: '',
+    intent: '',
+    rawContent: '',
+    paragraphs: []
+  });
+  const [deliverables, setDeliverables] = useState<DeliverableOutput[]>([]);
+  const [verificationReport, setVerificationReport] = useState<VerificationReport | null>(null);
 
   // Modals State
   const [isExportModalOpen, setIsExportModalOpen] = useState<boolean>(false);
@@ -71,6 +85,28 @@ export function App() {
     setDeliverables(newDeliverables);
     setVerificationReport(newVerification);
     setCurrentSource(source);
+
+    // Persist as a new project in local memory so the user sees it in their Projects tab
+    INITIAL_PROJECTS.unshift({
+      id: Date.now().toString(),
+      title: source.title || 'Live Transformation Project',
+      description: `Auto-generated multi-output content package containing ${newDeliverables.length} professional deliverables.`,
+      sourceName: source.filename || 'Source Document',
+      deliverablesCount: newDeliverables.length,
+      updatedAt: 'Just now',
+      status: 'Draft',
+      team: [user?.user_metadata?.full_name?.split(' ')[0] || user?.email?.split('@')[0] || 'You']
+    });
+
+    INITIAL_VERSION_HISTORY.unshift({
+      versionNumber: INITIAL_VERSION_HISTORY.length + 1,
+      label: 'Version 1 — AI Generated',
+      modifiedBy: 'GramX Engine',
+      timestamp: new Date().toLocaleTimeString(),
+      snippet: `Generated multi-output content package from ${source.filename}. Fact checking applied.`,
+      diffSummary: `${newDeliverables.length} deliverables successfully generated.`
+    });
+
     setActiveTab('deliverables');
   };
 
