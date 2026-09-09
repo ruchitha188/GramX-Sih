@@ -112,17 +112,20 @@ export function App() {
 
   const handleFixMismatch = (mismatchId: string, fixText: string) => {
     // 1. Update verification report
-    setVerificationReport(prev => ({
-      ...prev,
-      factPreservationScore: 100,
-      verifiedCount: prev.totalFacts,
-      mismatchCount: 0,
-      metrics: {
-        ...prev.metrics,
-        factPreservation: 100
-      },
-      mismatches: []
-    }));
+    setVerificationReport(prev => {
+      if (!prev) return null;
+      return {
+        ...prev,
+        factPreservationScore: 100,
+        verifiedCount: prev.totalFacts,
+        mismatchCount: 0,
+        metrics: {
+          ...prev.metrics,
+          factPreservation: 100
+        },
+        mismatches: []
+      };
+    });
 
     // 2. Correct deliverable text where 24 hours was mentioned
     setDeliverables(prev => prev.map(d => {
@@ -274,10 +277,10 @@ export function App() {
               />
             )}
 
-            {activeTab === 'verification' && (
+            {activeTab === 'verification' && verificationReport && (
               <FactVerificationView
                 report={verificationReport}
-                sourceName={currentSource.filename}
+                sourceName={currentSource?.filename || 'No Source'}
                 onFixMismatch={handleFixMismatch}
                 onSendToReview={handleSendToReview}
                 onNavigateToTraceability={() => setActiveTab('traceability')}
