@@ -61,9 +61,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
     ] : []),
     { id: 'projects', label: 'Projects', icon: FolderKanban },
     { id: 'knowledge-vault', label: 'Knowledge Vault', icon: Database, badge: 'RAG' },
-    { id: 'reviews', label: 'Human Reviews', icon: CheckSquare, badge: 'Workflow' },
     { id: 'version-history', label: 'Version History', icon: History },
-    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+    ...(user ? [{ id: 'analytics', label: 'Analytics', icon: BarChart3 }] : []),
   ];
 
   return (
