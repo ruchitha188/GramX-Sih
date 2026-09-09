@@ -11,7 +11,6 @@ import {
   Zap,
   TrendingUp,
   Cpu,
-  Cpu,
   Languages,
   Flame,
   ExternalLink
