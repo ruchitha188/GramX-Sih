@@ -129,40 +129,45 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               <span className="text-xs text-slate-600">GramX</span>
             </div>
             <h3 className="text-base sm:text-lg font-extrabold text-slate-900 mt-1">
-              Gen AI Platform for Automated Content Transformation
+              GramX: AI Content Engine
             </h3>
             <p className="text-xs text-slate-700 mt-1 max-w-4xl leading-relaxed">
-              Organisations frequently need to convert information available in different forms (news articles, reports, advisories, threat intelligence, policy documents, research papers, announcements, incident reports, or prompts) into specific communication deliverables. GramX automates deep semantic analysis, grounding, and simultaneous multi-output generation.
+              GramX allows you to ingest any source material (YouTube links, PDFs, Audio, or Text) and instantly transform it into multi-format deliverables aligned to your organizational knowledge.
             </p>
           </div>
           <button
             onClick={onLaunchTransformation}
-            className="px-4 py-2 bg-blue-700 hover:bg-blue-600 text-white rounded-xl text-xs font-semibold shrink-0 shadow-md transition-all"
+            className="px-4 py-2 bg-blue-700 hover:bg-blue-600 text-white rounded-xl text-xs font-semibold shrink-0 shadow-md transition-all flex items-center gap-2"
           >
-            Start Transformation
+            Start Transformation <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
-        {/* Visual Workflow Steps */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 text-center text-xs">
-          {[
-            { step: '1', title: 'Source Content', sub: 'PDF, Text, News, Video, Prompt' },
-            { step: '2', title: 'AI Understanding', sub: 'Context, Intent & 32 Facts' },
-            { step: '3', title: 'Configuration', sub: 'Audience, Tone & Telugu' },
-            { step: '4', title: 'Output Select', sub: 'Multiple Formats at Once' },
-            { step: '5', title: 'Generate All', sub: 'Synchronized Multichannel' },
-            { step: '6', title: 'Verify Facts', sub: '96% Preservation & Fix' },
-            { step: '7', title: 'Human Review', sub: 'Draft ➔ Signoff Pipeline' },
-            { step: '8', title: 'Export & Use', sub: 'PDF, DOCX, PPTX, SRT' }
-          ].map((node) => (
-            <div key={node.step} className="p-3 rounded-xl bg-white border border-slate-200 space-y-1">
-              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-blue-600/20 text-blue-700 font-bold text-[10px]">
-                {node.step}
-              </span>
-              <h4 className="text-xs font-bold text-slate-800">{node.title}</h4>
-              <p className="text-[10px] text-slate-500 leading-tight">{node.sub}</p>
-            </div>
-          ))}
+        {/* Short visual summary */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-2">
+          <div className="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
+            <h4 className="font-bold text-slate-800 text-sm flex items-center gap-2">
+              <span className="w-6 h-6 rounded-md bg-blue-100 text-blue-700 flex items-center justify-center text-xs">1</span>
+              Provide Input Source
+            </h4>
+            <p className="text-xs text-slate-600">Upload a PDF document, paste a YouTube video link, drag in a direct Audio file, or simply type a Text prompt.</p>
+          </div>
+
+          <div className="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
+            <h4 className="font-bold text-slate-800 text-sm flex items-center gap-2">
+              <span className="w-6 h-6 rounded-md bg-purple-100 text-purple-700 flex items-center justify-center text-xs">2</span>
+              Select Formats
+            </h4>
+            <p className="text-xs text-slate-600">Choose multiple output deliverables at once: Video Scripts, Social Media Threads, Executive Summaries, or PR Drafts.</p>
+          </div>
+
+          <div className="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
+            <h4 className="font-bold text-slate-800 text-sm flex items-center gap-2">
+              <span className="w-6 h-6 rounded-md bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs">3</span>
+              Let AI Transform
+            </h4>
+            <p className="text-xs text-slate-600">GramX analyzes your input and instantly generates all your requested formats perfectly tailored in parallel.</p>
+          </div>
         </div>
 
         {/* 8 Deliverable Capabilities Breakdown */}
@@ -236,10 +241,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                     {project.title}
                   </h4>
                   <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${project.status === 'Approved'
-                      ? 'bg-emerald-100 text-emerald-300'
-                      : project.status === 'In Review'
-                        ? 'bg-amber-100 text-amber-300'
-                        : 'bg-slate-100 text-slate-600'
+                    ? 'bg-emerald-100 text-emerald-300'
+                    : project.status === 'In Review'
+                      ? 'bg-amber-100 text-amber-300'
+                      : 'bg-slate-100 text-slate-600'
                     }`}>
                     {project.status}
                   </span>
