@@ -233,7 +233,7 @@ export function App() {
       />
 
       {/* Main Body with Left Sidebar + Content Area */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden overflow-y-auto lg:overflow-y-hidden">
         {/* Left Navigation Sidebar */}
         <Sidebar
           activeTab={activeTab}

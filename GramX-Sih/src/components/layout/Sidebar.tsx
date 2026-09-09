@@ -64,7 +64,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   return (
-    <aside className="w-64 border-r border-zinc-800 bg-zinc-950 flex flex-col justify-between shrink-0 min-h-[calc(100vh-61px)]">
+    <aside className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-zinc-800 bg-zinc-950 flex flex-col justify-between shrink-0 lg:min-h-[calc(100vh-61px)]">
       {/* Top navigation links */}
       <div className="p-4 space-y-6">
         <div>
