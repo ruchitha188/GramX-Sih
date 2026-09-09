@@ -11,7 +11,10 @@ import {
   Zap,
   TrendingUp,
   Cpu,
-  Languages
+  Cpu,
+  Languages,
+  Flame,
+  ExternalLink
 } from 'lucide-react';
 import { NavTab } from '../../components/layout/Sidebar';
 import { UserRole } from '../../types';
@@ -218,47 +221,18 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         <div className="lg:col-span-7 bg-slate-50/90 border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
           <div className="flex items-center justify-between border-b border-slate-200 pb-3">
             <div className="flex items-center gap-2">
-              <FolderKanban className="w-4 h-4 text-blue-700" />
-              <h3 className="text-sm font-bold text-slate-900">Active Organization Projects</h3>
+              <Flame className="w-4 h-4 text-red-500" />
+              <h3 className="text-sm font-bold text-slate-900">Current Hot Topics in India</h3>
             </div>
             <button
-              onClick={() => onNavigate('projects')}
+              onClick={() => onNavigate('trending')}
               className="text-xs text-blue-700 hover:text-blue-600 font-semibold flex items-center gap-1"
             >
-              View All <ArrowRight className="w-3.5 h-3.5" />
+              View Full Feed <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
-          <div className="space-y-3">
-            {INITIAL_PROJECTS.map(project => (
-              <div
-                key={project.id}
-                onClick={() => onLaunchTransformation()}
-                className="p-3.5 rounded-xl bg-white border border-slate-200/80 hover:border-blue-300/40 cursor-pointer transition-all space-y-1.5 group"
-              >
-                <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
-                    {project.title}
-                  </h4>
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${project.status === 'Approved'
-                    ? 'bg-emerald-100 text-emerald-300'
-                    : project.status === 'In Review'
-                      ? 'bg-amber-100 text-amber-300'
-                      : 'bg-slate-100 text-slate-600'
-                    }`}>
-                    {project.status}
-                  </span>
-                </div>
-                <p className="text-[11px] text-slate-600 leading-snug">
-                  {project.description}
-                </p>
-                <div className="flex items-center justify-between text-[10px] text-slate-500 pt-1 border-t border-slate-900">
-                  <span className="font-mono text-blue-700">{project.sourceName}</span>
-                  <span>{project.deliverablesCount} Deliverables • {project.updatedAt}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+          <TrendingPreview onLaunch={onLaunchTransformation} />
         </div>
 
         {/* Right: Platform Capabilities & SIH Highlights (5 cols) */}
@@ -318,6 +292,56 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+const TrendingPreview: React.FC<{ onLaunch: () => void }> = ({ onLaunch }) => {
+  const [topics, setTopics] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en')
+      .then(r => r.json())
+      .then(d => {
+        if (d && d.items) setTopics(d.items.slice(0, 4));
+      })
+      .catch(() => { });
+  }, []);
+
+  if (topics.length === 0) return (
+    <div className="space-y-3">
+      {[1, 2, 3, 4].map(i => <div key={i} className="h-24 bg-white border border-slate-200 rounded-xl animate-pulse" />)}
+    </div>
+  );
+
+  return (
+    <div className="space-y-3">
+      {topics.map((topic, i) => (
+        <div key={i} className="p-3.5 rounded-xl bg-white border border-slate-200/80 hover:border-red-300/40 transition-all space-y-1.5 group">
+          <div className="flex items-center justify-between gap-4">
+            <h4 className="text-xs font-bold text-slate-800 line-clamp-1 group-hover:text-red-700 transition-colors">
+              {topic.title}
+            </h4>
+            <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold bg-red-50 text-red-600 border border-red-100 whitespace-nowrap shadow-sm">
+              Trending #{i + 1}
+            </span>
+          </div>
+          <p className="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
+            Click "Transform" to instantly generate a <strong>News Video Script, Fact-Checked Social Thread, and PR Summary</strong> perfectly synced based on this breaking story happening right now.
+          </p>
+          <div className="flex items-center justify-between text-[10px] text-slate-500 pt-2.5 mt-1 border-t border-slate-100">
+            <span className="font-semibold text-slate-400">{new Date(topic.pubDate).toLocaleTimeString()}</span>
+            <div className="flex items-center gap-4">
+              <a href={topic.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-blue-600 hover:text-blue-800 hover:underline shadow-blue-500/30">
+                Source Article <ExternalLink className="w-3 h-3" />
+              </a>
+              <button onClick={onLaunch} className="flex items-center gap-1 font-bold text-emerald-600 hover:text-emerald-700 active:scale-95 transition-transform">
+                Transform Content ➔
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

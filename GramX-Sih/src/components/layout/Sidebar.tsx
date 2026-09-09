@@ -10,7 +10,8 @@ import {
   Settings,
   HelpCircle,
   Cpu,
-  CheckCircle2
+  CheckCircle2,
+  Flame
 } from 'lucide-react';
 import { UserRole } from '../../types';
 
@@ -24,7 +25,8 @@ export type NavTab =
   | 'projects'
   | 'knowledge-vault'
   | 'analytics'
-  | 'version-history';
+  | 'version-history'
+  | 'trending';
 
 interface SidebarProps {
   activeTab: NavTab;
@@ -48,6 +50,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Home },
     { id: 'transform', label: 'Transformation Studio', icon: Sparkles, badge: 'Hero' },
+    { id: 'trending', label: 'Hot Topics (India)', icon: Flame, badge: 'Live News' },
     ...(hasGeneratedOutputs ? [
       { id: 'deliverables', label: 'Generated Deliverables', icon: Sparkles, badge: '6 Ready' },
       { id: 'verification', label: 'AI Verification', icon: CheckCircle2, badge: '96%' },

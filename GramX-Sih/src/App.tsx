@@ -11,6 +11,7 @@ import { KnowledgeVaultView } from './features/workspace/KnowledgeVaultView';
 import { ProjectsView } from './features/workspace/ProjectsView';
 import { VersionHistoryView } from './features/history/VersionHistoryView';
 import { AnalyticsView } from './features/analytics/AnalyticsView';
+import { TrendingTopicsView } from './features/trending/TrendingTopicsView';
 import { ExportModal } from './components/shared/ExportModal';
 import { QuickDemoGuideModal } from './components/shared/QuickDemoGuideModal';
 import { CloudSettingsModal } from './components/shared/CloudSettingsModal';
@@ -278,6 +279,10 @@ export function App() {
 
             {activeTab === 'analytics' && (
               <AnalyticsView />
+            )}
+
+            {activeTab === 'trending' && (
+              <TrendingTopicsView />
             )}
           </div>
         </main>
