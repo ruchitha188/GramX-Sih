@@ -29,11 +29,11 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenProject }) => 
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <div className="bg-black border-white/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/80">
+      <div className="bg-slate-950 border-sky-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/80">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] pb-5">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-zinc-200 text-black/20 text-slate-400 border border-zinc-500/30 uppercase tracking-wide">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none text-white/20 text-slate-400 border border-slate-700/50/30 uppercase tracking-wide">
                 Campaign Hub
               </span>
               <span className="text-xs text-slate-400">Collaborative Workspaces</span>
@@ -61,7 +61,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenProject }) => 
               };
               setProjects([newProj, ...projects]);
             }}
-            className="flex items-center gap-2 px-4 py-2.5 bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:bg-zinc-300 text-white rounded-xl text-xs font-semibold shadow-md transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none hover:bg-sky-400 text-white shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:bg-slate-700/50 text-white rounded-xl text-xs font-semibold shadow-md transition-colors"
           >
             <Plus className="w-4 h-4" />
             <span>New Project</span>
@@ -76,8 +76,8 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenProject }) => 
               onClick={() => setFilter(status)}
               className={`px-3 py-1.5 rounded-lg transition-colors ${
                 filter === status
-                  ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold'
-                  : 'bg-black border-white/10 text-slate-400 hover:text-slate-200 border border-white/[0.08]'
+                  ? 'bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none hover:bg-sky-400 text-white shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold'
+                  : 'bg-slate-950 border-sky-500/10 text-slate-400 hover:text-slate-200 border border-white/[0.08]'
               }`}
             >
               {status}
@@ -91,7 +91,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenProject }) => 
         {filteredProjects.map(proj => (
           <div
             key={proj.id}
-            className="bg-black border-white/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 shadow-2xl shadow-black/80 space-y-4 hover:border-zinc-500/30 transition-all flex flex-col justify-between"
+            className="bg-slate-950 border-sky-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 shadow-2xl shadow-black/80 space-y-4 hover:border-slate-700/50/30 transition-all flex flex-col justify-between"
           >
             <div className="space-y-3">
               <div className="flex items-start justify-between gap-2">
@@ -100,12 +100,12 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenProject }) => 
                 </h3>
                 <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold shrink-0 ${
                   proj.status === 'Approved'
-                    ? 'bg-emerald-100 text-zinc-300 border border-emerald-500/30'
+                    ? 'bg-emerald-100 text-slate-300 border border-emerald-500/30'
                     : proj.status === 'In Review'
                     ? 'bg-amber-100 text-amber-300 border border-amber-500/30'
                     : proj.status === 'Published'
-                    ? 'bg-purple-500/20 text-zinc-300 border border-purple-500/30'
-                    : 'bg-zinc-950 text-slate-400'
+                    ? 'bg-purple-500/20 text-slate-300 border border-sky-500/30'
+                    : 'bg-slate-950 text-slate-400'
                 }`}>
                   {proj.status}
                 </span>
@@ -115,7 +115,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenProject }) => 
                 {proj.description}
               </p>
 
-              <div className="p-2.5 rounded-xl bg-black border-white/10 border border-white/[0.08]/80 space-y-1 text-xs">
+              <div className="p-2.5 rounded-xl bg-slate-950 border-sky-500/10 border border-white/[0.08]/80 space-y-1 text-xs">
                 <div className="text-[11px] text-slate-400 flex items-center justify-between">
                   <span className="flex items-center gap-1.5 text-slate-300 font-mono">
                     <FileText className="w-3.5 h-3.5" />

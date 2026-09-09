@@ -44,7 +44,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const isAdmin = user?.email === 'ruchithasai.r188@gmail.com' || user?.user_metadata?.role === 'admin';
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-white/[0.08] bg-black border-white/10/90 backdrop-blur-md px-4 lg:px-6 py-3">
+    <header className="sticky top-0 z-40 w-full border-b border-white/[0.08] bg-slate-950 border-sky-500/10/90 backdrop-blur-md px-4 lg:px-6 py-3">
       <div className="flex items-center justify-between gap-4">
         {/* Left: Branding & SIH Tag */}
         <div className="flex items-center gap-3">
@@ -67,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {isAdmin && (
             <button
               onClick={onOpenCloudSettings}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border bg-emerald-50 text-zinc-300 border-emerald-500/30 hover:bg-emerald-100 transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border bg-emerald-50 text-slate-300 border-emerald-500/30 hover:bg-emerald-100 transition-all"
               title="Google LLM Engine Status (Gemini & Gemma)"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -78,18 +78,18 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Workspace Switcher */}
           <div className="relative group">
-            <button className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-slate-300 bg-black hover:bg-zinc-950 border border-white/[0.08] rounded-lg transition-colors">
+            <button className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-slate-300 bg-slate-950 hover:bg-slate-950 border border-white/[0.08] rounded-lg transition-colors">
               <Building2 className="w-3.5 h-3.5 text-slate-300" />
               <span className="max-w-[120px] truncate hidden md:inline">{currentWorkspace}</span>
               <ChevronDown className="w-3.5 h-3.5 text-zinc-500" />
             </button>
-            <div className="absolute right-0 mt-1 w-56 py-1 bg-black border border-white/[0.08] rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+            <div className="absolute right-0 mt-1 w-56 py-1 bg-slate-950 border border-white/[0.08] rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
               <div className="px-3 py-2 text-[11px] font-semibold text-slate-400 uppercase tracking-wider border-b border-white/[0.08]">
                 Switch Workspace
               </div>
               <button
                 onClick={() => onWorkspaceChange('Personal Account')}
-                className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-zinc-950 transition-colors ${currentWorkspace === 'Personal Account' ? 'text-slate-300 font-semibold bg-zinc-200 text-black/10' : 'text-slate-300'
+                className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-slate-950 transition-colors ${currentWorkspace === 'Personal Account' ? 'text-slate-300 font-semibold bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none text-white/10' : 'text-slate-300'
                   }`}
               >
                 <div className="flex items-center gap-2">
@@ -102,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="border-t border-white/[0.08] mt-1 pt-1">
                 <button
                   onClick={() => alert('Workspace creation flow coming soon!')}
-                  className="w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-zinc-950 transition-colors text-zinc-300 font-medium"
+                  className="w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-slate-950 transition-colors text-slate-300 font-medium"
                 >
                   <div className="flex items-center gap-2">
                     <Building2 className="w-4 h-4" />
@@ -116,12 +116,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Auth Button */}
           {user ? (
             <div className="relative group">
-              <button className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-slate-300 bg-zinc-900/50 border border-white/[0.12] rounded-lg transition-colors">
+              <button className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-slate-300 bg-slate-900/90/50 border border-white/[0.12] rounded-lg transition-colors">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span className="hidden lg:inline">{user.user_metadata?.full_name?.split(' ')[0] || user.email?.split('@')[0]}</span>
                 <ChevronDown className="w-3.5 h-3.5" />
               </button>
-              <div className="absolute right-0 mt-1 w-48 py-1 bg-black border-white/10 border border-white/[0.08] rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+              <div className="absolute right-0 mt-1 w-48 py-1 bg-slate-950 border-sky-500/10 border border-white/[0.08] rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
                 <div className="px-3 py-2 text-[10px] font-semibold text-slate-400 uppercase tracking-wider border-b border-white/[0.08]">
                   {user.email}
                 </div>
@@ -136,7 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           ) : (
             <button
               onClick={onOpenAuth}
-              className="flex items-center gap-1.5 px-4 py-2 bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:bg-blue-800 text-white rounded-lg text-xs font-semibold shadow-md transition-all"
+              className="flex items-center gap-1.5 px-4 py-2 bg-sky-500 hover:bg-sky-400 text-white rounded-lg text-xs font-semibold shadow-[0_0_15px_rgba(14,165,233,0.3)] transition-all"
             >
               Sign In / Sign Up
             </button>

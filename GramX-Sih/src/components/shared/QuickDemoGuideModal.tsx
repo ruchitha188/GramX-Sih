@@ -70,8 +70,8 @@ export const QuickDemoGuideModal: React.FC<QuickDemoGuideModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-950/40 backdrop-blur-xl backdrop-blur-md p-4 animate-in fade-in duration-150">
-      <div className="w-full max-w-2xl bg-black border border-white/[0.08] rounded-2xl shadow-2xl p-6 sm:p-7 space-y-5">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 backdrop-blur-xl backdrop-blur-md p-4 animate-in fade-in duration-150">
+      <div className="w-full max-w-2xl bg-slate-950 border border-white/[0.08] rounded-2xl shadow-2xl p-6 sm:p-7 space-y-5">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
           <div className="flex items-center gap-3">
@@ -81,7 +81,7 @@ export const QuickDemoGuideModal: React.FC<QuickDemoGuideModalProps> = ({
             <div>
               <h3 className="text-base font-bold text-slate-50 flex items-center gap-2">
                 2-Minute Smart India Hackathon Demo Guide
-                <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-zinc-300 font-bold border border-emerald-500/30">
+                <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-slate-300 font-bold border border-emerald-500/30">
                   SIH26154
                 </span>
               </h3>
@@ -93,16 +93,16 @@ export const QuickDemoGuideModal: React.FC<QuickDemoGuideModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-zinc-950 transition-colors"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-950 transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Current Active Step Highlight Card */}
-        <div className="p-4 rounded-xl bg-black border-white/10 border border-zinc-500/30 space-y-2">
+        <div className="p-4 rounded-xl bg-slate-950 border-sky-500/10 border border-slate-700/50/30 space-y-2">
           <div className="flex items-center justify-between text-xs">
-            <span className="px-2 py-0.5 rounded bg-zinc-200 text-black/20 text-slate-400 font-bold border border-zinc-700">
+            <span className="px-2 py-0.5 rounded bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none text-white/20 text-slate-400 font-bold border border-slate-700/50">
               Step {currentStepData.step} of 15
             </span>
             <span className="text-slate-400 font-mono text-[11px]">
@@ -129,10 +129,10 @@ export const QuickDemoGuideModal: React.FC<QuickDemoGuideModalProps> = ({
                 onClick={() => handleSelectStep(s.step)}
                 className={`p-2 rounded-lg border text-center text-xs font-medium transition-all ${
                   isCurrent
-                    ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-bold border-blue-300 ring-2 ring-white/10'
+                    ? 'bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none hover:bg-sky-400 text-white shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-bold border-blue-300 ring-2 ring-white/10'
                     : isDone
-                    ? 'bg-emerald-950/40 text-zinc-300 border-emerald-500/30'
-                    : 'bg-black border-white/10 text-slate-400 border-white/[0.08] hover:border-white/[0.12]'
+                    ? 'bg-emerald-950/40 text-slate-300 border-emerald-500/30'
+                    : 'bg-slate-950 border-sky-500/10 text-slate-400 border-white/[0.08] hover:border-white/[0.12]'
                 }`}
               >
                 <div>Step {s.step}</div>
@@ -163,7 +163,7 @@ export const QuickDemoGuideModal: React.FC<QuickDemoGuideModalProps> = ({
             </button>
             <button
               onClick={handleNext}
-              className="flex items-center gap-1.5 px-5 py-2 bg-gradient-to-r from-zinc-300 to-zinc-500 text-black border border-zinc-200 hover:from-zinc-9000 hover:to-purple-500 text-slate-50 text-xs font-bold rounded-xl shadow-md transition-all active:scale-98"
+              className="flex items-center gap-1.5 px-5 py-2 bg-gradient-to-r from-zinc-300 to-zinc-500 text-white border border-slate-700/50 hover:from-zinc-9000 hover:to-purple-500 text-slate-50 text-xs font-bold rounded-xl shadow-md transition-all active:scale-98"
             >
               <span>{activeStep === DEMO_STEPS.length ? 'Finish Tour' : 'Next Step'}</span>
               <ArrowRight className="w-3.5 h-3.5" />

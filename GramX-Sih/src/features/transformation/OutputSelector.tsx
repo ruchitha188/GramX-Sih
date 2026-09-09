@@ -131,12 +131,12 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
   const selectedCount = selectedTypes.length;
 
   return (
-    <div className="bg-black border-white/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 lg:p-6 shadow-2xl shadow-black/80 space-y-5">
+    <div className="bg-slate-950 border-sky-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 lg:p-6 shadow-2xl shadow-black/80 space-y-5">
       {/* Header with Select All / Deselect All */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.08] pb-4">
         <div>
           <h3 className="text-base font-semibold text-slate-50 flex items-center gap-2">
-            <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-zinc-200 text-black/20 text-slate-300 text-xs font-bold border border-zinc-700">
+            <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none text-white/20 text-slate-300 text-xs font-bold border border-slate-700/50">
               3
             </span>
             Select Deliverables for Multi-Output Transformation
@@ -150,7 +150,7 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
           {onSelectSihCore && (
             <button
               onClick={onSelectSihCore}
-              className="px-2.5 py-1 text-slate-400 hover:text-slate-50 bg-zinc-200/60 hover:bg-zinc-200/80 border border-zinc-500/30 rounded-lg transition-colors font-medium flex items-center gap-1.5"
+              className="px-2.5 py-1 text-slate-400 hover:text-slate-50 bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none/60 hover:bg-sky-400/80 border border-slate-700/50/30 rounded-lg transition-colors font-medium flex items-center gap-1.5"
             >
               <Sparkles className="w-3 h-3 text-slate-300" />
               <span>SIH Core (7)</span>
@@ -158,13 +158,13 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
           )}
           <button
             onClick={onSelectAll}
-            className="px-2.5 py-1 text-slate-300 hover:text-slate-50 bg-black border-white/10 hover:bg-zinc-950 border border-white/[0.08] rounded-lg transition-colors"
+            className="px-2.5 py-1 text-slate-300 hover:text-slate-50 bg-slate-950 border-sky-500/10 hover:bg-slate-950 border border-white/[0.08] rounded-lg transition-colors"
           >
             Select All (9)
           </button>
           <button
             onClick={onDeselectAll}
-            className="px-2.5 py-1 text-slate-400 hover:text-slate-200 bg-black border-white/10 hover:bg-zinc-950 border border-white/[0.08] rounded-lg transition-colors"
+            className="px-2.5 py-1 text-slate-400 hover:text-slate-200 bg-slate-950 border-sky-500/10 hover:bg-slate-950 border border-white/[0.08] rounded-lg transition-colors"
           >
             Reset
           </button>
@@ -184,14 +184,14 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
               className={`relative cursor-pointer p-4 rounded-xl border text-left transition-all group select-none ${
                 isSelected
                   ? 'bg-gradient-to-b from-blue-50 to-white border-blue-400 ring-1 ring-blue-200 shadow-lg shadow-blue-100'
-                  : 'bg-black border-white/10/60 border-white/[0.08]/80 hover:border-white/[0.12] hover:bg-black/60'
+                  : 'bg-slate-950 border-sky-500/10/60 border-white/[0.08]/80 hover:border-white/[0.12] hover:bg-slate-950/60'
               }`}
             >
               {/* Checkbox indicator & Icon */}
               <div className="flex items-start justify-between gap-2 mb-2">
                 <div className="flex items-center gap-2.5">
                   <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                    isSelected ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50' : 'bg-black text-slate-400 group-hover:text-slate-200'
+                    isSelected ? 'bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none hover:bg-sky-400 text-white shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50' : 'bg-slate-950 text-slate-400 group-hover:text-slate-200'
                   }`}>
                     <Icon className="w-4 h-4" />
                   </div>
@@ -207,14 +207,14 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
 
                 <div className="flex items-center gap-1.5">
                   {option.badge && (
-                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-zinc-200 text-black/20 text-slate-400 font-semibold border border-zinc-700">
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none text-white/20 text-slate-400 font-semibold border border-slate-700/50">
                       {option.badge}
                     </span>
                   )}
                   <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all ${
                     isSelected 
-                      ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 shadow-sm ring-2 ring-white/10' 
-                      : 'border border-white/[0.12] bg-black group-hover:border-slate-400'
+                      ? 'bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none hover:bg-sky-400 text-white shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 shadow-sm ring-2 ring-white/10' 
+                      : 'border border-white/[0.12] bg-slate-950 group-hover:border-slate-400'
                   }`}>
                     {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                   </div>
@@ -231,9 +231,9 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
       </div>
 
       {/* Primary Generation CTA Footer */}
-      <div className="pt-4 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-zinc-950/40 backdrop-blur-xl p-4 rounded-xl">
+      <div className="pt-4 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-950/40 backdrop-blur-xl p-4 rounded-xl">
         <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)]/20 border border-zinc-700 text-slate-300 font-bold text-base">
+          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none hover:bg-sky-400 text-white shadow-[0_0_15px_rgba(255,255,255,0.15)]/20 border border-slate-700/50 text-slate-300 font-bold text-base">
             {selectedCount}
           </div>
           <div>
@@ -252,8 +252,8 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
           disabled={selectedCount === 0 || isGenerating}
           className={`flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-sm text-slate-50 shadow-2xl shadow-black/80 transition-all ${
             selectedCount === 0 || isGenerating
-              ? 'bg-zinc-950 text-zinc-500 cursor-not-allowed'
-              : 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:bg-blue-800 shadow-blue-900/20 active:scale-98 ring-1 ring-black/10'
+              ? 'bg-slate-950 text-zinc-500 cursor-not-allowed'
+              : 'bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none hover:bg-sky-400 text-white shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:bg-blue-800 shadow-blue-900/20 active:scale-98 ring-1 ring-black/10'
           }`}
         >
           <Sparkles className="w-4 h-4 animate-pulse" />

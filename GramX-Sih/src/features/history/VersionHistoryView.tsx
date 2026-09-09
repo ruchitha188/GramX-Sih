@@ -22,11 +22,11 @@ export const VersionHistoryView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <div className="bg-black border-white/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/80">
+      <div className="bg-slate-950 border-sky-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/80">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] pb-5">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-zinc-200 text-black/20 text-slate-400 border border-zinc-500/30 uppercase tracking-wide">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none text-white/20 text-slate-400 border border-slate-700/50/30 uppercase tracking-wide">
                 Audit Trail
               </span>
               <span className="text-xs text-slate-400">Immutable Change Log</span>
@@ -42,7 +42,7 @@ export const VersionHistoryView: React.FC = () => {
 
           <button
             onClick={() => setShowDiff(!showDiff)}
-            className="flex items-center gap-2 px-4 py-2 bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:bg-zinc-300 text-white rounded-xl text-xs font-semibold shadow-md transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none hover:bg-sky-400 text-white shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:bg-slate-700/50 text-white rounded-xl text-xs font-semibold shadow-md transition-colors"
           >
             <GitCompare className="w-4 h-4" />
             <span>{showDiff ? 'Hide Comparison' : 'Compare Versions'}</span>
@@ -57,7 +57,7 @@ export const VersionHistoryView: React.FC = () => {
               className={`p-4 rounded-xl border text-xs space-y-2 transition-all ${
                 item.versionNumber === 4
                   ? 'bg-emerald-950/20 border-emerald-500/40'
-                  : 'bg-black border-white/10 border-white/[0.08]/80'
+                  : 'bg-slate-950 border-sky-500/10 border-white/[0.08]/80'
               }`}
             >
               <div className="flex items-center justify-between">
@@ -77,7 +77,7 @@ export const VersionHistoryView: React.FC = () => {
 
       {/* Side-by-Side Diff Comparison View */}
       {showDiff && (
-        <div className="bg-black border-white/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/80 space-y-4">
+        <div className="bg-slate-950 border-sky-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/80 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.08] pb-3">
             <h3 className="text-sm font-bold text-slate-50 flex items-center gap-2">
               <GitCompare className="w-4 h-4 text-slate-300" />
@@ -89,7 +89,7 @@ export const VersionHistoryView: React.FC = () => {
               <select
                 value={selectedV1}
                 onChange={(e) => setSelectedV1(Number(e.target.value))}
-                className="px-2 py-1 bg-black border-white/10 border border-white/[0.08] rounded-lg text-slate-200"
+                className="px-2 py-1 bg-slate-950 border-sky-500/10 border border-white/[0.08] rounded-lg text-slate-200"
               >
                 {history.map(h => <option key={h.versionNumber} value={h.versionNumber}>v{h.versionNumber} ({h.modifiedBy.split(' ')[0]})</option>)}
               </select>
@@ -98,7 +98,7 @@ export const VersionHistoryView: React.FC = () => {
               <select
                 value={selectedV2}
                 onChange={(e) => setSelectedV2(Number(e.target.value))}
-                className="px-2 py-1 bg-black border-white/10 border border-white/[0.08] rounded-lg text-slate-200"
+                className="px-2 py-1 bg-slate-950 border-sky-500/10 border border-white/[0.08] rounded-lg text-slate-200"
               >
                 {history.map(h => <option key={h.versionNumber} value={h.versionNumber}>v{h.versionNumber} ({h.modifiedBy.split(' ')[0]})</option>)}
               </select>
@@ -107,11 +107,11 @@ export const VersionHistoryView: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
             {/* Base Version */}
-            <div className="p-4 rounded-xl bg-black border-white/10 border border-white/[0.08] space-y-2">
+            <div className="p-4 rounded-xl bg-slate-950 border-sky-500/10 border border-white/[0.08] space-y-2">
               <div className="text-[11px] font-bold text-rose-700 uppercase tracking-wider border-b border-white/[0.08] pb-1">
                 Version {selectedV1} — Baseline Text
               </div>
-              <div className="p-3 bg-black/70 rounded-lg text-slate-300 leading-relaxed space-y-2 font-sans text-xs">
+              <div className="p-3 bg-slate-950/70 rounded-lg text-slate-300 leading-relaxed space-y-2 font-sans text-xs">
                 <p>
                   "Organizations must report incidents within <span className="bg-rose-950/60 text-rose-300 px-1.5 py-0.5 rounded border border-rose-500/30 font-bold">24 hours</span> to the national nodal cell."
                 </p>
@@ -122,15 +122,15 @@ export const VersionHistoryView: React.FC = () => {
             </div>
 
             {/* Target Version */}
-            <div className="p-4 rounded-xl bg-black border-white/10 border border-emerald-500/30 space-y-2">
-              <div className="text-[11px] font-bold text-zinc-300 uppercase tracking-wider border-b border-white/[0.08] pb-1">
+            <div className="p-4 rounded-xl bg-slate-950 border-sky-500/10 border border-emerald-500/30 space-y-2">
+              <div className="text-[11px] font-bold text-slate-300 uppercase tracking-wider border-b border-white/[0.08] pb-1">
                 Version {selectedV2} — Refined & Grounded Text
               </div>
-              <div className="p-3 bg-black/70 rounded-lg text-slate-300 leading-relaxed space-y-2 font-sans text-xs">
+              <div className="p-3 bg-slate-950/70 rounded-lg text-slate-300 leading-relaxed space-y-2 font-sans text-xs">
                 <p>
-                  "Organizations are advised to report incidents within <span className="bg-emerald-950/60 text-zinc-300 px-1.5 py-0.5 rounded border border-emerald-500/30 font-bold">48 hours</span> to the national nodal cell."
+                  "Organizations are advised to report incidents within <span className="bg-emerald-950/60 text-slate-300 px-1.5 py-0.5 rounded border border-emerald-500/30 font-bold">48 hours</span> to the national nodal cell."
                 </p>
-                <p className="text-zinc-300/90 text-[11px]">
+                <p className="text-slate-300/90 text-[11px]">
                   ✓ Fact discrepancy resolved via ground truth Page 4 directive.
                   <br />
                   ✓ Official Telugu terminology validated against Knowledge Vault.
