@@ -33,7 +33,7 @@ export function App() {
   // Global Workspace & Role State
   const [currentWorkspace, setCurrentWorkspace] = useState<string>('Personal Account');
   const [currentRole, setCurrentRole] = useState<UserRole>('Admin');
-  const [activeTab, setActiveTab] = useState<NavTab>('dashboard');
+  const [activeTab, setActiveTab] = useState<NavTab>('transform');
 
   // Transformation Data State
   const [currentSource, setCurrentSource] = useState<SourceDocument>(SAMPLE_SOURCES[0]);
