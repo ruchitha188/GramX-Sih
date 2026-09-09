@@ -131,17 +131,17 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
   const selectedCount = selectedTypes.length;
 
   return (
-    <div className="bg-slate-50/90 border border-slate-200 rounded-2xl p-5 lg:p-6 shadow-xl space-y-5">
+    <div className="bg-zinc-950/70 backdrop-blur-3xl border border-zinc-800 rounded-2xl p-5 lg:p-6 shadow-2xl shadow-black/80 space-y-5">
       {/* Header with Select All / Deselect All */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800 pb-4">
         <div>
-          <h3 className="text-base font-semibold text-slate-900 flex items-center gap-2">
-            <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-blue-600/20 text-blue-700 text-xs font-bold border border-blue-300/30">
+          <h3 className="text-base font-semibold text-zinc-100 flex items-center gap-2">
+            <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-zinc-300 text-black/20 text-zinc-300 text-xs font-bold border border-blue-300/30">
               3
             </span>
             Select Deliverables for Multi-Output Transformation
           </h3>
-          <p className="text-xs text-slate-600 mt-0.5">
+          <p className="text-xs text-zinc-400 mt-0.5">
             Select one or multiple communication artefacts to generate simultaneously from the same source.
           </p>
         </div>
@@ -150,21 +150,21 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
           {onSelectSihCore && (
             <button
               onClick={onSelectSihCore}
-              className="px-2.5 py-1 text-blue-600 hover:text-slate-900 bg-indigo-950/60 hover:bg-indigo-900/80 border border-blue-300/40 rounded-lg transition-colors font-medium flex items-center gap-1.5"
+              className="px-2.5 py-1 text-zinc-400 hover:text-zinc-100 bg-indigo-950/60 hover:bg-indigo-900/80 border border-zinc-500/30 rounded-lg transition-colors font-medium flex items-center gap-1.5"
             >
-              <Sparkles className="w-3 h-3 text-blue-700" />
+              <Sparkles className="w-3 h-3 text-zinc-300" />
               <span>SIH Core (7)</span>
             </button>
           )}
           <button
             onClick={onSelectAll}
-            className="px-2.5 py-1 text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition-colors"
+            className="px-2.5 py-1 text-zinc-300 hover:text-zinc-100 bg-zinc-950 hover:bg-zinc-900 border border-zinc-800 rounded-lg transition-colors"
           >
             Select All (9)
           </button>
           <button
             onClick={onDeselectAll}
-            className="px-2.5 py-1 text-slate-600 hover:text-slate-800 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition-colors"
+            className="px-2.5 py-1 text-zinc-400 hover:text-zinc-200 bg-zinc-950 hover:bg-zinc-900 border border-zinc-800 rounded-lg transition-colors"
           >
             Reset
           </button>
@@ -184,22 +184,22 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
               className={`relative cursor-pointer p-4 rounded-xl border text-left transition-all group select-none ${
                 isSelected
                   ? 'bg-gradient-to-b from-blue-50 to-white border-blue-400 ring-1 ring-blue-200 shadow-lg shadow-blue-100'
-                  : 'bg-white/60 border-slate-200/80 hover:border-slate-300 hover:bg-slate-50/60'
+                  : 'bg-zinc-950/60 border-zinc-800/80 hover:border-zinc-700 hover:bg-black/60'
               }`}
             >
               {/* Checkbox indicator & Icon */}
               <div className="flex items-start justify-between gap-2 mb-2">
                 <div className="flex items-center gap-2.5">
                   <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                    isSelected ? 'bg-blue-700 text-slate-900' : 'bg-slate-50 text-slate-600 group-hover:text-slate-800'
+                    isSelected ? 'bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-zinc-100' : 'bg-black text-zinc-400 group-hover:text-zinc-200'
                   }`}>
                     <Icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                    <h4 className="text-xs font-bold text-zinc-100 flex items-center gap-1.5">
                       {option.title}
                     </h4>
-                    <span className="text-[10px] text-slate-600 block">
+                    <span className="text-[10px] text-zinc-400 block">
                       {option.category}
                     </span>
                   </div>
@@ -207,14 +207,14 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
 
                 <div className="flex items-center gap-1.5">
                   {option.badge && (
-                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-blue-600/20 text-blue-600 font-semibold border border-blue-300/30">
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-zinc-300 text-black/20 text-zinc-400 font-semibold border border-blue-300/30">
                       {option.badge}
                     </span>
                   )}
                   <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all ${
                     isSelected 
-                      ? 'bg-blue-700 text-slate-900 shadow-sm ring-2 ring-indigo-400/40' 
-                      : 'border border-slate-300 bg-slate-50 group-hover:border-slate-400'
+                      ? 'bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-zinc-100 shadow-sm ring-2 ring-indigo-400/40' 
+                      : 'border border-zinc-700 bg-black group-hover:border-slate-400'
                   }`}>
                     {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                   </div>
@@ -222,7 +222,7 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
               </div>
 
               {/* Description */}
-              <p className="text-[11px] text-slate-600 leading-relaxed pl-0.5">
+              <p className="text-[11px] text-zinc-400 leading-relaxed pl-0.5">
                 {option.description}
               </p>
             </div>
@@ -231,16 +231,16 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
       </div>
 
       {/* Primary Generation CTA Footer */}
-      <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white/80 p-4 rounded-xl">
+      <div className="pt-4 border-t border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-zinc-900/40 backdrop-blur-xl p-4 rounded-xl">
         <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-700/20 border border-blue-300/30 text-blue-700 font-bold text-base">
+          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.15)]/20 border border-blue-300/30 text-zinc-300 font-bold text-base">
             {selectedCount}
           </div>
           <div>
-            <h4 className="text-sm font-bold text-slate-900">
+            <h4 className="text-sm font-bold text-zinc-100">
               {selectedCount} {selectedCount === 1 ? 'deliverable' : 'deliverables'} selected
             </h4>
-            <p className="text-xs text-slate-600">
+            <p className="text-xs text-zinc-400">
               One source → {selectedCount} deliverables generated in parallel with fact verification.
             </p>
           </div>
@@ -250,10 +250,10 @@ export const OutputSelector: React.FC<OutputSelectorProps> = ({
         <button
           onClick={onGenerate}
           disabled={selectedCount === 0 || isGenerating}
-          className={`flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-sm text-slate-900 shadow-xl transition-all ${
+          className={`flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-sm text-zinc-100 shadow-2xl shadow-black/80 transition-all ${
             selectedCount === 0 || isGenerating
-              ? 'bg-slate-100 text-slate-500 cursor-not-allowed'
-              : 'bg-blue-700 hover:bg-blue-800 shadow-blue-900/20 active:scale-98 ring-1 ring-black/10'
+              ? 'bg-zinc-900 text-zinc-500 cursor-not-allowed'
+              : 'bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:bg-blue-800 shadow-blue-900/20 active:scale-98 ring-1 ring-black/10'
           }`}
         >
           <Sparkles className="w-4 h-4 animate-pulse" />

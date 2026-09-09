@@ -167,54 +167,54 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
   return (
     <div className="space-y-6">
       {/* Hero Header */}
-      <div className="bg-slate-50/90 border border-slate-200 rounded-2xl p-6 shadow-xl">
+      <div className="bg-zinc-950/70 backdrop-blur-3xl border border-zinc-800 rounded-2xl p-6 shadow-2xl shadow-black/80">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-gradient-to-r from-indigo-500/20 to-purple-500/20 text-blue-600 border border-blue-300/40 uppercase tracking-wide">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-gradient-to-r from-zinc-9000/20 to-purple-500/20 text-zinc-400 border border-zinc-500/30 uppercase tracking-wide">
                 Transformation Studio
               </span>
-              <span className="text-xs text-slate-600">One Source ➔ Multi-Output</span>
+              <span className="text-xs text-zinc-400">One Source ➔ Multi-Output</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black text-zinc-100 tracking-tight">
               Transformation Studio
             </h1>
-            <p className="text-xs sm:text-sm text-slate-700 mt-1">
+            <p className="text-xs sm:text-sm text-zinc-300 mt-1">
               Transform one source into multiple audience-ready deliverables.
             </p>
           </div>
 
-          <div className="flex items-center gap-3 bg-white p-3 rounded-xl border border-slate-200 text-xs text-slate-600">
+          <div className="flex items-center gap-3 bg-zinc-950 p-3 rounded-xl border border-zinc-800 text-xs text-zinc-400">
             <ShieldCheck className="w-4 h-4 text-emerald-700" />
-            <span>SIH Problem ID: <strong className="text-slate-800">SIH26154</strong></span>
+            <span>SIH Problem ID: <strong className="text-zinc-200">SIH26154</strong></span>
           </div>
         </div>
 
         {/* AI Engine Status Card */}
-        <div className="mt-4 pt-4 border-t border-slate-200/80">
-          <div className="p-4 rounded-xl bg-gradient-to-r from-indigo-950/40 via-blue-50 to-white border border-blue-300/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="mt-4 pt-4 border-t border-zinc-800/80">
+          <div className="p-4 rounded-xl bg-gradient-to-r from-zinc-900 via-zinc-950 to-black border border-blue-300/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-300/20 flex items-center justify-center text-blue-700 shrink-0 shadow-lg shadow-indigo-500/10">
-                <Sparkles className="w-5 h-5 text-blue-700" />
+              <div className="w-10 h-10 rounded-xl bg-zinc-300 text-black/10 border border-blue-300/20 flex items-center justify-center text-zinc-300 shrink-0 shadow-lg shadow-indigo-500/10">
+                <Sparkles className="w-5 h-5 text-zinc-300" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-slate-900 tracking-tight">Google LLM Native Core</span>
+                  <span className="text-xs font-bold text-zinc-100 tracking-tight">Google LLM Native Core</span>
                   <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-500/20">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     Active ({activeEngine?.model || 'gemini-flash-latest'})
                   </span>
-                  <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-700 border border-slate-300">
+                  <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-zinc-900 text-zinc-300 border border-zinc-700">
                     Official SDK
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-600 mt-0.5">
+                <p className="text-[11px] text-zinc-400 mt-0.5">
                   Autonomous transformation engine powered by Google Generative AI with zero-hallucination provenance and bilingual Telugu translation.
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-2 shrink-0">
-              <span className="text-[11px] text-slate-700 flex items-center gap-1.5 bg-slate-50/80 border border-slate-200 px-3 py-1.5 rounded-lg">
+              <span className="text-[11px] text-zinc-300 flex items-center gap-1.5 bg-black/80 border border-zinc-800 px-3 py-1.5 rounded-lg">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
                 <span>Zero Setup Required</span>
               </span>
