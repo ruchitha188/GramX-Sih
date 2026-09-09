@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, Paperclip, Sparkles, X, File, Video, Music } from 'lucide-react';
+import { ArrowRight, Paperclip, Sparkles, X, File, Video, Music, Check, ChevronLeft } from 'lucide-react';
 import { SourceDocument, TransformationConfig, DeliverableType, DeliverableOutput, VerificationReport } from '../../types';
 import { GenerationProgress } from './GenerationProgress';
 import { transformationEngine, GenerationStep } from '../../services/transformationEngine';
@@ -11,22 +11,31 @@ interface TransformationStudioProps {
   llmConfig?: LlmConfig | null;
 }
 
+const FORMAT_OPTIONS: { id: DeliverableType; label: string; icon: string; desc: string }[] = [
+  { id: 'executive_summary', label: 'Executive Summary', icon: '📋', desc: 'Detailed, high-level leadership brief.' },
+  { id: 'video_package', label: 'Video Script', icon: '🎬', desc: 'Full length structured video script.' },
+  { id: 'linkedin', label: 'LinkedIn Post', icon: '💼', desc: 'Professional thought leadership post.' },
+  { id: 'twitter_thread', label: 'X (Twitter) Thread', icon: '🐦', desc: 'Engaging, viral multi-tweet thread.' },
+  { id: 'advisory', label: 'Statutory Advisory', icon: '🚨', desc: 'Official, strictly compliant notice.' },
+  { id: 'infographic', label: 'Infographic Layout', icon: '📊', desc: 'Visual data and stat representation.' },
+  { id: 'presentation', label: 'Presentation Deck', icon: '📽️', desc: 'Structured slide-by-slide deck.' }
+];
+
 export const TransformationStudio: React.FC<TransformationStudioProps> = ({
   onGenerationComplete,
   llmConfig
 }) => {
+  const [viewState, setViewState] = useState<'prompt' | 'formats'>('prompt');
+
   const [prompt, setPrompt] = useState('');
   const [attachedFile, setAttachedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const [selectedFormats, setSelectedFormats] = useState<DeliverableType[]>(FORMAT_OPTIONS.map(f => f.id));
+
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [generationSteps, setGenerationSteps] = useState<GenerationStep[]>([]);
   const [activeEngine, setActiveEngine] = useState<LlmConfig>(() => realLlmService.getStoredConfig());
-
-  // In GramX V2, we automatically select all 7 core deliverables to provide maximum value based on the prompt.
-  const coreDeliverables: DeliverableType[] = [
-    'executive_summary', 'video_package', 'linkedin', 'twitter_thread', 'advisory', 'infographic', 'presentation'
-  ];
 
   useEffect(() => {
     if (llmConfig) setActiveEngine(llmConfig);
@@ -40,8 +49,21 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
 
   const handleRemoveFile = () => setAttachedFile(null);
 
-  const handleGenerate = async () => {
-    if ((!prompt.trim() && !attachedFile) || isGenerating) return;
+  const handleInitialSubmit = () => {
+    if (!prompt.trim() && !attachedFile) return;
+    setViewState('formats'); // Move to format selection view
+  };
+
+  const toggleFormat = (id: DeliverableType) => {
+    if (selectedFormats.includes(id)) {
+      setSelectedFormats(prev => prev.filter(f => f !== id));
+    } else {
+      setSelectedFormats(prev => [...prev, id]);
+    }
+  };
+
+  const handleFinalGenerate = async () => {
+    if (selectedFormats.length === 0 || isGenerating) return;
 
     // Create a Source Document dynamically from input
     const isVideo = attachedFile?.type.includes('video');
@@ -63,11 +85,13 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
       paragraphs: []
     };
 
+    // By narrowing down the formats, we tell the engine to dramatically boost detail level for the chosen selections.
     const config: TransformationConfig = {
       audience: 'General Public',
       tone: 'Professional',
       language: 'English',
-      detailLevel: 'Medium',
+      // If user selected fewer formats, dynamically boost detail level to 'Detailed' to give "more detailed" output 
+      detailLevel: selectedFormats.length <= 3 ? 'Detailed' : 'Medium',
       objective: 'Executive Briefing',
       contentStyle: 'Official',
       organizationKnowledgeEnabled: true
@@ -79,14 +103,14 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
       setGenerationSteps([
         { id: '1', label: `Initializing Google LLM Engine (${activeEngine.model})...`, status: 'in_progress' },
         { id: '2', label: 'Processing Prompt & Analyzing Attached Source...', status: 'pending' },
-        { id: '3', label: `Generating 7 Unified Deliverables from Source...`, status: 'pending' },
+        { id: '3', label: `Deep-Synthesizing ${selectedFormats.length} Tailored Deliverables...`, status: 'pending' },
         { id: '4', label: 'Executing Traceability & Fact Verification...', status: 'pending' }
       ]);
 
       setTimeout(() => setGenerationSteps(p => p.map((s, i) => i === 0 ? { ...s, status: 'completed' } : i === 1 ? { ...s, status: 'in_progress' } : s)), 500);
       setTimeout(() => setGenerationSteps(p => p.map((s, i) => i <= 1 ? { ...s, status: 'completed' } : i === 2 ? { ...s, status: 'in_progress' } : s)), 1200);
 
-      const result = await realLlmService.generateWithLlm(source, config, coreDeliverables, activeEngine);
+      const result = await realLlmService.generateWithLlm(source, config, selectedFormats, activeEngine);
 
       setGenerationSteps(p => p.map(s => ({ ...s, status: 'completed' })));
 
@@ -98,7 +122,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
     } catch (err) {
       console.error('LLM generation error, seamless local fallback initiated:', err);
       const result = await transformationEngine.generateDeliverables(
-        source, config, coreDeliverables,
+        source, config, selectedFormats,
         (steps) => setGenerationSteps(steps)
       );
       setIsGenerating(false);
@@ -109,81 +133,146 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
   return (
     <div className="relative w-full min-h-[calc(100vh-140px)] flex flex-col items-center justify-center">
 
-      {/* Centered OmniBar Logic (Perplexity Clone) */}
-      <div className="w-full max-w-3xl px-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <h1 className="text-3xl md:text-4xl font-semibold text-zinc-100 mb-8 text-center tracking-tight">
-          What do you want to create?
-        </h1>
+      {/* 1. Prompt / Ask View */}
+      {viewState === 'prompt' && !isGenerating && (
+        <div className="w-full max-w-3xl px-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <h1 className="text-3xl md:text-4xl font-semibold text-zinc-100 mb-8 text-center tracking-tight">
+            What do you want to create?
+          </h1>
 
-        <div className="bg-zinc-900 border border-zinc-700/60 rounded-2xl p-4 shadow-2xl focus-within:border-zinc-500 transition-all flex flex-col gap-3">
+          <div className="bg-zinc-900 border border-zinc-700/60 rounded-2xl p-4 shadow-2xl focus-within:border-zinc-500 transition-all flex flex-col gap-3">
 
-          {/* File Attachment Chip */}
-          {attachedFile && (
-            <div className="flex items-center gap-2 self-start bg-zinc-800 text-zinc-300 py-1.5 px-3 rounded-xl border border-zinc-700/50 text-xs font-medium">
-              {attachedFile.type.includes('video') ? <Video className="w-3.5 h-3.5 text-blue-400" /> :
-                attachedFile.type.includes('audio') ? <Music className="w-3.5 h-3.5 text-emerald-400" /> :
-                  <File className="w-3.5 h-3.5 text-purple-400" />}
-              <span className="truncate max-w-[200px]">{attachedFile.name}</span>
-              <span className="text-zinc-500">({(attachedFile.size / 1024 / 1024).toFixed(1)}MB)</span>
-              <button onClick={handleRemoveFile} className="ml-1 hover:text-white transition-colors">
-                <X className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          )}
-
-          {/* Core Text Input */}
-          <textarea
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                handleGenerate();
-              }
-            }}
-            placeholder="Type your prompt, paste a link, or dictate a summary task..."
-            className="w-full bg-transparent text-zinc-100 resize-none outline-none text-base md:text-lg min-h-[72px] placeholder:text-zinc-600"
-          />
-
-          {/* Bottom Toolbar */}
-          <div className="flex items-center justify-between pt-2">
-            <div className="flex items-center gap-2">
-              <input
-                type="file"
-                ref={fileInputRef}
-                onChange={handleFileChange}
-                accept="audio/*,video/*,application/pdf,text/plain"
-                className="hidden"
-              />
-              <button
-                onClick={() => fileInputRef.current?.click()}
-                className="flex items-center gap-2 text-zinc-400 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:text-zinc-200 px-3 py-1.5 rounded-full transition-colors font-medium text-xs shadow-sm"
-              >
-                <Paperclip size={14} />
-                <span>Attach</span>
-              </button>
-
-              <div className="hidden sm:flex items-center gap-2 text-[11px] text-zinc-500 ml-2">
-                Supports Video, Audio & PDFs
+            {/* File Attachment Chip */}
+            {attachedFile && (
+              <div className="flex items-center gap-2 self-start bg-zinc-800 text-zinc-300 py-1.5 px-3 rounded-xl border border-zinc-700/50 text-xs font-medium">
+                {attachedFile.type.includes('video') ? <Video className="w-3.5 h-3.5 text-blue-400" /> :
+                  attachedFile.type.includes('audio') ? <Music className="w-3.5 h-3.5 text-emerald-400" /> :
+                    <File className="w-3.5 h-3.5 text-purple-400" />}
+                <span className="truncate max-w-[200px]">{attachedFile.name}</span>
+                <span className="text-zinc-500">({(attachedFile.size / 1024 / 1024).toFixed(1)}MB)</span>
+                <button onClick={handleRemoveFile} className="ml-1 hover:text-white transition-colors">
+                  <X className="w-3.5 h-3.5" />
+                </button>
               </div>
+            )}
+
+            {/* Core Text Input */}
+            <textarea
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault();
+                  handleInitialSubmit();
+                }
+              }}
+              placeholder="Type your prompt, paste a link, or dictate a summary task..."
+              className="w-full bg-transparent text-zinc-100 resize-none outline-none text-base md:text-lg min-h-[72px] placeholder:text-zinc-600"
+            />
+
+            {/* Bottom Toolbar */}
+            <div className="flex items-center justify-between pt-2">
+              <div className="flex items-center gap-2">
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  accept="audio/*,video/*,application/pdf,text/plain"
+                  className="hidden"
+                />
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  className="flex items-center gap-2 text-zinc-400 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:text-zinc-200 px-3 py-1.5 rounded-full transition-colors font-medium text-xs shadow-sm"
+                >
+                  <Paperclip size={14} />
+                  <span>Attach</span>
+                </button>
+
+                <div className="hidden sm:flex items-center gap-2 text-[11px] text-zinc-500 ml-2">
+                  Supports Video, Audio & PDFs
+                </div>
+              </div>
+
+              <button
+                onClick={handleInitialSubmit}
+                disabled={(!prompt.trim() && !attachedFile)}
+                className="flex items-center justify-center w-9 h-9 sm:w-auto sm:h-auto sm:px-4 sm:py-2 rounded-full font-medium transition-all shadow-md active:scale-95 disabled:opacity-50 disabled:active:scale-100 bg-zinc-200 text-black hover:bg-white"
+              >
+                <span className="hidden sm:block mr-2 font-bold text-sm">Next</span>
+                <ArrowRight className="w-4 h-4 sm:w-4 sm:h-4" />
+              </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* 2. Formats Selection View */}
+      {viewState === 'formats' && !isGenerating && (
+        <div className="w-full max-w-3xl px-4 animate-in fade-in zoom-in-95 duration-300">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-semibold text-zinc-100 mb-3 tracking-tight">
+              Select Output Formats
+            </h2>
+            <p className="text-sm text-zinc-400 max-w-lg mx-auto">
+              Choose the specific deliverables you need. Focusing the AI on fewer formats will instruct it to generate <strong className="text-zinc-200 font-medium">highly detailed, hyper-specific content</strong> for each selected output.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-10">
+            {FORMAT_OPTIONS.map(format => {
+              const selected = selectedFormats.includes(format.id);
+              return (
+                <button
+                  key={format.id}
+                  onClick={() => toggleFormat(format.id)}
+                  className={`text-left p-4 rounded-xl border transition-all ${selected
+                    ? 'bg-zinc-800/80 border-zinc-500 shadow-[0_0_15px_rgba(255,255,255,0.05)]'
+                    : 'bg-zinc-900 border-zinc-800 hover:border-zinc-600'
+                    }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xl">{format.icon}</span>
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center border transition-colors ${selected ? 'bg-zinc-200 border-zinc-200' : 'bg-transparent border-zinc-700'
+                      }`}>
+                      {selected && <Check className="w-3.5 h-3.5 text-black" />}
+                    </div>
+                  </div>
+                  <h3 className={`font-medium mb-1 ${selected ? 'text-zinc-100' : 'text-zinc-300'}`}>
+                    {format.label}
+                  </h3>
+                  <p className="text-xs text-zinc-500 leading-snug">
+                    {format.desc}
+                  </p>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="flex items-center justify-between max-w-md mx-auto">
+            <button
+              onClick={() => setViewState('prompt')}
+              className="flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors py-2 px-4"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              Back
+            </button>
 
             <button
-              onClick={handleGenerate}
-              disabled={(!prompt.trim() && !attachedFile) || isGenerating}
-              className="flex items-center justify-center w-9 h-9 sm:w-auto sm:h-auto sm:px-4 sm:py-2 rounded-full font-medium transition-all shadow-md active:scale-95 disabled:opacity-50 disabled:active:scale-100 bg-zinc-200 text-black hover:bg-white"
+              onClick={handleFinalGenerate}
+              disabled={selectedFormats.length === 0}
+              className="flex items-center gap-2 bg-zinc-200 hover:bg-white text-black font-semibold py-2.5 px-6 rounded-full transition-all shadow-lg active:scale-95 disabled:opacity-50 disabled:active:scale-100"
             >
-              <span className="hidden sm:block mr-2 font-bold text-sm">Generate</span>
-              <ArrowRight className="w-4 h-4 sm:w-4 sm:h-4" />
+              <Sparkles className="w-4 h-4" />
+              Generate {selectedFormats.length} {selectedFormats.length === 1 ? 'Format' : 'Formats'}
             </button>
           </div>
         </div>
-      </div>
+      )}
 
       {isGenerating && (
         <GenerationProgress
           steps={generationSteps}
-          selectedTypes={coreDeliverables}
+          selectedTypes={selectedFormats}
           sourceName={attachedFile ? attachedFile.name : 'Ad-hoc Prompt'}
         />
       )}
