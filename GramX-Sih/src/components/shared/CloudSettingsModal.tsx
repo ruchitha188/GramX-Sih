@@ -124,30 +124,30 @@ export const CloudSettingsModal: React.FC<CloudSettingsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl bg-slate-950 border border-white/[0.08] rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-950/80 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="relative w-full max-w-2xl bg-neutral-950 border border-white/[0.08] rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08] bg-slate-950 border-sky-500/10/60">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08] bg-neutral-950 border-emerald-500/10/60">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-zinc-9000 via-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-white/5 text-slate-50">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-neutral-9000 via-teal-600 to-pink-500 flex items-center justify-center shadow-lg shadow-white/5 text-neutral-50">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-slate-50 flex items-center gap-2">
+              <h2 className="text-lg font-bold text-neutral-50 flex items-center gap-2">
                 Google LLM Native Core
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-slate-300 border border-emerald-500/30 flex items-center gap-1 font-normal">
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-neutral-300 border border-emerald-500/30 flex items-center gap-1 font-normal">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                   Active ({activeModel})
                 </span>
               </h2>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-neutral-400">
                 Autonomous transformation brain powered exclusively by Google Generative AI & Gemma.
               </p>
             </div>
           </div>
           <button 
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-50 hover:bg-slate-950 transition-colors"
+            className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-50 hover:bg-neutral-950 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -158,11 +158,11 @@ export const CloudSettingsModal: React.FC<CloudSettingsModalProps> = ({
           {/* Section 1: Google LLM Model Selection */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <label className="text-xs font-semibold text-slate-200 uppercase tracking-wider flex items-center gap-2">
-                <Cpu className="w-4 h-4 text-slate-300" />
+              <label className="text-xs font-semibold text-neutral-200 uppercase tracking-wider flex items-center gap-2">
+                <Cpu className="w-4 h-4 text-neutral-300" />
                 Google LLM Engine & Model
               </label>
-              <span className="text-[11px] text-slate-300 font-medium">Official Google SDK Active</span>
+              <span className="text-[11px] text-neutral-300 font-medium">Official Google SDK Active</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -177,49 +177,49 @@ export const CloudSettingsModal: React.FC<CloudSettingsModalProps> = ({
                   onClick={() => { setActiveModel(m.id); setTestResult(null); }}
                   className={`p-3.5 rounded-xl border text-left transition-all ${
                     activeModel === m.id
-                      ? 'bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none hover:bg-sky-400 text-white shadow-[0_0_15px_rgba(255,255,255,0.15)]/15 border-blue-300 text-slate-50 ring-1 ring-white/10'
-                      : 'bg-slate-950 border-sky-500/10/60 border-white/[0.08] text-slate-400 hover:border-white/[0.12] hover:text-slate-200'
+                      ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20 hover:bg-emerald-400 border-none hover:bg-emerald-400 text-white shadow-[0_0_15px_rgba(255,255,255,0.15)]/15 border-teal-300 text-neutral-50 ring-1 ring-white/10'
+                      : 'bg-neutral-950 border-emerald-500/10/60 border-white/[0.08] text-neutral-400 hover:border-white/[0.12] hover:text-neutral-200'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-semibold text-xs text-slate-200">{m.name}</span>
+                    <span className="font-semibold text-xs text-neutral-200">{m.name}</span>
                     <span className={`text-[9px] px-1.5 py-0.2 rounded font-semibold ${
-                      activeModel === m.id ? 'bg-emerald-100 text-slate-300' : 'bg-slate-950 text-slate-400'
+                      activeModel === m.id ? 'bg-emerald-100 text-neutral-300' : 'bg-neutral-950 text-neutral-400'
                     }`}>
                       {m.badge}
                     </span>
                   </div>
-                  <p className="text-[10px] text-slate-400 leading-relaxed mt-1">{m.desc}</p>
+                  <p className="text-[10px] text-neutral-400 leading-relaxed mt-1">{m.desc}</p>
                 </button>
               ))}
             </div>
 
             {/* On-Device Gemini Nano Status Card */}
-            <div className="p-3 bg-slate-950/40 backdrop-blur-xl rounded-xl border border-white/[0.08] flex items-center justify-between">
+            <div className="p-3 bg-neutral-950/40 backdrop-blur-xl rounded-xl border border-white/[0.08] flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-slate-300" />
+                <ShieldCheck className="w-4 h-4 text-neutral-300" />
                 <div>
-                  <span className="text-xs font-semibold text-slate-200">Chrome On-Device AI (Gemini Nano):</span>
-                  <span className="text-xs text-slate-400 ml-1.5">
+                  <span className="text-xs font-semibold text-neutral-200">Chrome On-Device AI (Gemini Nano):</span>
+                  <span className="text-xs text-neutral-400 ml-1.5">
                     {onDeviceAvailable ? 'Available for offline zero-latency inference' : 'Cloud accelerated mode active'}
                   </span>
                 </div>
               </div>
               <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
-                onDeviceAvailable ? 'bg-emerald-500/15 text-slate-300 border border-emerald-500/30' : 'bg-slate-950 text-slate-400'
+                onDeviceAvailable ? 'bg-emerald-500/15 text-neutral-300 border border-emerald-500/30' : 'bg-neutral-950 text-neutral-400'
               }`}>
                 {onDeviceAvailable ? 'Ready' : 'Cloud Core'}
               </span>
             </div>
 
             {/* Google LLM Key Input (Pre-configured) */}
-            <div className="bg-slate-950/40 backdrop-blur-xl p-4 rounded-xl border border-white/[0.08] space-y-2">
+            <div className="bg-neutral-950/40 backdrop-blur-xl p-4 rounded-xl border border-white/[0.08] space-y-2">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
-                  <Key className="w-3.5 h-3.5 text-slate-300" />
+                <label className="text-xs font-medium text-neutral-300 flex items-center gap-1.5">
+                  <Key className="w-3.5 h-3.5 text-neutral-300" />
                   Google LLM Core Key
                 </label>
-                <span className="text-[11px] text-slate-300 font-medium">✓ Pre-configured for GramX</span>
+                <span className="text-[11px] text-neutral-300 font-medium">✓ Pre-configured for GramX</span>
               </div>
               <div className="relative">
                 <input
@@ -227,17 +227,17 @@ export const CloudSettingsModal: React.FC<CloudSettingsModalProps> = ({
                   value={googleKey}
                   onChange={(e) => setGoogleKey(e.target.value)}
                   placeholder="AIzaSy..."
-                  className="w-full pl-3 pr-10 py-2.5 bg-slate-950 border border-white/[0.08] rounded-lg text-xs font-mono text-slate-200 placeholder-slate-600 focus:outline-none focus:border-blue-300"
+                  className="w-full pl-3 pr-10 py-2.5 bg-neutral-950 border border-white/[0.08] rounded-lg text-xs font-mono text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-teal-300"
                 />
                 <button
                   type="button"
                   onClick={() => setShowKey(!showKey)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-200"
                 >
                   {showKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
-              <p className="text-[10px] text-zinc-500">
+              <p className="text-[10px] text-neutral-500">
                 Embedded directly into the application environment. Operators do not need to configure external APIs.
               </p>
             </div>
@@ -248,18 +248,18 @@ export const CloudSettingsModal: React.FC<CloudSettingsModalProps> = ({
                 type="button"
                 onClick={handleTestConnection}
                 disabled={isTesting}
-                className="px-3.5 py-2 rounded-lg bg-slate-950 hover:bg-slate-700 disabled:opacity-40 text-xs font-medium text-slate-200 flex items-center gap-2 transition-colors border border-white/[0.12]"
+                className="px-3.5 py-2 rounded-lg bg-neutral-950 hover:bg-neutral-700 disabled:opacity-40 text-xs font-medium text-neutral-200 flex items-center gap-2 transition-colors border border-white/[0.12]"
               >
                 {isTesting ? (
-                  <RefreshCw className="w-3.5 h-3.5 animate-spin text-slate-300" />
+                  <RefreshCw className="w-3.5 h-3.5 animate-spin text-neutral-300" />
                 ) : (
-                  <Server className="w-3.5 h-3.5 text-slate-300" />
+                  <Server className="w-3.5 h-3.5 text-neutral-300" />
                 )}
                 <span>Test Google LLM Engine</span>
               </button>
 
               {testResult && (
-                <div className={`text-xs flex items-center gap-1.5 ${testResult.success ? 'text-slate-300' : 'text-rose-700'}`}>
+                <div className={`text-xs flex items-center gap-1.5 ${testResult.success ? 'text-neutral-300' : 'text-rose-700'}`}>
                   {testResult.success ? (
                     <CheckCircle2 className="w-4 h-4 shrink-0" />
                   ) : (
@@ -277,43 +277,43 @@ export const CloudSettingsModal: React.FC<CloudSettingsModalProps> = ({
           {/* Section 2: Supabase / PostgreSQL Database Connection */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <label className="text-xs font-semibold text-slate-200 uppercase tracking-wider flex items-center gap-2">
-                <Database className="w-4 h-4 text-slate-300" />
+              <label className="text-xs font-semibold text-neutral-200 uppercase tracking-wider flex items-center gap-2">
+                <Database className="w-4 h-4 text-neutral-300" />
                 2. Supabase PostgreSQL & pgvector (Optional)
               </label>
               <a
                 href="https://supabase.com/dashboard"
                 target="_blank"
                 rel="noreferrer"
-                className="text-xs text-slate-300 hover:text-slate-300 flex items-center gap-1 underline decoration-emerald-500/50"
+                className="text-xs text-neutral-300 hover:text-neutral-300 flex items-center gap-1 underline decoration-emerald-500/50"
               >
                 Free Supabase Account
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-neutral-400">
               Enables persistent team storage for multi-user review workflows, Knowledge Vault RAG embeddings, and audit history.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="bg-slate-950/40 backdrop-blur-xl p-3.5 rounded-xl border border-white/[0.08] space-y-1.5">
-                <label className="text-[11px] font-medium text-slate-400">Project URL</label>
+              <div className="bg-neutral-950/40 backdrop-blur-xl p-3.5 rounded-xl border border-white/[0.08] space-y-1.5">
+                <label className="text-[11px] font-medium text-neutral-400">Project URL</label>
                 <input
                   type="text"
                   value={supabaseUrl}
                   onChange={(e) => setSupabaseUrl(e.target.value)}
                   placeholder="https://your-project.supabase.co"
-                  className="w-full px-3 py-2 bg-slate-950 border border-white/[0.08] rounded-lg text-xs font-mono text-slate-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3 py-2 bg-neutral-950 border border-white/[0.08] rounded-lg text-xs font-mono text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
-              <div className="bg-slate-950/40 backdrop-blur-xl p-3.5 rounded-xl border border-white/[0.08] space-y-1.5">
+              <div className="bg-neutral-950/40 backdrop-blur-xl p-3.5 rounded-xl border border-white/[0.08] space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <label className="text-[11px] font-medium text-slate-400">Anon / Public API Key</label>
+                  <label className="text-[11px] font-medium text-neutral-400">Anon / Public API Key</label>
                   <button
                     type="button"
                     onClick={() => setShowSupabaseKey(!showSupabaseKey)}
-                    className="text-slate-400 hover:text-slate-200 text-[11px]"
+                    className="text-neutral-400 hover:text-neutral-200 text-[11px]"
                   >
                     {showSupabaseKey ? 'Hide' : 'Show'}
                   </button>
@@ -323,7 +323,7 @@ export const CloudSettingsModal: React.FC<CloudSettingsModalProps> = ({
                   value={supabaseAnonKey}
                   onChange={(e) => setSupabaseAnonKey(e.target.value)}
                   placeholder="eyJhbGciOiJIUzI1NiIsIn..."
-                  className="w-full px-3 py-2 bg-slate-950 border border-white/[0.08] rounded-lg text-xs font-mono text-slate-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3 py-2 bg-neutral-950 border border-white/[0.08] rounded-lg text-xs font-mono text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-emerald-500"
                 />
               </div>
             </div>
@@ -331,18 +331,18 @@ export const CloudSettingsModal: React.FC<CloudSettingsModalProps> = ({
         </div>
 
         {/* Footer Actions */}
-        <div className="px-6 py-4 border-t border-white/[0.08] bg-slate-950/40 backdrop-blur-xl flex items-center justify-between">
+        <div className="px-6 py-4 border-t border-white/[0.08] bg-neutral-950/40 backdrop-blur-xl flex items-center justify-between">
           <button
             type="button"
             onClick={handleClear}
-            className="text-xs text-slate-400 hover:text-slate-200 transition-colors"
+            className="text-xs text-neutral-400 hover:text-neutral-200 transition-colors"
           >
             Reset to Default Google LLM Core
           </button>
 
           <div className="flex items-center gap-3">
             {saveSuccess && (
-              <span className="text-xs text-slate-300 flex items-center gap-1 font-medium animate-pulse">
+              <span className="text-xs text-neutral-300 flex items-center gap-1 font-medium animate-pulse">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 Settings Saved!
               </span>
@@ -350,14 +350,14 @@ export const CloudSettingsModal: React.FC<CloudSettingsModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-medium text-slate-300 hover:text-slate-50 bg-slate-950 hover:bg-slate-700 rounded-lg transition-colors"
+              className="px-4 py-2 text-xs font-medium text-neutral-300 hover:text-neutral-50 bg-neutral-950 hover:bg-neutral-700 rounded-lg transition-colors"
             >
               Cancel
             </button>
             <button
               type="button"
               onClick={handleSave}
-              className="px-5 py-2 text-xs font-semibold text-slate-50 bg-gradient-to-r from-zinc-300 to-zinc-500 text-white border border-slate-700/50 hover:from-zinc-9000 hover:to-purple-500 rounded-lg shadow-lg shadow-white/5 transition-all"
+              className="px-5 py-2 text-xs font-semibold text-neutral-50 bg-gradient-to-r from-neutral-300 to-neutral-500 text-white border border-neutral-700/50 hover:from-neutral-9000 hover:to-teal-500 rounded-lg shadow-lg shadow-white/5 transition-all"
             >
               Save & Apply Settings
             </button>

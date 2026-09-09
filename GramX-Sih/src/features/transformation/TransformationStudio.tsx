@@ -136,20 +136,20 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
       {/* 1. Prompt / Ask View */}
       {viewState === 'prompt' && !isGenerating && (
         <div className="w-full max-w-3xl px-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <h1 className="text-3xl md:text-4xl font-semibold text-slate-50 mb-8 text-center tracking-tight">
+          <h1 className="text-3xl md:text-4xl font-semibold text-neutral-50 mb-8 text-center tracking-tight">
             What do you want to create?
           </h1>
 
-          <div className="bg-slate-950 border border-white/[0.12]/60 rounded-2xl p-4 shadow-2xl focus-within:border-slate-700/50 focus-within:ring-2 focus-within:ring-sky-500/20 transition-all flex flex-col gap-3">
+          <div className="bg-neutral-950 border border-white/[0.12]/60 rounded-2xl p-4 shadow-2xl focus-within:border-neutral-700/50 focus-within:ring-2 focus-within:ring-emerald-500/20 transition-all flex flex-col gap-3">
 
             {/* File Attachment Chip */}
             {attachedFile && (
-              <div className="flex items-center gap-2 self-start bg-slate-900/90 text-slate-300 py-1.5 px-3 rounded-xl border border-white/[0.12]/50 text-xs font-medium">
-                {attachedFile.type.includes('video') ? <Video className="w-3.5 h-3.5 text-slate-300" /> :
-                  attachedFile.type.includes('audio') ? <Music className="w-3.5 h-3.5 text-slate-300" /> :
-                    <File className="w-3.5 h-3.5 text-slate-300" />}
+              <div className="flex items-center gap-2 self-start bg-neutral-900/90 text-neutral-300 py-1.5 px-3 rounded-xl border border-white/[0.12]/50 text-xs font-medium">
+                {attachedFile.type.includes('video') ? <Video className="w-3.5 h-3.5 text-neutral-300" /> :
+                  attachedFile.type.includes('audio') ? <Music className="w-3.5 h-3.5 text-neutral-300" /> :
+                    <File className="w-3.5 h-3.5 text-neutral-300" />}
                 <span className="truncate max-w-[200px]">{attachedFile.name}</span>
-                <span className="text-zinc-500">({(attachedFile.size / 1024 / 1024).toFixed(1)}MB)</span>
+                <span className="text-neutral-500">({(attachedFile.size / 1024 / 1024).toFixed(1)}MB)</span>
                 <button onClick={handleRemoveFile} className="ml-1 hover:text-white transition-colors">
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -167,7 +167,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
                 }
               }}
               placeholder="Type your prompt, paste a link, or dictate a summary task..."
-              className="w-full bg-transparent text-slate-50 resize-none outline-none text-base md:text-lg min-h-[72px] placeholder:text-zinc-600"
+              className="w-full bg-transparent text-neutral-50 resize-none outline-none text-base md:text-lg min-h-[72px] placeholder:text-neutral-600"
             />
 
             {/* Bottom Toolbar */}
@@ -182,13 +182,13 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
                 />
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className="flex items-center gap-2 text-slate-400 bg-slate-950 hover:bg-slate-900/90 border border-white/[0.08] hover:text-slate-200 px-3 py-1.5 rounded-full transition-colors font-medium text-xs shadow-sm"
+                  className="flex items-center gap-2 text-neutral-400 bg-neutral-950 hover:bg-neutral-900/90 border border-white/[0.08] hover:text-neutral-200 px-3 py-1.5 rounded-full transition-colors font-medium text-xs shadow-sm"
                 >
                   <Paperclip size={14} />
                   <span>Attach</span>
                 </button>
 
-                <div className="hidden sm:flex items-center gap-2 text-[11px] text-zinc-500 ml-2">
+                <div className="hidden sm:flex items-center gap-2 text-[11px] text-neutral-500 ml-2">
                   Supports Video, Audio & PDFs
                 </div>
               </div>
@@ -196,7 +196,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
               <button
                 onClick={handleInitialSubmit}
                 disabled={(!prompt.trim() && !attachedFile)}
-                className="flex items-center justify-center w-9 h-9 sm:w-auto sm:h-auto sm:px-4 sm:py-2 rounded-full font-medium transition-all shadow-md active:scale-95 disabled:opacity-50 disabled:active:scale-100 bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none hover:bg-sky-400 text-white hover:bg-slate-700/50"
+                className="flex items-center justify-center w-9 h-9 sm:w-auto sm:h-auto sm:px-4 sm:py-2 rounded-full font-medium transition-all shadow-md active:scale-95 disabled:opacity-50 disabled:active:scale-100 bg-emerald-500 text-white shadow-md shadow-emerald-500/20 hover:bg-emerald-400 border-none hover:bg-emerald-400 text-white hover:bg-neutral-700/50"
               >
                 <span className="hidden sm:block mr-2 font-bold text-sm">Next</span>
                 <ArrowRight className="w-4 h-4 sm:w-4 sm:h-4" />
@@ -210,11 +210,11 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
       {viewState === 'formats' && !isGenerating && (
         <div className="w-full max-w-3xl px-4 animate-in fade-in zoom-in-95 duration-300">
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50 mb-3 tracking-tight">
+            <h2 className="text-2xl md:text-3xl font-semibold text-neutral-50 mb-3 tracking-tight">
               Select Output Formats
             </h2>
-            <p className="text-sm text-slate-400 max-w-lg mx-auto">
-              Choose the specific deliverables you need. Focusing the AI on fewer formats will instruct it to generate <strong className="text-slate-200 font-medium">highly detailed, hyper-specific content</strong> for each selected output.
+            <p className="text-sm text-neutral-400 max-w-lg mx-auto">
+              Choose the specific deliverables you need. Focusing the AI on fewer formats will instruct it to generate <strong className="text-neutral-200 font-medium">highly detailed, hyper-specific content</strong> for each selected output.
             </p>
           </div>
 
@@ -226,21 +226,21 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
                   key={format.id}
                   onClick={() => toggleFormat(format.id)}
                   className={`text-left p-4 rounded-xl border transition-all ${selected
-                    ? 'bg-slate-900/90/80 border-slate-700/50 shadow-[0_0_15px_rgba(255,255,255,0.05)]'
-                    : 'bg-slate-950 border-white/[0.08] hover:border-slate-700/50'
+                    ? 'bg-neutral-900/90/80 border-neutral-700/50 shadow-[0_0_15px_rgba(255,255,255,0.05)]'
+                    : 'bg-neutral-950 border-white/[0.08] hover:border-neutral-700/50'
                     }`}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xl">{format.icon}</span>
-                    <div className={`w-5 h-5 rounded-full flex items-center justify-center border transition-colors ${selected ? 'bg-slate-800/60 text-white border-slate-700/50' : 'bg-transparent border-white/[0.12]'
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center border transition-colors ${selected ? 'bg-neutral-800/60 text-white border-neutral-700/50' : 'bg-transparent border-white/[0.12]'
                       }`}>
                       {selected && <Check className="w-3.5 h-3.5 text-white" />}
                     </div>
                   </div>
-                  <h3 className={`font-medium mb-1 ${selected ? 'text-slate-50' : 'text-slate-300'}`}>
+                  <h3 className={`font-medium mb-1 ${selected ? 'text-neutral-50' : 'text-neutral-300'}`}>
                     {format.label}
                   </h3>
-                  <p className="text-xs text-zinc-500 leading-snug">
+                  <p className="text-xs text-neutral-500 leading-snug">
                     {format.desc}
                   </p>
                 </button>
@@ -251,7 +251,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
           <div className="flex items-center justify-between max-w-md mx-auto">
             <button
               onClick={() => setViewState('prompt')}
-              className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors py-2 px-4"
+              className="flex items-center gap-1.5 text-sm text-neutral-400 hover:text-white transition-colors py-2 px-4"
             >
               <ChevronLeft className="w-4 h-4" />
               Back
@@ -260,7 +260,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
             <button
               onClick={handleFinalGenerate}
               disabled={selectedFormats.length === 0}
-              className="flex items-center gap-2 bg-sky-500 hover:bg-sky-400 text-white font-semibold py-2.5 px-6 rounded-full transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)] active:scale-95 disabled:opacity-50 disabled:active:scale-100"
+              className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold py-2.5 px-6 rounded-full transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)] active:scale-95 disabled:opacity-50 disabled:active:scale-100"
             >
               <Sparkles className="w-4 h-4" />
               Generate {selectedFormats.length} {selectedFormats.length === 1 ? 'Format' : 'Formats'}

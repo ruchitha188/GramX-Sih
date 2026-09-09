@@ -54,22 +54,22 @@ export const TrendingTopicsView: React.FC = () => {
         <div className="space-y-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end pb-4 border-b border-white/[0.08]">
                 <div>
-                    <h2 className="text-2xl font-black text-slate-50 tracking-tight flex items-center gap-2">
-                        <Flame className="w-6 h-6 text-slate-300" />
+                    <h2 className="text-2xl font-black text-neutral-50 tracking-tight flex items-center gap-2">
+                        <Flame className="w-6 h-6 text-neutral-300" />
                         Live Viral Topics in India
                     </h2>
-                    <p className="text-sm text-slate-400 mt-1">
+                    <p className="text-sm text-neutral-400 mt-1">
                         Real-time scraping of the most discussed events across the country. Auto-refreshes every 1 hour.
                     </p>
                 </div>
                 <div className="flex items-center gap-3 mt-4 sm:mt-0">
-                    <span className="text-xs text-zinc-500 flex items-center gap-1">
+                    <span className="text-xs text-neutral-500 flex items-center gap-1">
                         <Clock className="w-3 h-3" /> Last updated: {lastRefreshed.toLocaleTimeString()}
                     </span>
                     <button
                         onClick={fetchTopics}
                         disabled={loading}
-                        className="flex items-center gap-2 px-3 py-1.5 bg-slate-950 border-sky-500/10 border border-white/[0.08] rounded-lg text-xs font-semibold text-slate-300 hover:bg-slate-950 active:scale-95 transition-all disabled:opacity-50"
+                        className="flex items-center gap-2 px-3 py-1.5 bg-neutral-950 border-emerald-500/10 border border-white/[0.08] rounded-lg text-xs font-semibold text-neutral-300 hover:bg-neutral-950 active:scale-95 transition-all disabled:opacity-50"
                     >
                         <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
                         Refresh
@@ -81,32 +81,32 @@ export const TrendingTopicsView: React.FC = () => {
                 {loading && topics.length === 0 ? (
                     // Skeletons
                     Array.from({ length: 6 }).map((_, i) => (
-                        <div key={i} className="p-5 rounded-2xl bg-slate-950 border-sky-500/10 border border-white/[0.08] animate-pulse h-40"></div>
+                        <div key={i} className="p-5 rounded-2xl bg-neutral-950 border-emerald-500/10 border border-white/[0.08] animate-pulse h-40"></div>
                     ))
                 ) : (
                     topics.map((topic, i) => (
-                        <div key={i} className="p-5 rounded-2xl bg-slate-950 border-sky-500/10 border border-white/[0.08] hover:border-red-300 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+                        <div key={i} className="p-5 rounded-2xl bg-neutral-950 border-emerald-500/10 border border-white/[0.08] hover:border-red-300 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
                             <div>
                                 <div className="flex items-center justify-between mb-3">
-                                    <span className="px-2 py-0.5 rounded-full bg-red-50 text-slate-300 text-[10px] font-bold uppercase tracking-wider border border-red-100">
+                                    <span className="px-2 py-0.5 rounded-full bg-red-50 text-neutral-300 text-[10px] font-bold uppercase tracking-wider border border-red-100">
                                         Trending #{i + 1}
                                     </span>
-                                    <span className="text-[10px] text-slate-400 font-medium">{topic.pubDate}</span>
+                                    <span className="text-[10px] text-neutral-400 font-medium">{topic.pubDate}</span>
                                 </div>
-                                <h3 className="font-bold text-slate-200 text-sm leading-snug group-hover:text-slate-300 transition-colors">
+                                <h3 className="font-bold text-neutral-200 text-sm leading-snug group-hover:text-neutral-300 transition-colors">
                                     {topic.title}
                                 </h3>
                             </div>
-                            <div className="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
-                                <span className="text-xs font-medium text-zinc-500 flex items-center gap-1.5">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                            <div className="mt-4 pt-3 border-t border-neutral-700/50 flex items-center justify-between">
+                                <span className="text-xs font-medium text-neutral-500 flex items-center gap-1.5">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-300"></span>
                                     {topic.source}
                                 </span>
                                 <a
                                     href={topic.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-1 text-[11px] font-semibold text-slate-400 hover:text-slate-300 transition-colors"
+                                    className="flex items-center gap-1 text-[11px] font-semibold text-neutral-400 hover:text-neutral-300 transition-colors"
                                 >
                                     Source Link <ExternalLink className="w-3 h-3" />
                                 </a>

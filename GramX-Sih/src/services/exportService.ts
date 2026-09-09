@@ -13,7 +13,7 @@ export const exportService = {
     });
 
     // Title banner
-    doc.setFillColor(15, 23, 42); // slate-900
+    doc.setFillColor(15, 23, 42); // neutral-900
     doc.rect(0, 0, 210, 35, 'F');
 
     doc.setFont('helvetica', 'bold');
@@ -23,7 +23,7 @@ export const exportService = {
 
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(10);
-    doc.setTextColor(148, 163, 184); // slate-400
+    doc.setTextColor(148, 163, 184); // neutral-400
     doc.text(`Source Document: ${sourceName} | Team: GRAMX (SIH26154)`, 14, 25);
     doc.text(`Exported at: ${new Date().toLocaleString()} | Deliverables: ${deliverables.length}`, 14, 30);
 

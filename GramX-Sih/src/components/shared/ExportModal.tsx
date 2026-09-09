@@ -80,19 +80,19 @@ export const ExportModal: React.FC<ExportModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 backdrop-blur-xl backdrop-blur-md p-4 animate-in fade-in duration-150">
-      <div className="w-full max-w-xl bg-slate-950 border border-white/[0.08] rounded-2xl shadow-2xl p-6 sm:p-7 space-y-5">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/40 backdrop-blur-xl backdrop-blur-md p-4 animate-in fade-in duration-150">
+      <div className="w-full max-w-xl bg-neutral-950 border border-white/[0.08] rounded-2xl shadow-2xl p-6 sm:p-7 space-y-5">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-slate-50 shadow-lg shadow-emerald-950/30">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-neutral-50 shadow-lg shadow-emerald-950/30">
               <Download className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-slate-50">
+              <h3 className="text-base font-bold text-neutral-50">
                 Export Deliverables Package
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-neutral-400">
                 {deliverables.length} communication artefacts ready for dissemination
               </p>
             </div>
@@ -100,7 +100,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-950 transition-colors"
+            className="p-1 rounded-lg text-neutral-400 hover:text-neutral-200 hover:bg-neutral-950 transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -111,18 +111,18 @@ export const ExportModal: React.FC<ExportModalProps> = ({
           {/* PDF */}
           <div 
             onClick={handleExportPdf}
-            className="p-4 rounded-xl bg-slate-950 border-sky-500/10 border border-white/[0.08] hover:border-slate-700/50 hover:bg-slate-950/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
+            className="p-4 rounded-xl bg-neutral-950 border-emerald-500/10 border border-white/[0.08] hover:border-neutral-700/50 hover:bg-neutral-950/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <FileText className="w-5 h-5 text-rose-700" />
-                <span className="text-xs font-bold text-slate-50 group-hover:text-slate-400">
+                <span className="text-xs font-bold text-neutral-50 group-hover:text-neutral-400">
                   Formatted PDF Package
                 </span>
               </div>
-              <span className="text-[10px] text-zinc-500 font-mono">.pdf</span>
+              <span className="text-[10px] text-neutral-500 font-mono">.pdf</span>
             </div>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-neutral-400">
               Consolidated printable enterprise report with header banners, fact metadata & timestamps.
             </p>
           </div>
@@ -130,18 +130,18 @@ export const ExportModal: React.FC<ExportModalProps> = ({
           {/* DOCX */}
           <div 
             onClick={handleExportDocx}
-            className="p-4 rounded-xl bg-slate-950 border-sky-500/10 border border-white/[0.08] hover:border-slate-700/50 hover:bg-slate-950/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
+            className="p-4 rounded-xl bg-neutral-950 border-emerald-500/10 border border-white/[0.08] hover:border-neutral-700/50 hover:bg-neutral-950/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <FileSpreadsheet className="w-5 h-5 text-slate-300" />
-                <span className="text-xs font-bold text-slate-50 group-hover:text-slate-400">
+                <FileSpreadsheet className="w-5 h-5 text-neutral-300" />
+                <span className="text-xs font-bold text-neutral-50 group-hover:text-neutral-400">
                   Microsoft Word (DOCX)
                 </span>
               </div>
-              <span className="text-[10px] text-zinc-500 font-mono">.docx</span>
+              <span className="text-[10px] text-neutral-500 font-mono">.docx</span>
             </div>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-neutral-400">
               Editable word processor document with bilingual English & Telugu sections.
             </p>
           </div>
@@ -149,18 +149,18 @@ export const ExportModal: React.FC<ExportModalProps> = ({
           {/* PPTX */}
           <div 
             onClick={handleExportPptx}
-            className="p-4 rounded-xl bg-slate-950 border-sky-500/10 border border-white/[0.08] hover:border-slate-700/50 hover:bg-slate-950/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
+            className="p-4 rounded-xl bg-neutral-950 border-emerald-500/10 border border-white/[0.08] hover:border-neutral-700/50 hover:bg-neutral-950/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Presentation className="w-5 h-5 text-amber-700" />
-                <span className="text-xs font-bold text-slate-50 group-hover:text-slate-400">
+                <span className="text-xs font-bold text-neutral-50 group-hover:text-neutral-400">
                   PowerPoint Slide Deck
                 </span>
               </div>
-              <span className="text-[10px] text-zinc-500 font-mono">.pptx</span>
+              <span className="text-[10px] text-neutral-500 font-mono">.pptx</span>
             </div>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-neutral-400">
               Complete 8 presentation slides with bullets, titles, and speaker notes.
             </p>
           </div>
@@ -168,18 +168,18 @@ export const ExportModal: React.FC<ExportModalProps> = ({
           {/* SRT Subtitles */}
           <div 
             onClick={handleExportSrt}
-            className="p-4 rounded-xl bg-slate-950 border-sky-500/10 border border-white/[0.08] hover:border-slate-700/50 hover:bg-slate-950/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
+            className="p-4 rounded-xl bg-neutral-950 border-emerald-500/10 border border-white/[0.08] hover:border-neutral-700/50 hover:bg-neutral-950/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Film className="w-5 h-5 text-slate-300" />
-                <span className="text-xs font-bold text-slate-50 group-hover:text-slate-400">
+                <Film className="w-5 h-5 text-neutral-300" />
+                <span className="text-xs font-bold text-neutral-50 group-hover:text-neutral-400">
                   Subtitles Track (SRT)
                 </span>
               </div>
-              <span className="text-[10px] text-zinc-500 font-mono">.srt</span>
+              <span className="text-[10px] text-neutral-500 font-mono">.srt</span>
             </div>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-neutral-400">
               Timecoded broadcast subtitle stream for video post-production & social reels.
             </p>
           </div>
@@ -189,15 +189,15 @@ export const ExportModal: React.FC<ExportModalProps> = ({
         <div className="pt-2 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <button
             onClick={handleCopyAll}
-            className="flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-950 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-white/[0.12] transition-colors"
+            className="flex items-center justify-center gap-2 px-4 py-2.5 bg-neutral-950 hover:bg-neutral-700 text-neutral-200 text-xs font-semibold rounded-xl border border-white/[0.12] transition-colors"
           >
-            {copied ? <Check className="w-4 h-4 text-slate-300" /> : <Copy className="w-4 h-4" />}
+            {copied ? <Check className="w-4 h-4 text-neutral-300" /> : <Copy className="w-4 h-4" />}
             <span>{copied ? 'Copied Full Bundle!' : 'Copy All Text to Clipboard'}</span>
           </button>
 
           <button
             onClick={handleExportPdf}
-            className="flex items-center justify-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-slate-50 text-xs font-bold rounded-xl shadow-lg shadow-emerald-950/40 transition-all"
+            className="flex items-center justify-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-neutral-50 text-xs font-bold rounded-xl shadow-lg shadow-emerald-950/40 transition-all"
           >
             <Download className="w-4 h-4" />
             <span>Download All Deliverables</span>

@@ -87,23 +87,23 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
   ];
 
   return (
-    <div className="bg-slate-950 border-sky-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-4 lg:p-5 shadow-2xl shadow-black/80 transition-all">
+    <div className="bg-neutral-950 border-emerald-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-4 lg:p-5 shadow-2xl shadow-black/80 transition-all">
       {/* Header / Summary Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none text-white/20 text-slate-300 text-xs font-bold border border-slate-700/50">
+          <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-emerald-500 text-white shadow-md shadow-emerald-500/20 hover:bg-emerald-400 border-none text-white/20 text-neutral-300 text-xs font-bold border border-neutral-700/50">
             2
           </span>
           <div>
-            <h3 className="text-sm font-bold text-slate-50 flex items-center gap-2">
+            <h3 className="text-sm font-bold text-neutral-50 flex items-center gap-2">
               Audience & Language Settings
             </h3>
-            <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-400 mt-0.5">
-              <span className="px-2 py-0.5 rounded bg-slate-950 text-slate-300 font-medium">{config.audience}</span>
+            <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-neutral-400 mt-0.5">
+              <span className="px-2 py-0.5 rounded bg-neutral-950 text-neutral-300 font-medium">{config.audience}</span>
               <span>•</span>
-              <span className="px-2 py-0.5 rounded bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none text-white/20 text-slate-400 font-medium">{config.language}</span>
+              <span className="px-2 py-0.5 rounded bg-emerald-500 text-white shadow-md shadow-emerald-500/20 hover:bg-emerald-400 border-none text-white/20 text-neutral-400 font-medium">{config.language}</span>
               <span>•</span>
-              <span className="px-2 py-0.5 rounded bg-slate-950 text-slate-300 font-medium">{config.tone} Tone</span>
+              <span className="px-2 py-0.5 rounded bg-neutral-950 text-neutral-300 font-medium">{config.tone} Tone</span>
             </div>
           </div>
         </div>
@@ -111,9 +111,9 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
         <button
           type="button"
           onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-950 border-sky-500/10 hover:bg-slate-950 border border-white/[0.08] text-xs font-medium text-slate-300 hover:text-slate-50 transition-colors self-start sm:self-auto"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-950 border-emerald-500/10 hover:bg-neutral-950 border border-white/[0.08] text-xs font-medium text-neutral-300 hover:text-neutral-50 transition-colors self-start sm:self-auto"
         >
-          <Settings2 className="w-3.5 h-3.5 text-slate-300" />
+          <Settings2 className="w-3.5 h-3.5 text-neutral-300" />
           <span>{isExpanded ? 'Hide Options' : 'Customize Options'}</span>
           {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
         </button>
@@ -123,15 +123,15 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
       {isExpanded && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 pt-4 mt-4 border-t border-white/[0.08] animate-in fade-in duration-150">
           {/* 1. Target Audience */}
-          <div className="bg-slate-950 border-sky-500/10/70 p-3 rounded-xl border border-white/[0.08]/80 space-y-1">
-            <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
-              <Users className="w-3.5 h-3.5 text-slate-300" />
+          <div className="bg-neutral-950 border-emerald-500/10/70 p-3 rounded-xl border border-white/[0.08]/80 space-y-1">
+            <label className="text-xs font-medium text-neutral-300 flex items-center gap-1.5">
+              <Users className="w-3.5 h-3.5 text-neutral-300" />
               Target Audience
             </label>
             <select
               value={config.audience}
               onChange={(e) => updateField('audience', e.target.value as TargetAudience)}
-              className="w-full px-2.5 py-1.5 bg-slate-950 border border-white/[0.08] rounded-lg text-xs text-slate-200 focus:outline-none focus:border-blue-300"
+              className="w-full px-2.5 py-1.5 bg-neutral-950 border border-white/[0.08] rounded-lg text-xs text-neutral-200 focus:outline-none focus:border-teal-300"
             >
               {audiences.map((aud) => (
                 <option key={aud} value={aud}>{aud}</option>
@@ -140,15 +140,15 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
           </div>
 
           {/* 2. Language / Localization */}
-          <div className="bg-slate-950 border-sky-500/10/70 p-3 rounded-xl border border-white/[0.08]/80 space-y-1">
-            <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
-              <Languages className="w-3.5 h-3.5 text-slate-300" />
+          <div className="bg-neutral-950 border-emerald-500/10/70 p-3 rounded-xl border border-white/[0.08]/80 space-y-1">
+            <label className="text-xs font-medium text-neutral-300 flex items-center gap-1.5">
+              <Languages className="w-3.5 h-3.5 text-neutral-300" />
               Language / Localization
             </label>
             <select
               value={config.language}
               onChange={(e) => updateField('language', e.target.value as LanguageType)}
-              className="w-full px-2.5 py-1.5 bg-slate-950 border border-white/[0.08] rounded-lg text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+              className="w-full px-2.5 py-1.5 bg-neutral-950 border border-white/[0.08] rounded-lg text-xs text-neutral-200 focus:outline-none focus:border-emerald-500"
             >
               {languages.map((lang) => (
                 <option key={lang} value={lang}>{lang}</option>
@@ -157,15 +157,15 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
           </div>
 
           {/* 3. Tone */}
-          <div className="bg-slate-950 border-sky-500/10/70 p-3 rounded-xl border border-white/[0.08]/80 space-y-1">
-            <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
-              <Smile className="w-3.5 h-3.5 text-slate-300" />
+          <div className="bg-neutral-950 border-emerald-500/10/70 p-3 rounded-xl border border-white/[0.08]/80 space-y-1">
+            <label className="text-xs font-medium text-neutral-300 flex items-center gap-1.5">
+              <Smile className="w-3.5 h-3.5 text-neutral-300" />
               Tone
             </label>
             <select
               value={config.tone}
               onChange={(e) => updateField('tone', e.target.value as ToneType)}
-              className="w-full px-2.5 py-1.5 bg-slate-950 border border-white/[0.08] rounded-lg text-xs text-slate-200 focus:outline-none focus:border-purple-500"
+              className="w-full px-2.5 py-1.5 bg-neutral-950 border border-white/[0.08] rounded-lg text-xs text-neutral-200 focus:outline-none focus:border-teal-500"
             >
               {tones.map((tone) => (
                 <option key={tone} value={tone}>{tone}</option>
@@ -174,15 +174,15 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
           </div>
 
           {/* 4. Level of Detail */}
-          <div className="bg-slate-950 border-sky-500/10/70 p-3 rounded-xl border border-white/[0.08]/80 space-y-1">
-            <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
+          <div className="bg-neutral-950 border-emerald-500/10/70 p-3 rounded-xl border border-white/[0.08]/80 space-y-1">
+            <label className="text-xs font-medium text-neutral-300 flex items-center gap-1.5">
               <Sliders className="w-3.5 h-3.5 text-amber-700" />
               Level of Detail
             </label>
             <select
               value={config.detailLevel}
               onChange={(e) => updateField('detailLevel', e.target.value as DetailLevel)}
-              className="w-full px-2.5 py-1.5 bg-slate-950 border border-white/[0.08] rounded-lg text-xs text-slate-200 focus:outline-none focus:border-amber-500"
+              className="w-full px-2.5 py-1.5 bg-neutral-950 border border-white/[0.08] rounded-lg text-xs text-neutral-200 focus:outline-none focus:border-amber-500"
             >
               {detailLevels.map((lvl) => (
                 <option key={lvl} value={lvl}>{lvl}</option>
@@ -191,15 +191,15 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
           </div>
 
           {/* 5. Communication Objective */}
-          <div className="bg-slate-950 border-sky-500/10/70 p-3 rounded-xl border border-white/[0.08]/80 space-y-1">
-            <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
+          <div className="bg-neutral-950 border-emerald-500/10/70 p-3 rounded-xl border border-white/[0.08]/80 space-y-1">
+            <label className="text-xs font-medium text-neutral-300 flex items-center gap-1.5">
               <Target className="w-3.5 h-3.5 text-rose-700" />
               Objective
             </label>
             <select
               value={config.objective}
               onChange={(e) => updateField('objective', e.target.value as CommunicationObjective)}
-              className="w-full px-2.5 py-1.5 bg-slate-950 border border-white/[0.08] rounded-lg text-xs text-slate-200 focus:outline-none focus:border-rose-500"
+              className="w-full px-2.5 py-1.5 bg-neutral-950 border border-white/[0.08] rounded-lg text-xs text-neutral-200 focus:outline-none focus:border-rose-500"
             >
               {objectives.map((obj) => (
                 <option key={obj} value={obj}>{obj}</option>
@@ -208,15 +208,15 @@ export const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
           </div>
 
           {/* 6. Content Style */}
-          <div className="bg-slate-950 border-sky-500/10/70 p-3 rounded-xl border border-white/[0.08]/80 space-y-1">
-            <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
-              <Palette className="w-3.5 h-3.5 text-sky-700" />
+          <div className="bg-neutral-950 border-emerald-500/10/70 p-3 rounded-xl border border-white/[0.08]/80 space-y-1">
+            <label className="text-xs font-medium text-neutral-300 flex items-center gap-1.5">
+              <Palette className="w-3.5 h-3.5 text-emerald-700" />
               Content Style
             </label>
             <select
               value={config.contentStyle}
               onChange={(e) => updateField('contentStyle', e.target.value as ContentStyle)}
-              className="w-full px-2.5 py-1.5 bg-slate-950 border border-white/[0.08] rounded-lg text-xs text-slate-200 focus:outline-none focus:border-sky-500"
+              className="w-full px-2.5 py-1.5 bg-neutral-950 border border-white/[0.08] rounded-lg text-xs text-neutral-200 focus:outline-none focus:border-emerald-500"
             >
               {contentStyles.map((style) => (
                 <option key={style} value={style}>{style}</option>

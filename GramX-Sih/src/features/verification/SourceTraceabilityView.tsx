@@ -47,33 +47,33 @@ export const SourceTraceabilityView: React.FC<SourceTraceabilityViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <div className="bg-slate-950 border-sky-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/80">
+      <div className="bg-neutral-950 border-emerald-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/80">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none text-white/20 text-slate-400 border border-slate-700/50/30 uppercase tracking-wide">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500 text-white shadow-md shadow-emerald-500/20 hover:bg-emerald-400 border-none text-white/20 text-neutral-400 border border-neutral-700/50/30 uppercase tracking-wide">
                 Key SIH Differentiating Feature
               </span>
-              <span className="text-xs text-slate-400">Bidirectional Auditability</span>
+              <span className="text-xs text-neutral-400">Bidirectional Auditability</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-50 tracking-tight flex items-center gap-2.5">
-              <Cpu className="w-6 h-6 text-slate-300" />
+            <h2 className="text-xl sm:text-2xl font-extrabold text-neutral-50 tracking-tight flex items-center gap-2.5">
+              <Cpu className="w-6 h-6 text-neutral-300" />
               Source Traceability Studio
             </h2>
-            <p className="text-xs text-slate-400 mt-1">
-              Click any generated claim on the right to inspect and highlight the exact corresponding passage in <strong className="text-slate-200">{source.filename}</strong>.
+            <p className="text-xs text-neutral-400 mt-1">
+              Click any generated claim on the right to inspect and highlight the exact corresponding passage in <strong className="text-neutral-200">{source.filename}</strong>.
             </p>
           </div>
 
           {/* Active Claim Mapping Breadcrumb */}
           {activeItem && (
-            <div className="bg-slate-950 border-sky-500/10 px-4 py-2.5 rounded-xl border border-slate-700/50 text-xs flex items-center gap-2">
-              <span className="text-slate-300 font-bold">Page {activeItem.claim.sourcePage}</span>
-              <ArrowRight className="w-3.5 h-3.5 text-zinc-500" />
-              <span className="text-slate-200 font-medium truncate max-w-xs">
+            <div className="bg-neutral-950 border-emerald-500/10 px-4 py-2.5 rounded-xl border border-neutral-700/50 text-xs flex items-center gap-2">
+              <span className="text-neutral-300 font-bold">Page {activeItem.claim.sourcePage}</span>
+              <ArrowRight className="w-3.5 h-3.5 text-neutral-500" />
+              <span className="text-neutral-200 font-medium truncate max-w-xs">
                 {activeItem.deliverableTitle}
               </span>
-              <span className="px-1.5 py-0.5 rounded bg-emerald-100 text-slate-300 text-[10px] font-bold">
+              <span className="px-1.5 py-0.5 rounded bg-emerald-100 text-neutral-300 text-[10px] font-bold">
                 {(activeItem.claim.confidence * 100).toFixed(0)}% Match
               </span>
             </div>
@@ -84,16 +84,16 @@ export const SourceTraceabilityView: React.FC<SourceTraceabilityViewProps> = ({
       {/* Side-by-Side Traceability Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left: Original Source PDF Passage Viewer (7 cols) */}
-        <div className="lg:col-span-7 bg-slate-950 border-sky-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 shadow-2xl shadow-black/80 space-y-4 flex flex-col justify-between">
+        <div className="lg:col-span-7 bg-neutral-950 border-emerald-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 shadow-2xl shadow-black/80 space-y-4 flex flex-col justify-between">
           <div className="space-y-3">
             {/* Source document toolbar */}
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <div className="flex items-center gap-2">
-                <FileText className="w-4 h-4 text-slate-300" />
-                <span className="text-xs font-bold text-slate-50 truncate max-w-xs sm:max-w-sm">
+                <FileText className="w-4 h-4 text-neutral-300" />
+                <span className="text-xs font-bold text-neutral-50 truncate max-w-xs sm:max-w-sm">
                   {source.filename}
                 </span>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-slate-950 border-sky-500/10 text-slate-400 border border-white/[0.08] font-mono">
+                <span className="text-[10px] px-2 py-0.5 rounded bg-neutral-950 border-emerald-500/10 text-neutral-400 border border-white/[0.08] font-mono">
                   Ground-Truth
                 </span>
               </div>
@@ -103,17 +103,17 @@ export const SourceTraceabilityView: React.FC<SourceTraceabilityViewProps> = ({
                 <button
                   onClick={() => setActivePage(Math.max(1, activePage - 1))}
                   disabled={activePage <= 1}
-                  className="p-1 rounded bg-slate-950 border-sky-500/10 border border-white/[0.08] text-slate-300 disabled:opacity-40"
+                  className="p-1 rounded bg-neutral-950 border-emerald-500/10 border border-white/[0.08] text-neutral-300 disabled:opacity-40"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
-                <span className="text-slate-300 font-mono text-xs">
-                  Page <strong className="text-slate-50">{activePage}</strong> of {source.pages}
+                <span className="text-neutral-300 font-mono text-xs">
+                  Page <strong className="text-neutral-50">{activePage}</strong> of {source.pages}
                 </span>
                 <button
                   onClick={() => setActivePage(Math.min(source.pages, activePage + 1))}
                   disabled={activePage >= source.pages}
-                  className="p-1 rounded bg-slate-950 border-sky-500/10 border border-white/[0.08] text-slate-300 disabled:opacity-40"
+                  className="p-1 rounded bg-neutral-950 border-emerald-500/10 border border-white/[0.08] text-neutral-300 disabled:opacity-40"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -121,10 +121,10 @@ export const SourceTraceabilityView: React.FC<SourceTraceabilityViewProps> = ({
             </div>
 
             {/* Document Content Canvas */}
-            <div className="bg-slate-950 border-sky-500/10 rounded-xl p-5 border border-white/[0.08]/80 min-h-[380px] space-y-4 text-xs font-serif leading-relaxed">
-              <div className="text-[10px] text-slate-400 uppercase tracking-wider font-mono border-b border-slate-900 pb-2 flex items-center justify-between">
+            <div className="bg-neutral-950 border-emerald-500/10 rounded-xl p-5 border border-white/[0.08]/80 min-h-[380px] space-y-4 text-xs font-serif leading-relaxed">
+              <div className="text-[10px] text-neutral-400 uppercase tracking-wider font-mono border-b border-neutral-900 pb-2 flex items-center justify-between">
                 <span>CERT-IN OFFICIAL BULLETIN — SECTION PAGE {activePage}</span>
-                <span className="text-slate-300">PDF Telemetry Ingestion</span>
+                <span className="text-neutral-300">PDF Telemetry Ingestion</span>
               </div>
 
               {pageParagraphs.length > 0 ? (
@@ -135,16 +135,16 @@ export const SourceTraceabilityView: React.FC<SourceTraceabilityViewProps> = ({
                       key={p.id}
                       className={`p-3.5 rounded-xl transition-all duration-300 ${
                         isHighlighted
-                          ? 'bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none/60 border-2 border-indigo-400 text-slate-50 shadow-lg shadow-white/5 ring-2 ring-white/10'
-                          : 'bg-slate-950/40 border border-white/[0.08]/60 text-slate-300 hover:border-white/[0.12]'
+                          ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20 hover:bg-emerald-400 border-none/60 border-2 border-indigo-400 text-neutral-50 shadow-lg shadow-white/5 ring-2 ring-white/10'
+                          : 'bg-neutral-950/40 border border-white/[0.08]/60 text-neutral-300 hover:border-white/[0.12]'
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1.5 font-mono text-[10px]">
-                        <span className={isHighlighted ? 'text-slate-400 font-bold' : 'text-slate-400'}>
+                        <span className={isHighlighted ? 'text-neutral-400 font-bold' : 'text-neutral-400'}>
                           [Page {p.page}, Paragraph {p.paragraph}]
                         </span>
                         {isHighlighted && (
-                          <span className="px-2 py-0.5 rounded bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none text-white/20 text-slate-400 font-bold border border-slate-700/50 flex items-center gap-1">
+                          <span className="px-2 py-0.5 rounded bg-emerald-500 text-white shadow-md shadow-emerald-500/20 hover:bg-emerald-400 border-none text-white/20 text-neutral-400 font-bold border border-neutral-700/50 flex items-center gap-1">
                             <Sparkles className="w-3 h-3" />
                             Source Passage Linked
                           </span>
@@ -157,11 +157,11 @@ export const SourceTraceabilityView: React.FC<SourceTraceabilityViewProps> = ({
                   );
                 })
               ) : (
-                <div className="py-16 text-center text-slate-400 space-y-2 font-sans">
+                <div className="py-16 text-center text-neutral-400 space-y-2 font-sans">
                   <p>Page {activePage} contains appendix tables and technical certificate chains.</p>
                   <button
                     onClick={() => setActivePage(1)}
-                    className="text-xs text-slate-300 hover:underline"
+                    className="text-xs text-neutral-300 hover:underline"
                   >
                     Return to Page 1
                   </button>
@@ -171,23 +171,23 @@ export const SourceTraceabilityView: React.FC<SourceTraceabilityViewProps> = ({
           </div>
 
           {/* Source Citation Footer */}
-          <div className="p-3 rounded-xl bg-slate-950 border-sky-500/10 border border-white/[0.08] text-[11px] text-slate-400 flex items-center justify-between">
+          <div className="p-3 rounded-xl bg-neutral-950 border-emerald-500/10 border border-white/[0.08] text-[11px] text-neutral-400 flex items-center justify-between">
             <span>Deterministic SHA-256 Hash Verified</span>
-            <span className="text-slate-300 font-medium">✓ Cryptographic Chain Intact</span>
+            <span className="text-neutral-300 font-medium">✓ Cryptographic Chain Intact</span>
           </div>
         </div>
 
         {/* Right: Generated Claims Explorer (5 cols) */}
-        <div className="lg:col-span-5 bg-slate-950 border-sky-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 shadow-2xl shadow-black/80 space-y-4 flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-neutral-950 border-emerald-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 shadow-2xl shadow-black/80 space-y-4 flex flex-col justify-between">
           <div className="space-y-3">
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-slate-300" />
-                <h3 className="text-xs font-bold text-slate-50">
+                <Sparkles className="w-4 h-4 text-neutral-300" />
+                <h3 className="text-xs font-bold text-neutral-50">
                   Generated Output Claims ({allClaims.length})
                 </h3>
               </div>
-              <span className="text-[10px] text-slate-400">Click to Trace</span>
+              <span className="text-[10px] text-neutral-400">Click to Trace</span>
             </div>
 
             {/* Claims List */}
@@ -204,12 +204,12 @@ export const SourceTraceabilityView: React.FC<SourceTraceabilityViewProps> = ({
                       isSelected
                         ? isMismatch 
                           ? 'bg-rose-950/40 border-rose-500 shadow-lg shadow-rose-950/40 ring-1 ring-rose-500/30'
-                          : 'bg-sky-500 text-white shadow-md shadow-sky-500/20 hover:bg-sky-400 border-none/50 border-blue-300 shadow-lg shadow-blue-200/50 ring-1 ring-white/10'
-                        : 'bg-slate-950 border-sky-500/10/70 border-white/[0.08]/80 hover:border-white/[0.12] hover:bg-slate-950 border-sky-500/10'
+                          : 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20 hover:bg-emerald-400 border-none/50 border-teal-300 shadow-lg shadow-teal-200/50 ring-1 ring-white/10'
+                        : 'bg-neutral-950 border-emerald-500/10/70 border-white/[0.08]/80 hover:border-white/[0.12] hover:bg-neutral-950 border-emerald-500/10'
                     }`}
                   >
                     <div className="flex items-center justify-between gap-2 mb-1.5">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 truncate">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 truncate">
                         {item.deliverableTitle}
                       </span>
                       {isMismatch ? (
@@ -217,18 +217,18 @@ export const SourceTraceabilityView: React.FC<SourceTraceabilityViewProps> = ({
                           <AlertCircle className="w-3 h-3" /> Mismatch
                         </span>
                       ) : (
-                        <span className="px-1.5 py-0.2 rounded text-[9px] font-semibold bg-emerald-100 text-slate-300 border border-emerald-500/30 flex items-center gap-1">
+                        <span className="px-1.5 py-0.2 rounded text-[9px] font-semibold bg-emerald-100 text-neutral-300 border border-emerald-500/30 flex items-center gap-1">
                           <CheckCircle2 className="w-3 h-3" /> Verified
                         </span>
                       )}
                     </div>
 
-                    <p className="text-xs text-slate-200 font-medium leading-snug line-clamp-2">
+                    <p className="text-xs text-neutral-200 font-medium leading-snug line-clamp-2">
                       "{item.claim.claimText}"
                     </p>
 
-                    <div className="mt-2 pt-2 border-t border-slate-900 flex items-center justify-between text-[10px] text-slate-400">
-                      <span className="text-slate-300 font-mono">
+                    <div className="mt-2 pt-2 border-t border-neutral-900 flex items-center justify-between text-[10px] text-neutral-400">
+                      <span className="text-neutral-300 font-mono">
                         Mapped to Page {item.claim.sourcePage}
                       </span>
                       <span>{(item.claim.confidence * 100).toFixed(0)}% Confidence</span>
@@ -241,14 +241,14 @@ export const SourceTraceabilityView: React.FC<SourceTraceabilityViewProps> = ({
 
           {/* Active Highlight Explanation Box */}
           {activeItem && (
-            <div className="p-3 rounded-xl bg-slate-950 border-sky-500/10 border border-slate-700/50 text-xs space-y-1">
-              <div className="font-bold text-slate-400 flex items-center gap-1.5">
+            <div className="p-3 rounded-xl bg-neutral-950 border-emerald-500/10 border border-neutral-700/50 text-xs space-y-1">
+              <div className="font-bold text-neutral-400 flex items-center gap-1.5">
                 <ArrowRight className="w-3.5 h-3.5" />
                 Source → Generated Claim:
               </div>
-              <p className="text-[11px] text-slate-300 leading-relaxed">
+              <p className="text-[11px] text-neutral-300 leading-relaxed">
                 Page {activeItem.claim.sourcePage}, Paragraph {activeItem.claim.sourceParagraph} grounds: <br/>
-                <span className="italic text-slate-300/90">"{activeItem.claim.sourceText}"</span>
+                <span className="italic text-neutral-300/90">"{activeItem.claim.sourceText}"</span>
               </p>
             </div>
           )}
