@@ -220,7 +220,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0c0a14] border-indigo-500/10 text-white flex flex-col font-sans selection:bg-indigo-600 text-white selection:text-white">
+    <div className="min-h-screen bg-black border-white/10 text-white flex flex-col font-sans selection:bg-zinc-200 text-black selection:text-white">
       {/* Top Header Navbar */}
       <Navbar
         currentWorkspace={currentWorkspace}
@@ -249,7 +249,7 @@ export function App() {
         />
 
         {/* Dynamic Center Stage View */}
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-[#09090b]">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-black">
           <div className="max-w-7xl mx-auto">
             {activeTab === 'dashboard' && (
               <DashboardView

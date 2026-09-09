@@ -140,14 +140,14 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
             What do you want to create?
           </h1>
 
-          <div className="bg-[#12101c] border border-white/[0.12]/60 rounded-2xl p-4 shadow-2xl focus-within:border-indigo-500/50 focus-within:ring-2 focus-within:ring-indigo-500/20 transition-all flex flex-col gap-3">
+          <div className="bg-zinc-950 border border-white/[0.12]/60 rounded-2xl p-4 shadow-2xl focus-within:border-zinc-700 focus-within:ring-2 focus-within:ring-white/20 transition-all flex flex-col gap-3">
 
             {/* File Attachment Chip */}
             {attachedFile && (
-              <div className="flex items-center gap-2 self-start bg-[#1b182b] text-slate-300 py-1.5 px-3 rounded-xl border border-white/[0.12]/50 text-xs font-medium">
-                {attachedFile.type.includes('video') ? <Video className="w-3.5 h-3.5 text-indigo-400" /> :
-                  attachedFile.type.includes('audio') ? <Music className="w-3.5 h-3.5 text-emerald-400" /> :
-                    <File className="w-3.5 h-3.5 text-purple-400" />}
+              <div className="flex items-center gap-2 self-start bg-zinc-900 text-slate-300 py-1.5 px-3 rounded-xl border border-white/[0.12]/50 text-xs font-medium">
+                {attachedFile.type.includes('video') ? <Video className="w-3.5 h-3.5 text-zinc-300" /> :
+                  attachedFile.type.includes('audio') ? <Music className="w-3.5 h-3.5 text-zinc-300" /> :
+                    <File className="w-3.5 h-3.5 text-zinc-300" />}
                 <span className="truncate max-w-[200px]">{attachedFile.name}</span>
                 <span className="text-zinc-500">({(attachedFile.size / 1024 / 1024).toFixed(1)}MB)</span>
                 <button onClick={handleRemoveFile} className="ml-1 hover:text-white transition-colors">
@@ -182,7 +182,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
                 />
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className="flex items-center gap-2 text-slate-400 bg-[#12101c] hover:bg-[#1b182b] border border-white/[0.08] hover:text-slate-200 px-3 py-1.5 rounded-full transition-colors font-medium text-xs shadow-sm"
+                  className="flex items-center gap-2 text-slate-400 bg-zinc-950 hover:bg-zinc-900 border border-white/[0.08] hover:text-slate-200 px-3 py-1.5 rounded-full transition-colors font-medium text-xs shadow-sm"
                 >
                   <Paperclip size={14} />
                   <span>Attach</span>
@@ -196,7 +196,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
               <button
                 onClick={handleInitialSubmit}
                 disabled={(!prompt.trim() && !attachedFile)}
-                className="flex items-center justify-center w-9 h-9 sm:w-auto sm:h-auto sm:px-4 sm:py-2 rounded-full font-medium transition-all shadow-md active:scale-95 disabled:opacity-50 disabled:active:scale-100 bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none hover:from-indigo-400 hover:to-violet-500"
+                className="flex items-center justify-center w-9 h-9 sm:w-auto sm:h-auto sm:px-4 sm:py-2 rounded-full font-medium transition-all shadow-md active:scale-95 disabled:opacity-50 disabled:active:scale-100 bg-zinc-200 hover:bg-white text-black hover:bg-zinc-300"
               >
                 <span className="hidden sm:block mr-2 font-bold text-sm">Next</span>
                 <ArrowRight className="w-4 h-4 sm:w-4 sm:h-4" />
@@ -226,13 +226,13 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
                   key={format.id}
                   onClick={() => toggleFormat(format.id)}
                   className={`text-left p-4 rounded-xl border transition-all ${selected
-                    ? 'bg-[#1b182b]/80 border-zinc-500 shadow-[0_0_15px_rgba(255,255,255,0.05)]'
-                    : 'bg-[#12101c] border-white/[0.08] hover:border-zinc-600'
+                    ? 'bg-zinc-900/80 border-zinc-500 shadow-[0_0_15px_rgba(255,255,255,0.05)]'
+                    : 'bg-zinc-950 border-white/[0.08] hover:border-zinc-600'
                     }`}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xl">{format.icon}</span>
-                    <div className={`w-5 h-5 rounded-full flex items-center justify-center border transition-colors ${selected ? 'bg-indigo-600/20 text-indigo-300 border-zinc-200' : 'bg-transparent border-white/[0.12]'
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center border transition-colors ${selected ? 'bg-white/10 text-white border-zinc-200' : 'bg-transparent border-white/[0.12]'
                       }`}>
                       {selected && <Check className="w-3.5 h-3.5 text-black" />}
                     </div>
@@ -260,7 +260,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
             <button
               onClick={handleFinalGenerate}
               disabled={selectedFormats.length === 0}
-              className="flex items-center gap-2 bg-indigo-600/20 text-indigo-300 hover:from-indigo-400 hover:to-violet-500 text-black font-semibold py-2.5 px-6 rounded-full transition-all shadow-lg active:scale-95 disabled:opacity-50 disabled:active:scale-100"
+              className="flex items-center gap-2 bg-white/10 text-white hover:bg-zinc-300 text-black font-semibold py-2.5 px-6 rounded-full transition-all shadow-lg active:scale-95 disabled:opacity-50 disabled:active:scale-100"
             >
               <Sparkles className="w-4 h-4" />
               Generate {selectedFormats.length} {selectedFormats.length === 1 ? 'Format' : 'Formats'}

@@ -80,8 +80,8 @@ export const ExportModal: React.FC<ExportModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#12101c]/40 backdrop-blur-xl backdrop-blur-md p-4 animate-in fade-in duration-150">
-      <div className="w-full max-w-xl bg-[#09090b] border border-white/[0.08] rounded-2xl shadow-2xl p-6 sm:p-7 space-y-5">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-950/40 backdrop-blur-xl backdrop-blur-md p-4 animate-in fade-in duration-150">
+      <div className="w-full max-w-xl bg-black border border-white/[0.08] rounded-2xl shadow-2xl p-6 sm:p-7 space-y-5">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
           <div className="flex items-center gap-3">
@@ -100,7 +100,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-[#12101c] transition-colors"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-zinc-950 transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -111,7 +111,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
           {/* PDF */}
           <div 
             onClick={handleExportPdf}
-            className="p-4 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] hover:border-blue-300/50 hover:bg-[#12101c]/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
+            className="p-4 rounded-xl bg-black border-white/10 border border-white/[0.08] hover:border-zinc-700 hover:bg-zinc-950/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -130,11 +130,11 @@ export const ExportModal: React.FC<ExportModalProps> = ({
           {/* DOCX */}
           <div 
             onClick={handleExportDocx}
-            className="p-4 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] hover:border-blue-300/50 hover:bg-[#12101c]/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
+            className="p-4 rounded-xl bg-black border-white/10 border border-white/[0.08] hover:border-zinc-700 hover:bg-zinc-950/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <FileSpreadsheet className="w-5 h-5 text-indigo-400" />
+                <FileSpreadsheet className="w-5 h-5 text-zinc-300" />
                 <span className="text-xs font-bold text-slate-50 group-hover:text-slate-400">
                   Microsoft Word (DOCX)
                 </span>
@@ -149,7 +149,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
           {/* PPTX */}
           <div 
             onClick={handleExportPptx}
-            className="p-4 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] hover:border-blue-300/50 hover:bg-[#12101c]/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
+            className="p-4 rounded-xl bg-black border-white/10 border border-white/[0.08] hover:border-zinc-700 hover:bg-zinc-950/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -168,11 +168,11 @@ export const ExportModal: React.FC<ExportModalProps> = ({
           {/* SRT Subtitles */}
           <div 
             onClick={handleExportSrt}
-            className="p-4 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] hover:border-blue-300/50 hover:bg-[#12101c]/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
+            className="p-4 rounded-xl bg-black border-white/10 border border-white/[0.08] hover:border-zinc-700 hover:bg-zinc-950/40 backdrop-blur-xl cursor-pointer transition-all space-y-2 group"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Film className="w-5 h-5 text-emerald-700" />
+                <Film className="w-5 h-5 text-zinc-300" />
                 <span className="text-xs font-bold text-slate-50 group-hover:text-slate-400">
                   Subtitles Track (SRT)
                 </span>
@@ -189,9 +189,9 @@ export const ExportModal: React.FC<ExportModalProps> = ({
         <div className="pt-2 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <button
             onClick={handleCopyAll}
-            className="flex items-center justify-center gap-2 px-4 py-2.5 bg-[#12101c] hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-white/[0.12] transition-colors"
+            className="flex items-center justify-center gap-2 px-4 py-2.5 bg-zinc-950 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-white/[0.12] transition-colors"
           >
-            {copied ? <Check className="w-4 h-4 text-emerald-700" /> : <Copy className="w-4 h-4" />}
+            {copied ? <Check className="w-4 h-4 text-zinc-300" /> : <Copy className="w-4 h-4" />}
             <span>{copied ? 'Copied Full Bundle!' : 'Copy All Text to Clipboard'}</span>
           </button>
 

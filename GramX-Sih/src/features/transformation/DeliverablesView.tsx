@@ -143,15 +143,15 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Header Banner: Linking ONE Source to Multiple Deliverables */}
-      <div className="bg-gradient-to-r from-blue-50 via-indigo-950/40 to-zinc-950 border border-blue-300/30 rounded-2xl p-5 sm:p-6 shadow-2xl shadow-black/80">
+      <div className="bg-gradient-to-r from-blue-50 via-indigo-950/40 to-zinc-950 border border-zinc-700 rounded-2xl p-5 sm:p-6 shadow-2xl shadow-black/80">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-600 text-white/20 text-slate-400 border border-zinc-500/30 uppercase tracking-wide">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-zinc-200 text-black/20 text-slate-400 border border-zinc-500/30 uppercase tracking-wide">
                 Transformation Complete
               </span>
               <span className="text-xs text-slate-400 flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-zinc-300" />
                 All Outputs Synchronized
               </span>
             </div>
@@ -160,11 +160,11 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
             </h2>
             <div className="flex flex-wrap items-center gap-2 text-xs text-slate-300 mt-1.5">
               <span className="text-slate-400">Source:</span>
-              <strong className="text-slate-300 font-mono bg-[#0c0a14] border-indigo-500/10 px-2 py-0.5 rounded border border-white/[0.08]">
+              <strong className="text-slate-300 font-mono bg-black border-white/10 px-2 py-0.5 rounded border border-white/[0.08]">
                 {sourceName}
               </strong>
               <span className="text-zinc-500">➔</span>
-              <span className="text-emerald-700 font-bold">
+              <span className="text-zinc-300 font-bold">
                 {deliverables.length} Deliverables Generated
               </span>
             </div>
@@ -174,19 +174,19 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
           <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={onOpenVerification}
-              className="flex items-center gap-1.5 px-3 py-2 bg-[#12101c] hover:bg-slate-700 text-slate-200 hover:text-slate-50 rounded-xl text-xs font-semibold border border-white/[0.12] transition-colors shadow-sm"
+              className="flex items-center gap-1.5 px-3 py-2 bg-zinc-950 hover:bg-slate-700 text-slate-200 hover:text-slate-50 rounded-xl text-xs font-semibold border border-white/[0.12] transition-colors shadow-sm"
               title="Inspect 96% fact verification & mismatch resolver"
             >
-              <ShieldAlert className="w-4 h-4 text-emerald-700" />
+              <ShieldAlert className="w-4 h-4 text-zinc-300" />
               <span>AI Verification</span>
-              <span className="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-300 text-[10px] font-bold">
+              <span className="px-1.5 py-0.2 rounded bg-emerald-100 text-zinc-300 text-[10px] font-bold">
                 96%
               </span>
             </button>
 
             <button
               onClick={onOpenTraceability}
-              className="flex items-center gap-1.5 px-3 py-2 bg-[#12101c] hover:bg-slate-700 text-slate-200 hover:text-slate-50 rounded-xl text-xs font-semibold border border-white/[0.12] transition-colors shadow-sm"
+              className="flex items-center gap-1.5 px-3 py-2 bg-zinc-950 hover:bg-slate-700 text-slate-200 hover:text-slate-50 rounded-xl text-xs font-semibold border border-white/[0.12] transition-colors shadow-sm"
               title="Inspect side-by-side ground truth highlighting"
             >
               <Cpu className="w-4 h-4 text-slate-300" />
@@ -195,7 +195,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
 
             <button
               onClick={() => onSendToReview(activeDeliverable.id)}
-              className="flex items-center gap-1.5 px-3.5 py-2 bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:from-indigo-400 hover:to-violet-500 text-white rounded-xl text-xs font-semibold transition-colors shadow-md shadow-indigo-900/20"
+              className="flex items-center gap-1.5 px-3.5 py-2 bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:bg-zinc-300 text-white rounded-xl text-xs font-semibold transition-colors shadow-md shadow-white/5"
             >
               <Send className="w-3.5 h-3.5" />
               <span>Submit for Review</span>
@@ -227,14 +227,14 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
               }}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-medium shrink-0 transition-all border ${
                 isActive
-                  ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 border-blue-300 shadow-md shadow-blue-200/50 font-semibold'
-                  : 'bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl text-slate-300 border-white/[0.08] hover:bg-[#12101c] hover:text-slate-50'
+                  ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 border-blue-300 shadow-md shadow-blue-200/50 font-semibold'
+                  : 'bg-black border-white/10/70 backdrop-blur-3xl text-slate-300 border-white/[0.08] hover:bg-zinc-950 hover:text-slate-50'
               }`}
             >
               <ItemIcon className="w-4 h-4" />
               <span>{item.title}</span>
               <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                isActive ? 'bg-indigo-950 text-indigo-200' : 'bg-[#12101c] text-slate-400'
+                isActive ? 'bg-zinc-200 text-zinc-300' : 'bg-zinc-950 text-slate-400'
               }`}>
                 ✓
               </span>
@@ -244,11 +244,11 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
       </div>
 
       {/* Active Deliverable Workspace Card */}
-      <div className="bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 sm:p-7 shadow-2xl shadow-black/80 space-y-5">
+      <div className="bg-black border-white/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 sm:p-7 shadow-2xl shadow-black/80 space-y-5">
         {/* Deliverable Header Controls */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/[0.08]">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white/15 border border-blue-300/30 flex items-center justify-center text-slate-300 shadow-sm">
+            <div className="w-10 h-10 rounded-xl bg-zinc-200 text-black/15 border border-zinc-700 flex items-center justify-center text-slate-300 shadow-sm">
               <IconComponent className="w-5 h-5" />
             </div>
             <div>
@@ -256,10 +256,10 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                 <h3 className="text-base font-bold text-slate-50">
                   {activeDeliverable.title}
                 </h3>
-                <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-300 border border-emerald-500/30">
+                <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-zinc-300 border border-emerald-500/30">
                   ✓ Ready
                 </span>
-                <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-[#12101c] text-slate-300">
+                <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-zinc-950 text-slate-300">
                   v{activeDeliverable.version}
                 </span>
               </div>
@@ -272,11 +272,11 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
           {/* Action Bar: Language Toggle, Edit, Copy, Regenerate */}
           <div className="flex items-center gap-2">
             {/* Language Selector */}
-            <div className="flex items-center bg-[#0c0a14] border-indigo-500/10 p-1 rounded-xl border border-white/[0.08] text-xs">
+            <div className="flex items-center bg-black border-white/10 p-1 rounded-xl border border-white/[0.08] text-xs">
               <button
                 onClick={() => setLanguageMode('en')}
                 className={`px-2.5 py-1 rounded-lg transition-all ${
-                  languageMode === 'en' ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold shadow' : 'text-slate-400 hover:text-slate-200'
+                  languageMode === 'en' ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold shadow' : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
                 English
@@ -284,7 +284,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
               <button
                 onClick={() => setLanguageMode('te')}
                 className={`px-2.5 py-1 rounded-lg transition-all ${
-                  languageMode === 'te' ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold shadow' : 'text-slate-400 hover:text-slate-200'
+                  languageMode === 'te' ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold shadow' : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
                 తెలుగు (Telugu)
@@ -292,7 +292,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
               <button
                 onClick={() => setLanguageMode('split')}
                 className={`hidden md:block px-2.5 py-1 rounded-lg transition-all ${
-                  languageMode === 'split' ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold shadow' : 'text-slate-400 hover:text-slate-200'
+                  languageMode === 'split' ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold shadow' : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
                 Bilingual Split
@@ -310,7 +310,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
             ) : (
               <button
                 onClick={() => handleStartEdit(activeDeliverable)}
-                className="p-2 text-slate-400 hover:text-slate-200 hover:bg-[#12101c] rounded-lg border border-white/[0.08] transition-colors"
+                className="p-2 text-slate-400 hover:text-slate-200 hover:bg-zinc-950 rounded-lg border border-white/[0.08] transition-colors"
                 title="Edit deliverable text"
               >
                 <Edit3 className="w-4 h-4" />
@@ -320,10 +320,10 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
             {/* Copy Button */}
             <button
               onClick={() => handleCopy(languageMode === 'te' ? (activeDeliverable.contentTe || activeDeliverable.contentEn) : activeDeliverable.contentEn)}
-              className="p-2 text-slate-400 hover:text-slate-200 hover:bg-[#12101c] rounded-lg border border-white/[0.08] transition-colors"
+              className="p-2 text-slate-400 hover:text-slate-200 hover:bg-zinc-950 rounded-lg border border-white/[0.08] transition-colors"
               title="Copy to clipboard"
             >
-              {copied ? <Check className="w-4 h-4 text-emerald-700" /> : <Copy className="w-4 h-4" />}
+              {copied ? <Check className="w-4 h-4 text-zinc-300" /> : <Copy className="w-4 h-4" />}
             </button>
 
             {/* Quick Export for active item */}
@@ -337,7 +337,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   exportService.exportToDocx([activeDeliverable], sourceName);
                 }
               }}
-              className="p-2 text-slate-400 hover:text-slate-200 hover:bg-[#12101c] rounded-lg border border-white/[0.08] transition-colors"
+              className="p-2 text-slate-400 hover:text-slate-200 hover:bg-zinc-950 rounded-lg border border-white/[0.08] transition-colors"
               title="Download single file"
             >
               <Download className="w-4 h-4" />
@@ -354,7 +354,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
             <textarea
               value={editBuffer}
               onChange={(e) => setEditBuffer(e.target.value)}
-              className="w-full h-80 px-4 py-3 bg-[#0c0a14] border-indigo-500/10 border border-blue-300/50 rounded-xl text-xs text-slate-200 font-mono leading-relaxed focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              className="w-full h-80 px-4 py-3 bg-black border-white/10 border border-zinc-700 rounded-xl text-xs text-slate-200 font-mono leading-relaxed focus:outline-none focus:ring-1 focus:ring-indigo-500"
             />
             <div className="flex items-center justify-end gap-2">
               <button
@@ -365,7 +365,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
               </button>
               <button
                 onClick={handleSaveEdit}
-                className="px-4 py-1.5 bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:from-indigo-400 hover:to-violet-500 text-white rounded-lg text-xs font-semibold"
+                className="px-4 py-1.5 bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:bg-zinc-300 text-white rounded-lg text-xs font-semibold"
               >
                 Save Changes
               </button>
@@ -377,7 +377,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
             {/* 1. Presentation Slide Viewer */}
             {activeDeliverable.type === 'presentation' && activeDeliverable.structuredData?.presentation ? (
               <div className="space-y-4">
-                <div className="flex items-center justify-between bg-[#0c0a14] border-indigo-500/10 p-3 rounded-xl border border-white/[0.08] text-xs">
+                <div className="flex items-center justify-between bg-black border-white/10 p-3 rounded-xl border border-white/[0.08] text-xs">
                   <span className="font-semibold text-slate-200 flex items-center gap-2">
                     <PresentationIcon className="w-4 h-4 text-slate-300" />
                     Interactive Slide Deck Preview (8 Slides Generated)
@@ -386,7 +386,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                     <button
                       onClick={() => setActiveSlideIndex(Math.max(0, activeSlideIndex - 1))}
                       disabled={activeSlideIndex === 0}
-                      className="p-1 rounded bg-[#09090b] border border-white/[0.08] disabled:opacity-40 text-slate-300"
+                      className="p-1 rounded bg-black border border-white/[0.08] disabled:opacity-40 text-slate-300"
                     >
                       <ChevronLeft className="w-4 h-4" />
                     </button>
@@ -396,7 +396,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                     <button
                       onClick={() => setActiveSlideIndex(Math.min(activeDeliverable.structuredData!.presentation!.slides.length - 1, activeSlideIndex + 1))}
                       disabled={activeSlideIndex === activeDeliverable.structuredData.presentation.slides.length - 1}
-                      className="p-1 rounded bg-[#09090b] border border-white/[0.08] disabled:opacity-40 text-slate-300"
+                      className="p-1 rounded bg-black border border-white/[0.08] disabled:opacity-40 text-slate-300"
                     >
                       <ChevronRight className="w-4 h-4" />
                     </button>
@@ -407,7 +407,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                 {(() => {
                   const currentSlide = activeDeliverable.structuredData.presentation.slides[activeSlideIndex];
                   return (
-                    <div className="p-8 rounded-2xl bg-gradient-to-br from-white via-blue-50 to-indigo-950/40 border-2 border-blue-300/30 shadow-2xl min-h-[320px] flex flex-col justify-between">
+                    <div className="p-8 rounded-2xl bg-gradient-to-br from-white via-blue-50 to-indigo-950/40 border-2 border-zinc-700 shadow-2xl min-h-[320px] flex flex-col justify-between">
                       <div>
                         <div className="flex items-center justify-between text-[11px] text-slate-400 border-b border-white/[0.08]/80 pb-2 mb-4">
                           <span>GramX Executive Slide Deck</span>
@@ -419,7 +419,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                         <ul className="space-y-2.5">
                           {currentSlide.bullets.map((b, i) => (
                             <li key={i} className="text-sm text-slate-200 flex items-start gap-2.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2 shrink-0" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 mt-2 shrink-0" />
                               <span>{b}</span>
                             </li>
                           ))}
@@ -427,7 +427,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                       </div>
 
                       {/* Speaker Notes */}
-                      <div className="mt-6 pt-4 border-t border-white/[0.08]/80 bg-[#0c0a14] border-indigo-500/10/60 p-3 rounded-xl text-xs text-slate-400">
+                      <div className="mt-6 pt-4 border-t border-white/[0.08]/80 bg-black border-white/10/60 p-3 rounded-xl text-xs text-slate-400">
                         <strong className="text-slate-400 font-semibold block mb-1">Speaker Notes:</strong>
                         {currentSlide.speakerNotes}
                       </div>
@@ -443,8 +443,8 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                       onClick={() => setActiveSlideIndex(idx)}
                       className={`p-2 rounded-lg border text-left text-[11px] transition-all truncate ${
                         activeSlideIndex === idx
-                          ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)]/30 border-blue-300 text-slate-50 font-bold'
-                          : 'bg-[#0c0a14] border-indigo-500/10 border-white/[0.08] text-slate-400 hover:text-slate-200'
+                          ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)]/30 border-blue-300 text-slate-50 font-bold'
+                          : 'bg-black border-white/10 border-white/[0.08] text-slate-400 hover:text-slate-200'
                       }`}
                     >
                       Slide {s.slideNumber}
@@ -458,11 +458,11 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
             {activeDeliverable.type === 'video_package' && activeDeliverable.structuredData?.videoPackage ? (
               <div className="space-y-4">
                 {/* Sub-tabs for Video Package */}
-                <div className="flex flex-wrap items-center gap-1.5 bg-[#0c0a14] border-indigo-500/10 p-1.5 rounded-xl border border-white/[0.08] text-xs">
+                <div className="flex flex-wrap items-center gap-1.5 bg-black border-white/10 p-1.5 rounded-xl border border-white/[0.08] text-xs">
                   <button
                     onClick={() => setActiveVideoTab('script')}
                     className={`px-3 py-1.5 rounded-lg transition-all ${
-                      activeVideoTab === 'script' ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold' : 'text-slate-400 hover:text-slate-200'
+                      activeVideoTab === 'script' ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold' : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
                     Script
@@ -470,7 +470,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   <button
                     onClick={() => setActiveVideoTab('storyboard')}
                     className={`px-3 py-1.5 rounded-lg transition-all ${
-                      activeVideoTab === 'storyboard' ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold' : 'text-slate-400 hover:text-slate-200'
+                      activeVideoTab === 'storyboard' ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold' : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
                     Storyboard (5 Scenes)
@@ -478,7 +478,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   <button
                     onClick={() => setActiveVideoTab('scenes')}
                     className={`px-3 py-1.5 rounded-lg transition-all ${
-                      activeVideoTab === 'scenes' ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold' : 'text-slate-400 hover:text-slate-200'
+                      activeVideoTab === 'scenes' ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold' : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
                     Scene Descriptions
@@ -486,7 +486,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   <button
                     onClick={() => setActiveVideoTab('narration')}
                     className={`px-3 py-1.5 rounded-lg transition-all ${
-                      activeVideoTab === 'narration' ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold' : 'text-slate-400 hover:text-slate-200'
+                      activeVideoTab === 'narration' ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold' : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
                     Narration Text
@@ -494,7 +494,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   <button
                     onClick={() => setActiveVideoTab('subtitles')}
                     className={`px-3 py-1.5 rounded-lg transition-all ${
-                      activeVideoTab === 'subtitles' ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold' : 'text-slate-400 hover:text-slate-200'
+                      activeVideoTab === 'subtitles' ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold' : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
                     Subtitles (SRT)
@@ -502,7 +502,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   <button
                     onClick={() => setActiveVideoTab('visuals')}
                     className={`px-3 py-1.5 rounded-lg transition-all ${
-                      activeVideoTab === 'visuals' ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold' : 'text-slate-400 hover:text-slate-200'
+                      activeVideoTab === 'visuals' ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-semibold' : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
                     Visual Recommendations
@@ -510,7 +510,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                 </div>
 
                 {/* Video Package Tab Content */}
-                <div className="p-5 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] text-xs">
+                <div className="p-5 rounded-xl bg-black border-white/10 border border-white/[0.08] text-xs">
                   {activeVideoTab === 'script' && (
                     <pre className="font-mono text-slate-200 whitespace-pre-wrap leading-relaxed">
                       {activeDeliverable.structuredData.videoPackage.script}
@@ -520,10 +520,10 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   {activeVideoTab === 'storyboard' && (
                     <div className="space-y-3">
                       {activeDeliverable.structuredData.videoPackage.storyboard.map(sb => (
-                        <div key={sb.sceneNumber} className="p-3 rounded-lg bg-[#09090b] border border-white/[0.08]/80 space-y-1.5">
+                        <div key={sb.sceneNumber} className="p-3 rounded-lg bg-black border border-white/[0.08]/80 space-y-1.5">
                           <div className="flex items-center justify-between text-slate-300 font-bold">
                             <span>Scene {sb.sceneNumber}</span>
-                            <span className="text-[10px] px-2 py-0.5 bg-indigo-600 text-white/20 rounded text-slate-400">
+                            <span className="text-[10px] px-2 py-0.5 bg-zinc-200 text-black/20 rounded text-slate-400">
                               {sb.duration}
                             </span>
                           </div>
@@ -537,7 +537,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   {activeVideoTab === 'scenes' && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {activeDeliverable.structuredData.videoPackage.scenes.map(sc => (
-                        <div key={sc.sceneNumber} className="p-3 rounded-lg bg-[#09090b] border border-white/[0.08]/80 space-y-1">
+                        <div key={sc.sceneNumber} className="p-3 rounded-lg bg-black border border-white/[0.08]/80 space-y-1">
                           <div className="text-slate-300 font-bold">Scene {sc.sceneNumber}: {sc.setting}</div>
                           <p className="text-slate-300">{sc.visualDescription}</p>
                           <p className="text-[11px] text-amber-700 font-mono">Camera: {sc.cameraAngle}</p>
@@ -563,7 +563,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                           <Download className="w-3.5 h-3.5" /> Download .srt
                         </button>
                       </div>
-                      <pre className="p-3 bg-[#09090b] rounded-lg border border-white/[0.08] font-mono text-emerald-700 text-[11px] whitespace-pre-wrap">
+                      <pre className="p-3 bg-black rounded-lg border border-white/[0.08] font-mono text-zinc-300 text-[11px] whitespace-pre-wrap">
                         {activeDeliverable.structuredData.videoPackage.subtitlesSrt}
                       </pre>
                     </div>
@@ -572,7 +572,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   {activeVideoTab === 'visuals' && (
                     <div className="space-y-2">
                       {activeDeliverable.structuredData.videoPackage.visualRecommendations.map((rec, i) => (
-                        <div key={i} className="p-2.5 rounded-lg bg-[#09090b] border border-white/[0.08] flex items-start gap-2">
+                        <div key={i} className="p-2.5 rounded-lg bg-black border border-white/[0.08] flex items-start gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-1.5 shrink-0" />
                           <span className="text-slate-200">{rec}</span>
                         </div>
@@ -587,9 +587,9 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
             {activeDeliverable.type === 'infographic' && (
               <div className="space-y-5">
                 {/* Infographic Hero Header */}
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-white via-indigo-950/40 to-white border-2 border-blue-300/30 space-y-3">
+                <div className="p-6 rounded-2xl bg-gradient-to-br from-white via-indigo-950/40 to-white border-2 border-zinc-700 space-y-3">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-indigo-600 text-white/20 text-slate-400 border border-zinc-500/30 uppercase tracking-wider flex items-center gap-1.5">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-zinc-200 text-black/20 text-slate-400 border border-zinc-500/30 uppercase tracking-wider flex items-center gap-1.5">
                       <Layout className="w-3.5 h-3.5" /> Infographic Blueprint & Content
                     </span>
                     <span className="text-xs text-slate-400 font-mono">
@@ -617,8 +617,8 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                       'Mandatory Enterprise Hygiene: Immediate deployment of patch v4.8.2 and FIDO2 MFA.',
                       'Transparent Public Governance: 24/7 Citizen helpline 1800-11-4949 active.'
                     ]).map((msg, idx) => (
-                      <div key={idx} className="p-3.5 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] flex items-start gap-2.5">
-                        <span className="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold shrink-0 mt-0.5">
+                      <div key={idx} className="p-3.5 rounded-xl bg-black border-white/10 border border-white/[0.08] flex items-start gap-2.5">
+                        <span className="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-100 text-zinc-300 text-xs font-bold shrink-0 mt-0.5">
                           ✓
                         </span>
                         <p className="text-xs text-slate-200 font-medium leading-relaxed">{msg}</p>
@@ -630,7 +630,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                 {/* Statistics Telemetry Grid */}
                 <div className="space-y-2">
                   <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                    <Activity className="w-3.5 h-3.5 text-emerald-700" />
+                    <Activity className="w-3.5 h-3.5 text-zinc-300" />
                     Quantitative Telemetry & Hero Metrics
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -640,7 +640,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                       { label: 'Patch Compliance', value: '94%', desc: 'Nodes updated within 12 hours' },
                       { label: 'Citizen Portal Uptime', value: '100%', desc: 'Zero disruption to public utilities' }
                     ]).map((st, idx) => (
-                      <div key={idx} className="p-4 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] text-center space-y-1">
+                      <div key={idx} className="p-4 rounded-xl bg-black border-white/10 border border-white/[0.08] text-center space-y-1">
                         <span className="text-[10px] text-slate-400 font-semibold block">{st.label}</span>
                         <span className="text-2xl font-black text-slate-50 text-slate-400">{st.value}</span>
                         <span className="text-[10px] text-zinc-500 block">{st.desc}</span>
@@ -650,7 +650,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                 </div>
 
                 {/* Visual Flow Timeline */}
-                <div className="p-4 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] space-y-3">
+                <div className="p-4 rounded-xl bg-black border-white/10 border border-white/[0.08] space-y-3">
                   <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
                     Visual Chronology & Step-by-Step Flow
                   </div>
@@ -658,7 +658,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                     {(activeDeliverable.structuredData?.infographic?.visualFlow || [
                       'Detection (1 Sept)', 'SOC Containment (42m)', 'Forensic Audit (0 Breaches)', 'Patch Release (v4.8.2)', 'Public Assurance'
                     ]).map((flowItem, idx) => (
-                      <div key={idx} className="p-2.5 rounded-lg bg-[#09090b] border border-white/[0.08] text-slate-200 font-medium">
+                      <div key={idx} className="p-2.5 rounded-lg bg-black border border-white/[0.08] text-slate-200 font-medium">
                         <span className="text-[10px] text-slate-300 block font-bold mb-1">Step {idx + 1}</span>
                         {flowItem}
                       </div>
@@ -667,13 +667,13 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                 </div>
 
                 {/* Layout Recommendations Box */}
-                <div className="p-5 rounded-2xl bg-[#0c0a14] border-indigo-500/10/90 border border-blue-300/30 space-y-4">
+                <div className="p-5 rounded-2xl bg-black border-white/10/90 border border-zinc-700 space-y-4">
                   <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
                     <h4 className="text-xs font-bold text-slate-50 flex items-center gap-2">
                       <Palette className="w-4 h-4 text-slate-300" />
                       Design & Layout Recommendations for Graphic Artists
                     </h4>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-indigo-600 text-white/20 text-slate-400 font-semibold">
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-zinc-200 text-black/20 text-slate-400 font-semibold">
                       Production Spec
                     </span>
                   </div>
@@ -698,15 +698,15 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                       <div>
                         <span className="text-slate-400 text-[11px]">Recommended Color Palette:</span>
                         <div className="flex items-center gap-2 mt-1.5">
-                          <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-[#09090b] border border-white/[0.08] text-[11px]">
+                          <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-black border border-white/[0.08] text-[11px]">
                             <span className="w-3.5 h-3.5 rounded-full bg-[#0F172A] border border-white/[0.12]" />
                             <span className="font-mono text-slate-300">#0F172A</span>
                           </div>
-                          <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-[#09090b] border border-white/[0.08] text-[11px]">
+                          <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-black border border-white/[0.08] text-[11px]">
                             <span className="w-3.5 h-3.5 rounded-full bg-[#6366F1]" />
                             <span className="font-mono text-slate-300">#6366F1</span>
                           </div>
-                          <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-[#09090b] border border-white/[0.08] text-[11px]">
+                          <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-black border border-white/[0.08] text-[11px]">
                             <span className="w-3.5 h-3.5 rounded-full bg-[#10B981]" />
                             <span className="font-mono text-slate-300">#10B981</span>
                           </div>
@@ -727,11 +727,11 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
             {/* 4. LinkedIn Post Social Mockup */}
             {activeDeliverable.type === 'linkedin' && (
               <div className="space-y-4">
-                <div className="p-6 rounded-2xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] shadow-2xl shadow-black/80 max-w-2xl mx-auto space-y-4 font-sans">
+                <div className="p-6 rounded-2xl bg-black border-white/10 border border-white/[0.08] shadow-2xl shadow-black/80 max-w-2xl mx-auto space-y-4 font-sans">
                   {/* LinkedIn Author Header */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-indigo-400 to-violet-400 text-black shadow-lg shadow-white/10 flex items-center justify-center font-bold text-slate-50 shadow">
+                      <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-zinc-300 to-zinc-500 text-black shadow-lg shadow-white/10 flex items-center justify-center font-bold text-slate-50 shadow">
                         BC
                       </div>
                       <div>
@@ -743,7 +743,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                         <p className="text-[10px] text-zinc-500">Just now • 🌐 Edited</p>
                       </div>
                     </div>
-                    <div className="text-indigo-400 font-bold text-xs flex items-center gap-1">
+                    <div className="text-zinc-300 font-bold text-xs flex items-center gap-1">
                       <LinkedinIcon className="w-4 h-4" />
                     </div>
                   </div>
@@ -759,7 +759,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   <div className="pt-3 border-t border-white/[0.08]/80 space-y-2">
                     <div className="flex items-center justify-between text-[11px] text-zinc-500">
                       <span className="flex items-center gap-1">
-                        <span className="w-4 h-4 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] text-white">👍</span>
+                        <span className="w-4 h-4 rounded-full bg-zinc-200 text-black flex items-center justify-center text-[10px] text-white">👍</span>
                         <span className="w-4 h-4 rounded-full bg-emerald-600 flex items-center justify-center text-[10px] text-white">👏</span>
                         <span className="ml-1 text-slate-400">248 likes • 34 comments</span>
                       </span>
@@ -767,19 +767,19 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                     </div>
 
                     <div className="grid grid-cols-4 gap-1 text-xs text-slate-400 font-semibold pt-1 border-t border-slate-900">
-                      <button className="py-2 hover:bg-[#09090b] rounded-lg flex items-center justify-center gap-1.5 transition-colors">
+                      <button className="py-2 hover:bg-black rounded-lg flex items-center justify-center gap-1.5 transition-colors">
                         <ThumbsUp className="w-3.5 h-3.5" />
                         <span>Like</span>
                       </button>
-                      <button className="py-2 hover:bg-[#09090b] rounded-lg flex items-center justify-center gap-1.5 transition-colors">
+                      <button className="py-2 hover:bg-black rounded-lg flex items-center justify-center gap-1.5 transition-colors">
                         <MessageCircle className="w-3.5 h-3.5" />
                         <span>Comment</span>
                       </button>
-                      <button className="py-2 hover:bg-[#09090b] rounded-lg flex items-center justify-center gap-1.5 transition-colors">
+                      <button className="py-2 hover:bg-black rounded-lg flex items-center justify-center gap-1.5 transition-colors">
                         <Repeat2 className="w-3.5 h-3.5" />
                         <span>Repost</span>
                       </button>
-                      <button className="py-2 hover:bg-[#09090b] rounded-lg flex items-center justify-center gap-1.5 transition-colors">
+                      <button className="py-2 hover:bg-black rounded-lg flex items-center justify-center gap-1.5 transition-colors">
                         <Send className="w-3.5 h-3.5" />
                         <span>Send</span>
                       </button>
@@ -795,24 +795,24 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                 {activeDeliverable.structuredData?.thread ? (
                   <div className="space-y-3">
                     {activeDeliverable.structuredData.thread.map((tweet, idx) => (
-                      <div key={tweet.tweetNumber} className="relative p-4 rounded-2xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] space-y-2">
+                      <div key={tweet.tweetNumber} className="relative p-4 rounded-2xl bg-black border-white/10 border border-white/[0.08] space-y-2">
                         {idx < activeDeliverable.structuredData!.thread!.length - 1 && (
-                          <div className="absolute left-7 top-14 bottom-[-14px] w-0.5 bg-[#12101c] z-0" />
+                          <div className="absolute left-7 top-14 bottom-[-14px] w-0.5 bg-zinc-950 z-0" />
                         )}
                         <div className="flex items-center justify-between relative z-10">
                           <div className="flex items-center gap-2.5">
-                            <div className="w-8 h-8 rounded-full bg-[#12101c] flex items-center justify-center font-bold text-xs text-slate-50">
+                            <div className="w-8 h-8 rounded-full bg-zinc-950 flex items-center justify-center font-bold text-xs text-slate-50">
                               X
                             </div>
                             <div>
                               <div className="flex items-center gap-1">
                                 <span className="text-xs font-bold text-slate-50">GramX</span>
-                                <span className="w-3 h-3 rounded-full bg-[#1b182b]/500 flex items-center justify-center text-[8px] text-slate-50">✓</span>
+                                <span className="w-3 h-3 rounded-full bg-zinc-900/500 flex items-center justify-center text-[8px] text-slate-50">✓</span>
                                 <span className="text-[11px] text-zinc-500">@GramX</span>
                               </div>
                             </div>
                           </div>
-                          <span className="text-[11px] font-bold text-slate-300 font-mono bg-[#09090b] px-2 py-0.5 rounded">
+                          <span className="text-[11px] font-bold text-slate-300 font-mono bg-black px-2 py-0.5 rounded">
                             {tweet.tweetNumber}/5
                           </span>
                         </div>
@@ -822,8 +822,8 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                         </p>
 
                         <div className="flex items-center justify-between text-zinc-500 text-[11px] pl-10 pt-2 border-t border-slate-900/60 relative z-10">
-                          <span className="flex items-center gap-1 hover:text-indigo-400 cursor-pointer"><MessageCircle className="w-3.5 h-3.5" /> 14</span>
-                          <span className="flex items-center gap-1 hover:text-emerald-700 cursor-pointer"><Repeat2 className="w-3.5 h-3.5" /> 48</span>
+                          <span className="flex items-center gap-1 hover:text-zinc-300 cursor-pointer"><MessageCircle className="w-3.5 h-3.5" /> 14</span>
+                          <span className="flex items-center gap-1 hover:text-zinc-300 cursor-pointer"><Repeat2 className="w-3.5 h-3.5" /> 48</span>
                           <span className="flex items-center gap-1 hover:text-rose-700 cursor-pointer"><ThumbsUp className="w-3.5 h-3.5" /> 192</span>
                           <span className="flex items-center gap-1 hover:text-slate-300 cursor-pointer"><Bookmark className="w-3.5 h-3.5" /> 26</span>
                         </div>
@@ -831,7 +831,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                     ))}
                   </div>
                 ) : (
-                  <div className="p-5 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] text-xs text-slate-200 whitespace-pre-wrap font-sans leading-relaxed">
+                  <div className="p-5 rounded-xl bg-black border-white/10 border border-white/[0.08] text-xs text-slate-200 whitespace-pre-wrap font-sans leading-relaxed">
                     {languageMode === 'te' 
                       ? (activeDeliverable.contentTe || activeDeliverable.contentEn) 
                       : activeDeliverable.contentEn}
@@ -843,10 +843,10 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
             {/* 6. Official Advisory Formal Layout */}
             {activeDeliverable.type === 'advisory' && (
               <div className="space-y-4">
-                <div className="p-6 sm:p-8 rounded-2xl bg-[#0c0a14] border-indigo-500/10 border-2 border-white/[0.08] space-y-6">
+                <div className="p-6 sm:p-8 rounded-2xl bg-black border-white/10 border-2 border-white/[0.08] space-y-6">
                   {/* Government Header Banner */}
                   <div className="text-center border-b border-white/[0.08] pb-4 space-y-1">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-500/30 text-[11px] font-bold uppercase tracking-wider">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-zinc-300 border border-emerald-500/30 text-[11px] font-bold uppercase tracking-wider">
                       <Shield className="w-3.5 h-3.5" /> Official Statutory Advisory
                     </div>
                     <h3 className="text-base sm:text-lg font-bold text-slate-50 tracking-wide uppercase">
@@ -871,7 +871,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   {/* Official Verification Seal */}
                   <div className="pt-4 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-400">
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                      <CheckCircle2 className="w-4 h-4 text-zinc-300" />
                       <span>Certified against National Critical Infrastructure Directive</span>
                     </div>
                     <span className="font-mono text-[11px] text-zinc-500">
@@ -938,23 +938,23 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                     {/* Bilingual Split View */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                       {/* English Executive Brief */}
-                      <div className="p-6 rounded-2xl bg-[#0c0a14] border-indigo-500/10 border border-blue-300/30 space-y-4 shadow-2xl shadow-black/80">
+                      <div className="p-6 rounded-2xl bg-black border-white/10 border border-zinc-700 space-y-4 shadow-2xl shadow-black/80">
                         <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
-                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white/20 text-slate-400 uppercase tracking-wider">
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-zinc-200 text-black/20 text-slate-400 uppercase tracking-wider">
                             English Master Brief
                           </span>
-                          <span className="text-[10px] text-emerald-700 font-mono flex items-center gap-1">
+                          <span className="text-[10px] text-zinc-300 font-mono flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3" /> Ground-Truth Verified
                           </span>
                         </div>
                         <h4 className="text-sm font-bold text-slate-50">Executive Summary Briefing</h4>
                         <div className="space-y-3 text-xs text-slate-300">
-                          <div className="p-3.5 bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl rounded-xl border border-white/[0.08]/80">
+                          <div className="p-3.5 bg-black border-white/10/70 backdrop-blur-3xl rounded-xl border border-white/[0.08]/80">
                             <strong className="text-slate-400 block mb-1 font-semibold">1. Executive Overview:</strong>
                             <p className="leading-relaxed">{execData.overview}</p>
                           </div>
-                          <div className="p-3.5 bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl rounded-xl border border-white/[0.08]/80">
-                            <strong className="text-emerald-300 block mb-1.5 font-semibold">2. Key Findings:</strong>
+                          <div className="p-3.5 bg-black border-white/10/70 backdrop-blur-3xl rounded-xl border border-white/[0.08]/80">
+                            <strong className="text-zinc-300 block mb-1.5 font-semibold">2. Key Findings:</strong>
                             <ul className="space-y-1.5">
                               {execData.keyFindings.map((kf, i) => (
                                 <li key={i} className="flex items-start gap-2">
@@ -964,11 +964,11 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                               ))}
                             </ul>
                           </div>
-                          <div className="p-3.5 bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl rounded-xl border border-white/[0.08]/80">
+                          <div className="p-3.5 bg-black border-white/10/70 backdrop-blur-3xl rounded-xl border border-white/[0.08]/80">
                             <strong className="text-amber-300 block mb-1 font-semibold">3. Strategic Impact:</strong>
                             <p className="leading-relaxed">{execData.impact}</p>
                           </div>
-                          <div className="p-3.5 bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl rounded-xl border border-white/[0.08]/80">
+                          <div className="p-3.5 bg-black border-white/10/70 backdrop-blur-3xl rounded-xl border border-white/[0.08]/80">
                             <strong className="text-cyan-300 block mb-1.5 font-semibold">4. Leadership Recommendations:</strong>
                             <ul className="space-y-1.5">
                               {execData.recommendations.map((rec, i) => (
@@ -983,17 +983,17 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                       </div>
 
                       {/* Telugu Executive Brief */}
-                      <div className="p-6 rounded-2xl bg-[#0c0a14] border-indigo-500/10 border border-purple-500/30 space-y-4 shadow-2xl shadow-black/80">
+                      <div className="p-6 rounded-2xl bg-black border-white/10 border border-purple-500/30 space-y-4 shadow-2xl shadow-black/80">
                         <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
-                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/20 text-purple-300 uppercase tracking-wider">
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/20 text-zinc-300 uppercase tracking-wider">
                             తెలుగు సారాంశం (Telugu Localization)
                           </span>
-                          <span className="text-[10px] text-emerald-700 font-mono flex items-center gap-1">
+                          <span className="text-[10px] text-zinc-300 font-mono flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3" /> నిర్ధారించబడింది
                           </span>
                         </div>
                         <h4 className="text-sm font-bold text-slate-50">కార్యనిర్వాహక సారాంశ నివేదిక</h4>
-                        <div className="text-xs text-slate-300 leading-relaxed whitespace-pre-wrap font-sans bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl p-4 rounded-xl border border-white/[0.08]">
+                        <div className="text-xs text-slate-300 leading-relaxed whitespace-pre-wrap font-sans bg-black border-white/10/70 backdrop-blur-3xl p-4 rounded-xl border border-white/[0.08]">
                           {activeDeliverable.contentTe || 'తెలుగు అనువాదం అందుబాటులో లేదు.'}
                         </div>
                       </div>
@@ -1005,18 +1005,18 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
               return (
                 <div className="space-y-6">
                   {/* Executive Header Banner */}
-                  <div className="p-6 rounded-2xl bg-gradient-to-r from-white via-indigo-950/30 to-white border-2 border-blue-300/30 shadow-2xl shadow-black/80 space-y-4">
+                  <div className="p-6 rounded-2xl bg-gradient-to-r from-white via-indigo-950/30 to-white border-2 border-zinc-700 shadow-2xl shadow-black/80 space-y-4">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.08]/80 pb-4">
                       <div className="flex items-center gap-2.5 flex-wrap">
-                        <span className="px-3 py-1 rounded-full text-[11px] font-extrabold bg-indigo-600 text-white/20 text-slate-400 border border-zinc-500/30 uppercase tracking-wider flex items-center gap-1.5">
+                        <span className="px-3 py-1 rounded-full text-[11px] font-extrabold bg-zinc-200 text-black/20 text-slate-400 border border-zinc-500/30 uppercase tracking-wider flex items-center gap-1.5">
                           <Award className="w-3.5 h-3.5 text-slate-300" />
                           {isTe ? 'అధికారిక నివేదిక' : 'Executive Leadership Dossier'}
                         </span>
-                        <span className="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+                        <span className="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-zinc-300 border border-emerald-500/30 flex items-center gap-1">
                           <CheckCircle2 className="w-3 h-3" />
                           {isTe ? '100% ఆధారాలతో కూడినది' : '100% Ground-Truth Grounded'}
                         </span>
-                        <span className="px-2.5 py-0.5 rounded text-[10px] font-mono text-slate-400 bg-[#09090b] border border-white/[0.08]">
+                        <span className="px-2.5 py-0.5 rounded text-[10px] font-mono text-slate-400 bg-black border border-white/[0.08]">
                           REF: BC-EXEC-{activeDeliverable.id.slice(-4)}
                         </span>
                       </div>
@@ -1042,8 +1042,8 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   </div>
 
                   {/* 1. Executive Overview Hero Card */}
-                  <div className="p-6 rounded-2xl bg-gradient-to-br from-white to-indigo-950/20 border border-blue-300/30 space-y-2 shadow-lg relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-600 text-white/5 rounded-full blur-2xl pointer-events-none" />
+                  <div className="p-6 rounded-2xl bg-gradient-to-br from-white to-indigo-950/20 border border-zinc-700 space-y-2 shadow-lg relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-zinc-200 text-black/5 rounded-full blur-2xl pointer-events-none" />
                     <div className="flex items-center gap-2 text-slate-300 text-xs font-bold uppercase tracking-wider">
                       <Sparkles className="w-4 h-4" />
                       <span>{isTe ? '1. కార్యనిర్వాహక అవలోకనం (Executive Overview)' : '1. Executive Overview'}</span>
@@ -1058,7 +1058,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   {/* 2. Key Findings Grid */}
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-emerald-700 text-xs font-bold uppercase tracking-wider">
+                      <div className="flex items-center gap-2 text-zinc-300 text-xs font-bold uppercase tracking-wider">
                         <CheckCircle2 className="w-4 h-4" />
                         <span>{isTe ? '2. ముఖ్య పరిశీలనలు (Key Strategic Findings)' : '2. Key Strategic Findings & Truth Extraction'}</span>
                       </div>
@@ -1071,14 +1071,14 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                       {execData.keyFindings.map((kf, idx) => (
                         <div 
                           key={idx} 
-                          className="p-4 rounded-xl bg-[#0c0a14] border-indigo-500/10/90 border border-white/[0.08] hover:border-emerald-500/40 transition-colors space-y-2 relative group"
+                          className="p-4 rounded-xl bg-black border-white/10/90 border border-white/[0.08] hover:border-emerald-500/40 transition-colors space-y-2 relative group"
                         >
                           <div className="flex items-center justify-between">
-                            <span className="w-6 h-6 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-700 text-[11px] font-bold">
+                            <span className="w-6 h-6 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-zinc-300 text-[11px] font-bold">
                               0{idx + 1}
                             </span>
                             <span className="text-[10px] text-zinc-500 flex items-center gap-1 font-mono">
-                              <Shield className="w-3 h-3 text-emerald-700" />
+                              <Shield className="w-3 h-3 text-zinc-300" />
                               100% Grounded
                             </span>
                           </div>
@@ -1091,7 +1091,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   </div>
 
                   {/* 3. Strategic Impact & Continuity Card */}
-                  <div className="p-5 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] space-y-2">
+                  <div className="p-5 rounded-xl bg-black border-white/10 border border-white/[0.08] space-y-2">
                     <div className="flex items-center gap-2 text-amber-700 text-xs font-bold uppercase tracking-wider">
                       <Activity className="w-4 h-4" />
                       <span>{isTe ? '3. సంస్థాగత ప్రభావం (Strategic Impact & Continuity)' : '3. Strategic Impact & Continuity'}</span>
@@ -1102,7 +1102,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   </div>
 
                   {/* 4. Actionable Leadership Recommendations */}
-                  <div className="p-6 rounded-2xl bg-[#0c0a14] border-indigo-500/10 border border-cyan-500/30 space-y-4 shadow-lg">
+                  <div className="p-6 rounded-2xl bg-black border-white/10 border border-cyan-500/30 space-y-4 shadow-lg">
                     <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
                       <div className="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-wider">
                         <ListCheck className="w-4 h-4" />
@@ -1117,7 +1117,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                       {execData.recommendations.map((rec, idx) => (
                         <div 
                           key={idx} 
-                          className="p-3.5 rounded-xl bg-[#09090b]/80 border border-white/[0.08]/80 flex items-start gap-3 hover:bg-[#09090b] transition-colors"
+                          className="p-3.5 rounded-xl bg-black/80 border border-white/[0.08]/80 flex items-start gap-3 hover:bg-black transition-colors"
                         >
                           <span className="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-xs font-mono font-bold mt-0.5 shrink-0">
                             ACTION 0{idx + 1}
@@ -1134,7 +1134,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                   <div className="border border-white/[0.08] rounded-xl overflow-hidden">
                     <button
                       onClick={() => setShowRawSummary(!showRawSummary)}
-                      className="w-full px-4 py-3 bg-[#0c0a14] border-indigo-500/10 hover:bg-[#09090b] text-left text-xs font-semibold text-slate-300 flex items-center justify-between transition-colors"
+                      className="w-full px-4 py-3 bg-black border-white/10 hover:bg-black text-left text-xs font-semibold text-slate-300 flex items-center justify-between transition-colors"
                     >
                       <span className="flex items-center gap-2">
                         <FileText className="w-4 h-4 text-slate-300" />
@@ -1145,7 +1145,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                       </span>
                     </button>
                     {showRawSummary && (
-                      <div className="p-5 bg-[#0c0a14] border-indigo-500/10/90 border-t border-white/[0.08] text-xs text-slate-200 whitespace-pre-wrap font-mono leading-relaxed max-h-96 overflow-y-auto">
+                      <div className="p-5 bg-black border-white/10/90 border-t border-white/[0.08] text-xs text-slate-200 whitespace-pre-wrap font-mono leading-relaxed max-h-96 overflow-y-auto">
                         {isTe ? (activeDeliverable.contentTe || activeDeliverable.contentEn) : activeDeliverable.contentEn}
                       </div>
                     )}
@@ -1166,7 +1166,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
               <div>
                 {languageMode === 'split' ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="p-4 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] space-y-2">
+                    <div className="p-4 rounded-xl bg-black border-white/10 border border-white/[0.08] space-y-2">
                       <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider pb-1 border-b border-white/[0.08]">
                         English Master Output
                       </div>
@@ -1174,7 +1174,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                         {activeDeliverable.contentEn}
                       </div>
                     </div>
-                    <div className="p-4 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] space-y-2">
+                    <div className="p-4 rounded-xl bg-black border-white/10 border border-white/[0.08] space-y-2">
                       <div className="text-[11px] font-bold text-slate-300 uppercase tracking-wider pb-1 border-b border-white/[0.08]">
                         తెలుగు అనువాదం (Telugu Localization)
                       </div>
@@ -1184,7 +1184,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
                     </div>
                   </div>
                 ) : (
-                  <div className="p-5 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] text-xs text-slate-200 whitespace-pre-wrap font-sans leading-relaxed">
+                  <div className="p-5 rounded-xl bg-black border-white/10 border border-white/[0.08] text-xs text-slate-200 whitespace-pre-wrap font-sans leading-relaxed">
                     {languageMode === 'te' 
                       ? (activeDeliverable.contentTe || activeDeliverable.contentEn) 
                       : activeDeliverable.contentEn}
@@ -1196,7 +1196,7 @@ export const DeliverablesView: React.FC<DeliverablesViewProps> = ({
         )}
 
         {/* Traceability Indicator Preview for active deliverable */}
-        <div className="p-3 bg-[#12101c]/40 backdrop-blur-xl rounded-xl border border-white/[0.08]/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+        <div className="p-3 bg-zinc-950/40 backdrop-blur-xl rounded-xl border border-white/[0.08]/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400" />
             <span className="text-slate-300">

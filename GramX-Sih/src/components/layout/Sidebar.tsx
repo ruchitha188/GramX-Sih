@@ -67,18 +67,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   return (
-    <aside className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-white/[0.08] bg-[#0c0a14] border-indigo-500/10 flex flex-col justify-between shrink-0 lg:min-h-[calc(100vh-61px)]">
+    <aside className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-white/[0.08] bg-black border-white/10 flex flex-col justify-between shrink-0 lg:min-h-[calc(100vh-61px)]">
       {/* Top navigation links */}
       <div className="p-4 space-y-6">
         <button
           onClick={() => onTabChange('transform')}
-          className="w-full flex items-center justify-between p-3 bg-indigo-600/20 text-indigo-300 hover:from-indigo-400 hover:to-violet-500 text-black font-bold rounded-xl transition-colors shadow-md shadow-white/5 active:scale-95"
+          className="w-full flex items-center justify-between p-3 bg-white/10 text-white hover:bg-zinc-300 text-black font-bold rounded-xl transition-colors shadow-md shadow-white/5 active:scale-95"
         >
           <div className="flex items-center gap-2">
             <Plus className="w-4 h-4" />
             <span>New Transformation</span>
           </div>
-          <span className="text-[10px] bg-[#09090b]/10 px-1.5 py-0.5 rounded text-black/70 font-mono">⌘K</span>
+          <span className="text-[10px] bg-black/10 px-1.5 py-0.5 rounded text-black/70 font-mono">⌘K</span>
         </button>
 
         <div>
@@ -94,8 +94,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   key={item.id}
                   onClick={() => onTabChange(item.id as NavTab)}
                   className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium transition-all group ${isActive
-                    ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)]/15 text-slate-400 border border-indigo-500/50 shadow-[0_0_15px_rgba(99,102,241,0.4)] text-indigo-300'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-[#09090b]/80 border border-transparent'
+                    ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)]/15 text-slate-400 border border-white/20 shadow-sm text-white'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-black/80 border border-transparent'
                     }`}
                 >
                   <div className="flex items-center gap-3">
@@ -104,10 +104,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   </div>
                   {item.badge && (
                     <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${item.badge === 'Hero'
-                      ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                      ? 'bg-purple-500/20 text-zinc-300 border border-purple-500/30'
                       : item.badge === '96%'
-                        ? 'bg-emerald-100 text-emerald-300 border border-emerald-500/30'
-                        : 'bg-[#12101c] text-slate-300'
+                        ? 'bg-emerald-100 text-zinc-300 border border-emerald-500/30'
+                        : 'bg-zinc-950 text-slate-300'
                       }`}>
                       {item.badge}
                     </span>
@@ -129,7 +129,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <button
                   key={p.id}
                   onClick={() => onTabChange('projects')}
-                  className="w-full text-left px-3 py-1.5 text-[11px] text-slate-400 hover:text-slate-200 hover:bg-[#12101c] rounded-lg truncate transition-colors"
+                  className="w-full text-left px-3 py-1.5 text-[11px] text-slate-400 hover:text-slate-200 hover:bg-zinc-950 rounded-lg truncate transition-colors"
                 >
                   {p.title}
                 </button>
@@ -139,7 +139,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         )}
 
         {/* RAG Context Status Box */}
-        <div className="p-3.5 rounded-xl bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl border border-indigo-500/20 text-xs space-y-2">
+        <div className="p-3.5 rounded-xl bg-black border-white/10/70 backdrop-blur-3xl border border-white/10 text-xs space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-semibold text-slate-400 flex items-center gap-1.5">
               <span className="relative flex h-2 w-2">
@@ -148,7 +148,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </span>
               Organization RAG
             </span>
-            <span className="text-[10px] text-emerald-700 font-medium">Enabled ✓</span>
+            <span className="text-[10px] text-zinc-300 font-medium">Enabled ✓</span>
           </div>
           <p className="text-[11px] text-slate-400 leading-relaxed">
             Active Vault: <span className="text-slate-200 font-medium">GRAMX Knowledge Vault</span>. Contextual terminology & guidelines enforced.
@@ -157,7 +157,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* Bottom Profile & Workspace Status */}
-      <div className="p-4 border-t border-white/[0.08]/80 space-y-3 bg-[#12101c]/40 backdrop-blur-xl">
+      <div className="p-4 border-t border-white/[0.08]/80 space-y-3 bg-zinc-950/40 backdrop-blur-xl">
         {user ? (
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-emerald-400 flex items-center justify-center font-bold text-xs text-white shadow">
@@ -176,9 +176,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
         ) : (
           <div
             onClick={onOpenAuth}
-            className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#09090b] cursor-pointer border border-transparent hover:border-white/[0.08] transition-colors"
+            className="flex items-center gap-3 p-2 rounded-xl hover:bg-black cursor-pointer border border-transparent hover:border-white/[0.08] transition-colors"
           >
-            <div className="w-8 h-8 rounded-full bg-[#12101c] flex items-center justify-center font-bold text-xs text-zinc-500 shadow-inner">
+            <div className="w-8 h-8 rounded-full bg-zinc-950 flex items-center justify-center font-bold text-xs text-zinc-500 shadow-inner">
               ?
             </div>
             <div className="overflow-hidden">

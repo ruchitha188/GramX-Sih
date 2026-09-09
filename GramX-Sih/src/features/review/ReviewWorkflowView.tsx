@@ -82,11 +82,11 @@ export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/80 space-y-6">
+      <div className="bg-black border-white/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/80 space-y-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/[0.08] pb-5">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-600 text-white/20 text-slate-400 border border-zinc-500/30 uppercase tracking-wide">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-zinc-200 text-black/20 text-slate-400 border border-zinc-500/30 uppercase tracking-wide">
                 Governance Layer
               </span>
               <span className="text-xs text-slate-400">Human-in-the-Loop Signoff</span>
@@ -102,7 +102,7 @@ export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
 
           <div className="flex items-center gap-2">
             <span className="text-xs text-slate-400">Current Role:</span>
-            <span className="px-3 py-1.5 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] text-xs font-semibold text-amber-300">
+            <span className="px-3 py-1.5 rounded-xl bg-black border-white/10 border border-white/[0.08] text-xs font-semibold text-amber-300">
               {currentRole} Access
             </span>
           </div>
@@ -123,20 +123,20 @@ export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
                   onClick={() => setWorkflowStatus(step.status)}
                   className={`p-3 rounded-xl border text-xs cursor-pointer transition-all ${
                     isCurrent
-                      ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)]/20 border-blue-300 shadow-md ring-1 ring-blue-200'
+                      ? 'bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)]/20 border-blue-300 shadow-md ring-1 ring-blue-200'
                       : isPast
-                      ? 'bg-[#12101c]/40 backdrop-blur-xl border-white/[0.08] text-slate-300'
-                      : 'bg-[#0c0a14] border-indigo-500/10/40 border-white/[0.08]/60 text-zinc-500'
+                      ? 'bg-zinc-950/40 backdrop-blur-xl border-white/[0.08] text-slate-300'
+                      : 'bg-black border-white/10/40 border-white/[0.08]/60 text-zinc-500'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-bold text-slate-200">{step.label}</span>
                     {isCurrent ? (
-                      <span className="w-2 h-2 rounded-full bg-indigo-400 animate-ping" />
+                      <span className="w-2 h-2 rounded-full bg-zinc-300 animate-ping" />
                     ) : isPast ? (
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-zinc-300" />
                     ) : (
-                      <span className="w-2 h-2 rounded-full bg-[#12101c]" />
+                      <span className="w-2 h-2 rounded-full bg-zinc-950" />
                     )}
                   </div>
                   <p className="text-[10px] text-slate-400">{step.desc}</p>
@@ -150,7 +150,7 @@ export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
       {/* Review Content & Comments Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left: Deliverable Content Reader (7 cols) */}
-        <div className="lg:col-span-7 bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 shadow-2xl shadow-black/80 space-y-4">
+        <div className="lg:col-span-7 bg-black border-white/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 shadow-2xl shadow-black/80 space-y-4">
           <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
             <div>
               <h3 className="text-sm font-bold text-slate-50 flex items-center gap-2">
@@ -165,7 +165,7 @@ export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
             <select
               value={selectedDeliverableId}
               onChange={(e) => setSelectedDeliverableId(e.target.value)}
-              className="px-2.5 py-1.5 bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] rounded-lg text-xs text-slate-200 focus:outline-none focus:border-blue-300"
+              className="px-2.5 py-1.5 bg-black border-white/10 border border-white/[0.08] rounded-lg text-xs text-slate-200 focus:outline-none focus:border-blue-300"
             >
               {deliverables.map(d => (
                 <option key={d.id} value={d.id}>{d.title}</option>
@@ -174,16 +174,16 @@ export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
           </div>
 
           {/* Reading Box */}
-          <div className="p-4 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] space-y-3">
+          <div className="p-4 rounded-xl bg-black border-white/10 border border-white/[0.08] space-y-3">
             <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
               Content Preview (Dual-Language Alignment)
             </div>
-            <div className="text-xs text-slate-200 leading-relaxed whitespace-pre-wrap max-h-72 overflow-y-auto p-3 bg-[#09090b] rounded-lg border border-white/[0.08]/80 font-sans">
+            <div className="text-xs text-slate-200 leading-relaxed whitespace-pre-wrap max-h-72 overflow-y-auto p-3 bg-black rounded-lg border border-white/[0.08]/80 font-sans">
               {activeDeliverable?.contentEn}
             </div>
 
             {activeDeliverable?.contentTe && (
-              <div className="text-xs text-slate-300 leading-relaxed whitespace-pre-wrap max-h-52 overflow-y-auto p-3 bg-indigo-950/20 rounded-lg border border-indigo-500/20 font-sans">
+              <div className="text-xs text-slate-300 leading-relaxed whitespace-pre-wrap max-h-52 overflow-y-auto p-3 bg-zinc-200/20 rounded-lg border border-white/10 font-sans">
                 <strong className="text-slate-400 block mb-1">తెలుగు రూపాంతరం (Telugu):</strong>
                 {activeDeliverable.contentTe}
               </div>
@@ -199,7 +199,7 @@ export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
             <div className="flex items-center gap-2">
               <button
                 onClick={handleRequestChanges}
-                className="px-4 py-2 bg-[#12101c] hover:bg-slate-700 text-amber-300 text-xs font-semibold rounded-xl border border-white/[0.12] transition-colors"
+                className="px-4 py-2 bg-zinc-950 hover:bg-slate-700 text-amber-300 text-xs font-semibold rounded-xl border border-white/[0.12] transition-colors"
               >
                 Request Changes
               </button>
@@ -216,7 +216,7 @@ export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
         </div>
 
         {/* Right: Comments Thread (5 cols) */}
-        <div className="lg:col-span-5 bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 shadow-2xl shadow-black/80 space-y-4 flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-black border-white/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 shadow-2xl shadow-black/80 space-y-4 flex flex-col justify-between">
           <div className="space-y-3">
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <div className="flex items-center gap-2">
@@ -231,7 +231,7 @@ export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
             {/* Existing Comments */}
             <div className="space-y-3 max-h-80 overflow-y-auto pr-1">
               {comments.map(c => (
-                <div key={c.id} className="p-3 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08]/80 space-y-1.5">
+                <div key={c.id} className="p-3 rounded-xl bg-black border-white/10 border border-white/[0.08]/80 space-y-1.5">
                   <div className="flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2">
                       <span className="text-base">{c.avatar}</span>
@@ -256,7 +256,7 @@ export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
               value={newCommentText}
               onChange={(e) => setNewCommentText(e.target.value)}
               placeholder="Add editorial note, Telugu terminology correction, or compliance feedback..."
-              className="w-full h-20 px-3 py-2 bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-300 resize-none"
+              className="w-full h-20 px-3 py-2 bg-black border-white/10 border border-white/[0.08] rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-300 resize-none"
             />
             <div className="flex items-center justify-between">
               <span className="text-[11px] text-zinc-500">
@@ -265,7 +265,7 @@ export const ReviewWorkflowView: React.FC<ReviewWorkflowViewProps> = ({
               <button
                 onClick={handleAddComment}
                 disabled={!newCommentText.trim()}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:from-indigo-400 hover:to-violet-500 disabled:opacity-40 text-white rounded-lg text-xs font-semibold transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-200 hover:bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:bg-zinc-300 disabled:opacity-40 text-white rounded-lg text-xs font-semibold transition-colors"
               >
                 <Send className="w-3 h-3" />
                 <span>Post Note</span>
