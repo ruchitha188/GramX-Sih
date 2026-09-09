@@ -291,29 +291,29 @@ export const SourceInput: React.FC<SourceInputProps> = ({
     : null;
 
   return (
-    <div className="bg-zinc-950/70 backdrop-blur-3xl border border-zinc-800 rounded-2xl p-5 lg:p-6 shadow-2xl shadow-black/80 space-y-4">
+    <div className="bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 lg:p-6 shadow-2xl shadow-black/80 space-y-4">
       {/* Step 1 Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800 pb-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.08] pb-3">
         <div>
-          <h3 className="text-base font-bold text-zinc-100 flex items-center gap-2">
-            <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-zinc-300 text-black/20 text-zinc-300 text-xs font-bold border border-blue-300/30">
+          <h3 className="text-base font-bold text-slate-50 flex items-center gap-2">
+            <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-indigo-600 text-white/20 text-slate-300 text-xs font-bold border border-blue-300/30">
               1
             </span>
             Choose Source Content
           </h3>
-          <p className="text-xs text-zinc-400 mt-0.5">
+          <p className="text-xs text-slate-400 mt-0.5">
             Provide a YouTube link, audio link, document, or text to transform.
           </p>
         </div>
 
         {/* 4 Simple Tabs */}
-        <div className="flex items-center gap-1 bg-zinc-950 p-1 rounded-xl border border-zinc-800 text-xs">
+        <div className="flex items-center gap-1 bg-[#0c0a14] border-indigo-500/10 p-1 rounded-xl border border-white/[0.08] text-xs">
           <button
             onClick={() => setActiveTab('video')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all ${
               activeTab === 'video' 
-                ? 'bg-rose-600 text-zinc-100 shadow-md shadow-rose-600/30' 
-                : 'text-zinc-400 hover:text-zinc-200'
+                ? 'bg-rose-600 text-slate-50 shadow-md shadow-rose-600/30' 
+                : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <YoutubeIcon className="w-4 h-4" />
@@ -324,8 +324,8 @@ export const SourceInput: React.FC<SourceInputProps> = ({
             onClick={() => setActiveTab('audio')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all ${
               activeTab === 'audio' 
-                ? 'bg-amber-600 text-zinc-100 shadow-md shadow-amber-600/30' 
-                : 'text-zinc-400 hover:text-zinc-200'
+                ? 'bg-amber-600 text-slate-50 shadow-md shadow-amber-600/30' 
+                : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <Mic className="w-4 h-4" />
@@ -336,8 +336,8 @@ export const SourceInput: React.FC<SourceInputProps> = ({
             onClick={() => setActiveTab('pdf')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all ${
               activeTab === 'pdf' 
-                ? 'bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-zinc-100 shadow-md shadow-indigo-600/30' 
-                : 'text-zinc-400 hover:text-zinc-200'
+                ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 shadow-md shadow-indigo-600/30' 
+                : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <FileText className="w-4 h-4" />
@@ -348,8 +348,8 @@ export const SourceInput: React.FC<SourceInputProps> = ({
             onClick={() => setActiveTab('text')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all ${
               activeTab === 'text' 
-                ? 'bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-zinc-100 shadow-md shadow-indigo-600/30' 
-                : 'text-zinc-400 hover:text-zinc-200'
+                ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 shadow-md shadow-indigo-600/30' 
+                : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <FileCode className="w-4 h-4" />
@@ -361,7 +361,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
       {/* TAB 1: YOUTUBE VIDEO LINK */}
       {activeTab === 'video' && (
         <div className="space-y-4">
-          <div className="bg-zinc-900/40 backdrop-blur-xl p-4 rounded-xl border border-rose-500/20 space-y-3">
+          <div className="bg-[#12101c]/40 backdrop-blur-xl p-4 rounded-xl border border-rose-500/20 space-y-3">
             <label className="text-xs font-semibold text-rose-700 flex items-center gap-1.5">
               <YoutubeIcon className="w-4 h-4" />
               Paste YouTube Video Link
@@ -372,7 +372,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
                 value={youtubeUrl}
                 onChange={(e) => setYoutubeUrl(e.target.value)}
                 placeholder="https://www.youtube.com/watch?v=... or https://youtu.be/..."
-                className="flex-1 px-3.5 py-2.5 bg-black border border-zinc-800 rounded-xl text-xs text-zinc-200 placeholder-slate-500 focus:outline-none focus:border-rose-500 font-mono"
+                className="flex-1 px-3.5 py-2.5 bg-[#09090b] border border-white/[0.08] rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-rose-500 font-mono"
               />
               <button
                 onClick={() => handleIngestYouTube()}
@@ -393,7 +393,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
 
             {/* Quick Presets for YouTube */}
             <div className="flex flex-wrap items-center gap-2 pt-1">
-              <span className="text-[11px] text-zinc-400">Quick Test Links:</span>
+              <span className="text-[11px] text-slate-400">Quick Test Links:</span>
               <button
                 type="button"
                 onClick={() => {
@@ -401,7 +401,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
                   setYoutubeUrl(url);
                   handleIngestYouTube(url);
                 }}
-                className="px-2.5 py-1 rounded-lg bg-black hover:bg-zinc-900 text-[11px] text-zinc-300 border border-zinc-800 flex items-center gap-1.5 transition-colors"
+                className="px-2.5 py-1 rounded-lg bg-[#09090b] hover:bg-[#12101c] text-[11px] text-slate-300 border border-white/[0.08] flex items-center gap-1.5 transition-colors"
               >
                 <span>🛡️ India Cyber Security Advisory</span>
               </button>
@@ -412,7 +412,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
                   setYoutubeUrl(url);
                   handleIngestYouTube(url);
                 }}
-                className="px-2.5 py-1 rounded-lg bg-black hover:bg-zinc-900 text-[11px] text-zinc-300 border border-zinc-800 flex items-center gap-1.5 transition-colors"
+                className="px-2.5 py-1 rounded-lg bg-[#09090b] hover:bg-[#12101c] text-[11px] text-slate-300 border border-white/[0.08] flex items-center gap-1.5 transition-colors"
               >
                 <span>🏛️ Digital India Policy Briefing</span>
               </button>
@@ -422,15 +422,15 @@ export const SourceInput: React.FC<SourceInputProps> = ({
           {/* Active YouTube Preview */}
           {currentSource.type === 'video' && (
             <div className="space-y-3">
-              <div className="p-4 rounded-xl bg-zinc-950 border border-zinc-800 flex flex-col md:flex-row items-start md:items-center gap-4">
+              <div className="p-4 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] flex flex-col md:flex-row items-start md:items-center gap-4">
               {activeVideoId ? (
-                <div className="relative w-full md:w-56 aspect-video bg-black rounded-lg overflow-hidden shrink-0 border border-zinc-800">
+                <div className="relative w-full md:w-56 aspect-video bg-[#09090b] rounded-lg overflow-hidden shrink-0 border border-white/[0.08]">
                   <img 
                     src={`https://img.youtube.com/vi/${activeVideoId}/hqdefault.jpg`}
                     alt="Video thumbnail"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-[#09090b]/40 flex items-center justify-center">
                     <div className="w-10 h-10 rounded-full bg-rose-600/90 text-white flex items-center justify-center shadow-lg">
                       <Play className="w-5 h-5 fill-white ml-0.5" />
                     </div>
@@ -452,8 +452,8 @@ export const SourceInput: React.FC<SourceInputProps> = ({
                     Linked & Ready
                   </span>
                 </div>
-                <h4 className="text-sm font-bold text-zinc-100 line-clamp-1">{currentSource.title}</h4>
-                <p className="text-xs text-zinc-400 line-clamp-2">{currentSource.contextSummary}</p>
+                <h4 className="text-sm font-bold text-slate-50 line-clamp-1">{currentSource.title}</h4>
+                <p className="text-xs text-slate-400 line-clamp-2">{currentSource.contextSummary}</p>
                 {currentSource.mediaUrl && (
                   <a 
                     href={currentSource.mediaUrl} 
@@ -469,9 +469,9 @@ export const SourceInput: React.FC<SourceInputProps> = ({
             </div>
 
             {/* Extracted Video Content & Transcript Box */}
-            <div className="p-3 bg-zinc-950/90 rounded-xl border border-zinc-800/90 space-y-2">
+            <div className="p-3 bg-[#0c0a14] border-indigo-500/10/90 rounded-xl border border-white/[0.08]/90 space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-semibold text-zinc-300 flex items-center gap-1.5">
+                <span className="text-[11px] font-semibold text-slate-300 flex items-center gap-1.5">
                   <FileText className="w-3.5 h-3.5 text-rose-700" />
                   Extracted Video Transcript & Empirical Key Points (Transformed by AI):
                 </span>
@@ -497,7 +497,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
                   });
                 }}
                 rows={4}
-                className="w-full px-3 py-2 bg-black border border-zinc-800 rounded-lg text-xs text-zinc-200 font-mono leading-relaxed focus:outline-none focus:border-rose-500"
+                className="w-full px-3 py-2 bg-[#09090b] border border-white/[0.08] rounded-lg text-xs text-slate-200 font-mono leading-relaxed focus:outline-none focus:border-rose-500"
                 placeholder="Edit or paste video transcript, description, or key points..."
               />
             </div>
@@ -509,7 +509,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
       {/* TAB 2: AUDIO / PODCAST LINK */}
       {activeTab === 'audio' && (
         <div className="space-y-4">
-          <div className="bg-zinc-900/40 backdrop-blur-xl p-4 rounded-xl border border-amber-500/20 space-y-3">
+          <div className="bg-[#12101c]/40 backdrop-blur-xl p-4 rounded-xl border border-amber-500/20 space-y-3">
             <label className="text-xs font-semibold text-amber-700 flex items-center gap-1.5">
               <Mic className="w-4 h-4" />
               Paste Audio / Podcast Stream URL
@@ -520,7 +520,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
                 value={audioUrl}
                 onChange={(e) => setAudioUrl(e.target.value)}
                 placeholder="https://example.com/briefing.mp3 or podcast stream link..."
-                className="flex-1 px-3.5 py-2.5 bg-black border border-zinc-800 rounded-xl text-xs text-zinc-200 placeholder-slate-500 focus:outline-none focus:border-amber-500 font-mono"
+                className="flex-1 px-3.5 py-2.5 bg-[#09090b] border border-white/[0.08] rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-500 font-mono"
               />
               <button
                 onClick={() => handleIngestAudio()}
@@ -541,7 +541,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
 
             {/* Quick Presets for Audio */}
             <div className="flex flex-wrap items-center gap-2 pt-1">
-              <span className="text-[11px] text-zinc-400">Quick Test Audios:</span>
+              <span className="text-[11px] text-slate-400">Quick Test Audios:</span>
               <button
                 type="button"
                 onClick={() => {
@@ -549,7 +549,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
                   setAudioUrl(url);
                   handleIngestAudio(url, 'National Emergency Public Advisory Podcast (Audio)');
                 }}
-                className="px-2.5 py-1 rounded-lg bg-black hover:bg-zinc-900 text-[11px] text-zinc-300 border border-zinc-800 flex items-center gap-1.5 transition-colors"
+                className="px-2.5 py-1 rounded-lg bg-[#09090b] hover:bg-[#12101c] text-[11px] text-slate-300 border border-white/[0.08] flex items-center gap-1.5 transition-colors"
               >
                 <span>🎙️ Cyber Alert Podcast Episode 14</span>
               </button>
@@ -560,7 +560,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
                   setAudioUrl(url);
                   handleIngestAudio(url, 'Regional Health & Citizen Safety Briefing (Audio)');
                 }}
-                className="px-2.5 py-1 rounded-lg bg-black hover:bg-zinc-900 text-[11px] text-zinc-300 border border-zinc-800 flex items-center gap-1.5 transition-colors"
+                className="px-2.5 py-1 rounded-lg bg-[#09090b] hover:bg-[#12101c] text-[11px] text-slate-300 border border-white/[0.08] flex items-center gap-1.5 transition-colors"
               >
                 <span>🎙️ Health Circular Audio Bulletin</span>
               </button>
@@ -569,13 +569,13 @@ export const SourceInput: React.FC<SourceInputProps> = ({
 
           {/* Active Audio Player Preview */}
           {currentSource.type === 'audio' && (
-            <div className="p-4 rounded-xl bg-zinc-950 border border-zinc-800 space-y-3">
+            <div className="p-4 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-300 font-semibold uppercase">
                     Active Audio Source
                   </span>
-                  <h4 className="text-xs font-bold text-zinc-100">{currentSource.title}</h4>
+                  <h4 className="text-xs font-bold text-slate-50">{currentSource.title}</h4>
                 </div>
                 <span className="text-xs text-emerald-700 flex items-center gap-1">
                   <CheckCircle2 className="w-3.5 h-3.5" />
@@ -589,7 +589,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
                 </audio>
               )}
 
-              <p className="text-xs text-zinc-400">{currentSource.contextSummary}</p>
+              <p className="text-xs text-slate-400">{currentSource.contextSummary}</p>
             </div>
           )}
         </div>
@@ -600,7 +600,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
         <div className="space-y-3">
           {/* Preset Buttons */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[11px] text-zinc-400 font-medium">SIH Presets:</span>
+            <span className="text-[11px] text-slate-400 font-medium">SIH Presets:</span>
             {SAMPLE_SOURCES.map(s => {
               const isSelected = currentSource.id === s.id;
               return (
@@ -609,8 +609,8 @@ export const SourceInput: React.FC<SourceInputProps> = ({
                   onClick={() => onSelectSource(s)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
                     isSelected
-                      ? 'bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.15)]/20 border-blue-300 text-zinc-400 ring-1 ring-blue-200'
-                      : 'bg-zinc-950 border-zinc-800 text-zinc-300 hover:border-zinc-700'
+                      ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)]/20 border-blue-300 text-slate-400 ring-1 ring-blue-200'
+                      : 'bg-[#0c0a14] border-indigo-500/10 border-white/[0.08] text-slate-300 hover:border-white/[0.12]'
                   }`}
                 >
                   📄 {s.filename} ({s.pages} pgs)
@@ -620,7 +620,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
           </div>
 
           {/* File Drag and Drop */}
-          <div className="relative border-2 border-dashed border-zinc-800 hover:border-blue-300/50 rounded-xl p-5 text-center bg-zinc-950/40 transition-colors group cursor-pointer">
+          <div className="relative border-2 border-dashed border-white/[0.08] hover:border-blue-300/50 rounded-xl p-5 text-center bg-[#0c0a14] border-indigo-500/10/40 transition-colors group cursor-pointer">
             <input 
               type="file" 
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
@@ -677,12 +677,12 @@ export const SourceInput: React.FC<SourceInputProps> = ({
               }}
             />
             <div className="flex flex-col items-center justify-center space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-zinc-300 text-black/10 text-zinc-300 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white/10 text-slate-300 flex items-center justify-center group-hover:scale-105 transition-transform">
                 <Upload className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-zinc-200">
-                  Drop PDF or Document files here, or <span className="text-zinc-300 underline">browse</span>
+                <p className="text-xs font-semibold text-slate-200">
+                  Drop PDF or Document files here, or <span className="text-slate-300 underline">browse</span>
                 </p>
                 <p className="text-[11px] text-zinc-500 mt-0.5">
                   Supports PDF, DOCX, TXT, News reports (Max 100MB)
@@ -700,13 +700,13 @@ export const SourceInput: React.FC<SourceInputProps> = ({
             value={rawText}
             onChange={(e) => setRawText(e.target.value)}
             placeholder="Paste raw text, news article, circular, policy memo, or type a custom prompt here..."
-            className="w-full h-32 px-3.5 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-xs text-zinc-200 placeholder-slate-500 focus:outline-none focus:border-blue-300 resize-none font-sans"
+            className="w-full h-32 px-3.5 py-2.5 bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-300 resize-none font-sans"
           />
           <div className="flex items-center justify-between">
             <button
               onClick={handleIngestText}
               disabled={!rawText.trim()}
-              className="px-4 py-2 bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:bg-white disabled:opacity-40 text-xs font-semibold text-white rounded-lg transition-colors"
+              className="px-4 py-2 bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:from-indigo-400 hover:to-violet-500 disabled:opacity-40 text-xs font-semibold text-white rounded-lg transition-colors"
             >
               Use This Text
             </button>
@@ -718,12 +718,12 @@ export const SourceInput: React.FC<SourceInputProps> = ({
       )}
 
       {/* Current Active Source Pill */}
-      <div className="p-3 bg-zinc-950/60 rounded-xl border border-zinc-800/80 flex items-center justify-between text-xs">
+      <div className="p-3 bg-[#0c0a14] border-indigo-500/10/60 rounded-xl border border-white/[0.08]/80 flex items-center justify-between text-xs">
         <div className="flex items-center gap-2.5 min-w-0">
           <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
-          <span className="text-zinc-400 shrink-0">Active Source:</span>
-          <strong className="text-zinc-100 truncate">{currentSource.title || currentSource.filename}</strong>
-          <span className="hidden sm:inline text-[10px] px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 font-mono shrink-0">
+          <span className="text-slate-400 shrink-0">Active Source:</span>
+          <strong className="text-slate-50 truncate">{currentSource.title || currentSource.filename}</strong>
+          <span className="hidden sm:inline text-[10px] px-2 py-0.5 rounded bg-[#12101c] text-slate-300 font-mono shrink-0">
             {currentSource.type.toUpperCase()}
           </span>
         </div>
@@ -733,10 +733,10 @@ export const SourceInput: React.FC<SourceInputProps> = ({
       </div>
 
       {/* Optional Operator Directives Box (Subtle) */}
-      <div className="pt-2 border-t border-zinc-800/60">
+      <div className="pt-2 border-t border-white/[0.08]/60">
         <div className="flex items-center justify-between mb-1.5">
-          <label className="text-xs font-medium text-zinc-400 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-zinc-300" />
+          <label className="text-xs font-medium text-slate-400 flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-slate-300" />
             Special Instructions (Optional)
           </label>
           <span className="text-[10px] text-zinc-500">Operator guidance</span>
@@ -746,7 +746,7 @@ export const SourceInput: React.FC<SourceInputProps> = ({
           value={currentSource.contextualInfo || ''}
           onChange={(e) => onSelectSource({ ...currentSource, contextualInfo: e.target.value })}
           placeholder="e.g. Include 24/7 helpline 1930, prioritize citizen safety, provide clear Telugu translation."
-          className="w-full px-3 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-xs text-zinc-200 placeholder-slate-500 focus:outline-none focus:border-blue-300"
+          className="w-full px-3 py-2 bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] rounded-lg text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-300"
         />
       </div>
     </div>

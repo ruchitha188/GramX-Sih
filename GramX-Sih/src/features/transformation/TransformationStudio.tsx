@@ -136,16 +136,16 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
       {/* 1. Prompt / Ask View */}
       {viewState === 'prompt' && !isGenerating && (
         <div className="w-full max-w-3xl px-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <h1 className="text-3xl md:text-4xl font-semibold text-zinc-100 mb-8 text-center tracking-tight">
+          <h1 className="text-3xl md:text-4xl font-semibold text-slate-50 mb-8 text-center tracking-tight">
             What do you want to create?
           </h1>
 
-          <div className="bg-zinc-900 border border-zinc-700/60 rounded-2xl p-4 shadow-2xl focus-within:border-zinc-500 transition-all flex flex-col gap-3">
+          <div className="bg-[#12101c] border border-white/[0.12]/60 rounded-2xl p-4 shadow-2xl focus-within:border-indigo-500/50 focus-within:ring-2 focus-within:ring-indigo-500/20 transition-all flex flex-col gap-3">
 
             {/* File Attachment Chip */}
             {attachedFile && (
-              <div className="flex items-center gap-2 self-start bg-zinc-800 text-zinc-300 py-1.5 px-3 rounded-xl border border-zinc-700/50 text-xs font-medium">
-                {attachedFile.type.includes('video') ? <Video className="w-3.5 h-3.5 text-blue-400" /> :
+              <div className="flex items-center gap-2 self-start bg-[#1b182b] text-slate-300 py-1.5 px-3 rounded-xl border border-white/[0.12]/50 text-xs font-medium">
+                {attachedFile.type.includes('video') ? <Video className="w-3.5 h-3.5 text-indigo-400" /> :
                   attachedFile.type.includes('audio') ? <Music className="w-3.5 h-3.5 text-emerald-400" /> :
                     <File className="w-3.5 h-3.5 text-purple-400" />}
                 <span className="truncate max-w-[200px]">{attachedFile.name}</span>
@@ -167,7 +167,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
                 }
               }}
               placeholder="Type your prompt, paste a link, or dictate a summary task..."
-              className="w-full bg-transparent text-zinc-100 resize-none outline-none text-base md:text-lg min-h-[72px] placeholder:text-zinc-600"
+              className="w-full bg-transparent text-slate-50 resize-none outline-none text-base md:text-lg min-h-[72px] placeholder:text-zinc-600"
             />
 
             {/* Bottom Toolbar */}
@@ -182,7 +182,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
                 />
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className="flex items-center gap-2 text-zinc-400 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:text-zinc-200 px-3 py-1.5 rounded-full transition-colors font-medium text-xs shadow-sm"
+                  className="flex items-center gap-2 text-slate-400 bg-[#12101c] hover:bg-[#1b182b] border border-white/[0.08] hover:text-slate-200 px-3 py-1.5 rounded-full transition-colors font-medium text-xs shadow-sm"
                 >
                   <Paperclip size={14} />
                   <span>Attach</span>
@@ -196,7 +196,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
               <button
                 onClick={handleInitialSubmit}
                 disabled={(!prompt.trim() && !attachedFile)}
-                className="flex items-center justify-center w-9 h-9 sm:w-auto sm:h-auto sm:px-4 sm:py-2 rounded-full font-medium transition-all shadow-md active:scale-95 disabled:opacity-50 disabled:active:scale-100 bg-zinc-200 text-black hover:bg-white"
+                className="flex items-center justify-center w-9 h-9 sm:w-auto sm:h-auto sm:px-4 sm:py-2 rounded-full font-medium transition-all shadow-md active:scale-95 disabled:opacity-50 disabled:active:scale-100 bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none hover:from-indigo-400 hover:to-violet-500"
               >
                 <span className="hidden sm:block mr-2 font-bold text-sm">Next</span>
                 <ArrowRight className="w-4 h-4 sm:w-4 sm:h-4" />
@@ -210,11 +210,11 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
       {viewState === 'formats' && !isGenerating && (
         <div className="w-full max-w-3xl px-4 animate-in fade-in zoom-in-95 duration-300">
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-semibold text-zinc-100 mb-3 tracking-tight">
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-50 mb-3 tracking-tight">
               Select Output Formats
             </h2>
-            <p className="text-sm text-zinc-400 max-w-lg mx-auto">
-              Choose the specific deliverables you need. Focusing the AI on fewer formats will instruct it to generate <strong className="text-zinc-200 font-medium">highly detailed, hyper-specific content</strong> for each selected output.
+            <p className="text-sm text-slate-400 max-w-lg mx-auto">
+              Choose the specific deliverables you need. Focusing the AI on fewer formats will instruct it to generate <strong className="text-slate-200 font-medium">highly detailed, hyper-specific content</strong> for each selected output.
             </p>
           </div>
 
@@ -226,18 +226,18 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
                   key={format.id}
                   onClick={() => toggleFormat(format.id)}
                   className={`text-left p-4 rounded-xl border transition-all ${selected
-                    ? 'bg-zinc-800/80 border-zinc-500 shadow-[0_0_15px_rgba(255,255,255,0.05)]'
-                    : 'bg-zinc-900 border-zinc-800 hover:border-zinc-600'
+                    ? 'bg-[#1b182b]/80 border-zinc-500 shadow-[0_0_15px_rgba(255,255,255,0.05)]'
+                    : 'bg-[#12101c] border-white/[0.08] hover:border-zinc-600'
                     }`}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xl">{format.icon}</span>
-                    <div className={`w-5 h-5 rounded-full flex items-center justify-center border transition-colors ${selected ? 'bg-zinc-200 border-zinc-200' : 'bg-transparent border-zinc-700'
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center border transition-colors ${selected ? 'bg-indigo-600/20 text-indigo-300 border-zinc-200' : 'bg-transparent border-white/[0.12]'
                       }`}>
                       {selected && <Check className="w-3.5 h-3.5 text-black" />}
                     </div>
                   </div>
-                  <h3 className={`font-medium mb-1 ${selected ? 'text-zinc-100' : 'text-zinc-300'}`}>
+                  <h3 className={`font-medium mb-1 ${selected ? 'text-slate-50' : 'text-slate-300'}`}>
                     {format.label}
                   </h3>
                   <p className="text-xs text-zinc-500 leading-snug">
@@ -251,7 +251,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
           <div className="flex items-center justify-between max-w-md mx-auto">
             <button
               onClick={() => setViewState('prompt')}
-              className="flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors py-2 px-4"
+              className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors py-2 px-4"
             >
               <ChevronLeft className="w-4 h-4" />
               Back
@@ -260,7 +260,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
             <button
               onClick={handleFinalGenerate}
               disabled={selectedFormats.length === 0}
-              className="flex items-center gap-2 bg-zinc-200 hover:bg-white text-black font-semibold py-2.5 px-6 rounded-full transition-all shadow-lg active:scale-95 disabled:opacity-50 disabled:active:scale-100"
+              className="flex items-center gap-2 bg-indigo-600/20 text-indigo-300 hover:from-indigo-400 hover:to-violet-500 text-black font-semibold py-2.5 px-6 rounded-full transition-all shadow-lg active:scale-95 disabled:opacity-50 disabled:active:scale-100"
             >
               <Sparkles className="w-4 h-4" />
               Generate {selectedFormats.length} {selectedFormats.length === 1 ? 'Format' : 'Formats'}

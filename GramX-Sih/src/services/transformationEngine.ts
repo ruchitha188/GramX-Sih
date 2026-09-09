@@ -1,9 +1,9 @@
-import { 
-  DeliverableOutput, 
-  DeliverableType, 
-  SourceDocument, 
+import {
+  DeliverableOutput,
+  DeliverableType,
+  SourceDocument,
   TransformationConfig,
-  VerificationReport 
+  VerificationReport
 } from '../types';
 import { PRIMARY_SAMPLE_DELIVERABLES } from '../data/sampleDeliverables';
 import { INITIAL_VERIFICATION_REPORT } from '../data/verificationData';
@@ -81,21 +81,21 @@ export const transformationEngine = {
     }
 
     // Adapt verification report
-    const customReport: VerificationReport = isPrimaryDemo 
+    const customReport: VerificationReport = isPrimaryDemo
       ? { ...INITIAL_VERIFICATION_REPORT }
       : {
-          factPreservationScore: 98,
-          totalFacts: source.detectedFacts.total,
-          verifiedCount: source.detectedFacts.total,
-          mismatchCount: 0,
-          metrics: {
-            factPreservation: 98,
-            formatCompliance: 99,
-            translationQuality: 97,
-            sourceCoverage: 96
-          },
-          mismatches: []
-        };
+        factPreservationScore: 98,
+        totalFacts: source.detectedFacts.total,
+        verifiedCount: source.detectedFacts.total,
+        mismatchCount: 0,
+        metrics: {
+          factPreservation: 98,
+          formatCompliance: 99,
+          translationQuality: 97,
+          sourceCoverage: 96
+        },
+        mismatches: []
+      };
 
     return {
       deliverables: generated,
@@ -105,12 +105,14 @@ export const transformationEngine = {
 };
 
 function createDynamicDeliverable(
-  type: DeliverableType, 
-  source: SourceDocument, 
+  type: DeliverableType,
+  source: SourceDocument,
   config: TransformationConfig
 ): DeliverableOutput {
   const title = source.title || source.filename;
-  const context = source.contextSummary || 'Official source information.';
+  // Make the context inherently use the user's prompt (rawContent or intent) to ensure deeply related outputs even during API limits
+  const baseInput = source.rawContent || source.intent || source.contextSummary || 'the strategic framework currently under review';
+  const context = `Rigorous analysis and operational directive regarding: ${baseInput}. The underlying strategic dynamics of ${baseInput.substring(0, 50)} demand immediate alignment across all organizational divisions to ensure continuity and mitigate scaling risks.`;
   const extraContext = source.contextualInfo ? `\n\n[Contextual Directive]: ${source.contextualInfo}` : '';
   const isTeluguRequested = config.language.includes('Telugu');
 
@@ -329,17 +331,17 @@ function createDynamicDeliverable(
         execOverview = source.contextSummary && source.contextSummary.length > 50
           ? `${source.contextSummary}\n\n${fullSourceParas.slice(0, 2).join('\n\n')}`
           : fullSourceParas.slice(0, 3).join('\n\n') || context;
-        
-        execFindings = fullSourceParas.length >= 3 
-          ? fullSourceParas.slice(0, 5) 
+
+        execFindings = fullSourceParas.length >= 3
+          ? fullSourceParas.slice(0, 5)
           : [
-              `Core context verified from source: ${title}.`,
-              `Audience alignment verified for ${config.audience} with ${config.tone} tone.`,
-              `Extracted telemetry and empirical claims verified with 100% sentence-level traceability.`
-            ];
-            
+            `Core context verified from source: ${title}.`,
+            `Audience alignment verified for ${config.audience} with ${config.tone} tone.`,
+            `Extracted telemetry and empirical claims verified with 100% sentence-level traceability.`
+          ];
+
         execImpact = `Institutional and operational impact analysis for ${config.audience}. Ensures rigorous alignment with ${config.objective.toLowerCase()} under a ${config.tone.toLowerCase()} strategic posture.`;
-        
+
         execRecs = [
           `Execute structured dissemination of verified ${title} takeaways across authorized organizational channels.`,
           `Integrate primary factual findings into ongoing operational guidelines and stakeholder workflows.`,

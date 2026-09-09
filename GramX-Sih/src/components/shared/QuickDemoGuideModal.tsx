@@ -70,22 +70,22 @@ export const QuickDemoGuideModal: React.FC<QuickDemoGuideModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-900/40 backdrop-blur-xl backdrop-blur-md p-4 animate-in fade-in duration-150">
-      <div className="w-full max-w-2xl bg-black border border-zinc-800 rounded-2xl shadow-2xl p-6 sm:p-7 space-y-5">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#12101c]/40 backdrop-blur-xl backdrop-blur-md p-4 animate-in fade-in duration-150">
+      <div className="w-full max-w-2xl bg-[#09090b] border border-white/[0.08] rounded-2xl shadow-2xl p-6 sm:p-7 space-y-5">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
+        <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-zinc-100 shadow-lg shadow-emerald-950/30">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-slate-50 shadow-lg shadow-emerald-950/30">
               <Play className="w-5 h-5 fill-white" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-zinc-100 flex items-center gap-2">
+              <h3 className="text-base font-bold text-slate-50 flex items-center gap-2">
                 2-Minute Smart India Hackathon Demo Guide
                 <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-300 font-bold border border-emerald-500/30">
                   SIH26154
                 </span>
               </h3>
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs text-slate-400">
                 Exact 15-step demonstration sequence tailored for hackathon judges
               </p>
             </div>
@@ -93,27 +93,27 @@ export const QuickDemoGuideModal: React.FC<QuickDemoGuideModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900 transition-colors"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-[#12101c] transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Current Active Step Highlight Card */}
-        <div className="p-4 rounded-xl bg-zinc-950 border border-zinc-500/30 space-y-2">
+        <div className="p-4 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-zinc-500/30 space-y-2">
           <div className="flex items-center justify-between text-xs">
-            <span className="px-2 py-0.5 rounded bg-zinc-300 text-black/20 text-zinc-400 font-bold border border-blue-300/30">
+            <span className="px-2 py-0.5 rounded bg-indigo-600 text-white/20 text-slate-400 font-bold border border-blue-300/30">
               Step {currentStepData.step} of 15
             </span>
-            <span className="text-zinc-400 font-mono text-[11px]">
+            <span className="text-slate-400 font-mono text-[11px]">
               Target: {currentStepData.targetTab.toUpperCase()}
             </span>
           </div>
 
-          <h4 className="text-sm font-bold text-zinc-100">
+          <h4 className="text-sm font-bold text-slate-50">
             {currentStepData.title}
           </h4>
-          <p className="text-xs text-zinc-300 leading-relaxed">
+          <p className="text-xs text-slate-300 leading-relaxed">
             {currentStepData.actionDesc}
           </p>
         </div>
@@ -129,14 +129,14 @@ export const QuickDemoGuideModal: React.FC<QuickDemoGuideModalProps> = ({
                 onClick={() => handleSelectStep(s.step)}
                 className={`p-2 rounded-lg border text-center text-xs font-medium transition-all ${
                   isCurrent
-                    ? 'bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-zinc-100 font-bold border-blue-300 ring-2 ring-indigo-400/30'
+                    ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 font-bold border-blue-300 ring-2 ring-indigo-400/30'
                     : isDone
                     ? 'bg-emerald-950/40 text-emerald-300 border-emerald-500/30'
-                    : 'bg-zinc-950 text-zinc-400 border-zinc-800 hover:border-zinc-700'
+                    : 'bg-[#0c0a14] border-indigo-500/10 text-slate-400 border-white/[0.08] hover:border-white/[0.12]'
                 }`}
               >
                 <div>Step {s.step}</div>
-                <span className="text-[9px] block truncate text-zinc-400">
+                <span className="text-[9px] block truncate text-slate-400">
                   {s.title.split(' ')[0]}
                 </span>
               </button>
@@ -145,11 +145,11 @@ export const QuickDemoGuideModal: React.FC<QuickDemoGuideModalProps> = ({
         </div>
 
         {/* Modal Footer Controls */}
-        <div className="pt-3 border-t border-zinc-800 flex items-center justify-between">
+        <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between">
           <button
             onClick={() => handleSelectStep(Math.max(1, activeStep - 1))}
             disabled={activeStep <= 1}
-            className="px-3.5 py-2 text-xs text-zinc-400 hover:text-zinc-200 disabled:opacity-40"
+            className="px-3.5 py-2 text-xs text-slate-400 hover:text-slate-200 disabled:opacity-40"
           >
             Previous Step
           </button>
@@ -157,13 +157,13 @@ export const QuickDemoGuideModal: React.FC<QuickDemoGuideModalProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={onClose}
-              className="px-3.5 py-2 text-xs text-zinc-400 hover:text-zinc-200"
+              className="px-3.5 py-2 text-xs text-slate-400 hover:text-slate-200"
             >
               Exit Tour
             </button>
             <button
               onClick={handleNext}
-              className="flex items-center gap-1.5 px-5 py-2 bg-gradient-to-r from-zinc-300 to-zinc-500 text-black border border-zinc-200 hover:from-zinc-9000 hover:to-purple-500 text-zinc-100 text-xs font-bold rounded-xl shadow-md transition-all active:scale-98"
+              className="flex items-center gap-1.5 px-5 py-2 bg-gradient-to-r from-indigo-400 to-violet-400 text-black border border-zinc-200 hover:from-zinc-9000 hover:to-purple-500 text-slate-50 text-xs font-bold rounded-xl shadow-md transition-all active:scale-98"
             >
               <span>{activeStep === DEMO_STEPS.length ? 'Finish Tour' : 'Next Step'}</span>
               <ArrowRight className="w-3.5 h-3.5" />

@@ -16,7 +16,7 @@ export interface LlmConfig {
 }
 
 const DEFAULT_GOOGLE_KEY = 'AIzaSyCiDhdnT_kk5SxmiruM59FViArn3Kq_z8Q';
-const DEFAULT_MODEL = 'gemini-3.6-flash';
+const DEFAULT_MODEL = 'gemini-1.5-flash';
 
 export const realLlmService = {
   /**

@@ -45,25 +45,25 @@ export const KnowledgeVaultView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <div className="bg-zinc-950/70 backdrop-blur-3xl border border-zinc-800 rounded-2xl p-6 shadow-2xl shadow-black/80">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-800 pb-5">
+      <div className="bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/80">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/[0.08] pb-5">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-zinc-300 text-black/20 text-zinc-400 border border-zinc-500/30 uppercase tracking-wide">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-600 text-white/20 text-slate-400 border border-zinc-500/30 uppercase tracking-wide">
                 Enterprise Grounding Layer
               </span>
-              <span className="text-xs text-zinc-400">Contextual RAG & Terminology</span>
+              <span className="text-xs text-slate-400">Contextual RAG & Terminology</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-zinc-100 tracking-tight flex items-center gap-2.5">
-              <Database className="w-6 h-6 text-zinc-300" />
+            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-50 tracking-tight flex items-center gap-2.5">
+              <Database className="w-6 h-6 text-slate-300" />
               Organization Knowledge Vault
             </h2>
-            <p className="text-xs text-zinc-400 mt-1">
+            <p className="text-xs text-slate-400 mt-1">
               A trusted institutional knowledge base enforcing official guidelines, verified precedents, and approved bilingual terminology.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-zinc-950 border border-blue-300/30 text-xs text-zinc-400">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#0c0a14] border-indigo-500/10 border border-blue-300/30 text-xs text-slate-400">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -79,8 +79,8 @@ export const KnowledgeVaultView: React.FC = () => {
             onClick={() => setActiveTab('docs')}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
               activeTab === 'docs' 
-                ? 'bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-zinc-100 shadow-md' 
-                : 'bg-zinc-950 text-zinc-400 hover:text-zinc-200 border border-zinc-800'
+                ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 shadow-md' 
+                : 'bg-[#0c0a14] border-indigo-500/10 text-slate-400 hover:text-slate-200 border border-white/[0.08]'
             }`}
           >
             <Folder className="w-3.5 h-3.5" />
@@ -90,8 +90,8 @@ export const KnowledgeVaultView: React.FC = () => {
             onClick={() => setActiveTab('glossary')}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
               activeTab === 'glossary' 
-                ? 'bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] text-zinc-100 shadow-md' 
-                : 'bg-zinc-950 text-zinc-400 hover:text-zinc-200 border border-zinc-800'
+                ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] text-slate-50 shadow-md' 
+                : 'bg-[#0c0a14] border-indigo-500/10 text-slate-400 hover:text-slate-200 border border-white/[0.08]'
             }`}
           >
             <Languages className="w-3.5 h-3.5" />
@@ -104,8 +104,8 @@ export const KnowledgeVaultView: React.FC = () => {
         /* Document Repository View */
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left: Folders Sidebar (3 cols) */}
-          <div className="lg:col-span-3 bg-zinc-950/70 backdrop-blur-3xl border border-zinc-800 rounded-2xl p-4 shadow-2xl shadow-black/80 space-y-2">
-            <div className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider px-2 mb-2">
+          <div className="lg:col-span-3 bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-4 shadow-2xl shadow-black/80 space-y-2">
+            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-2 mb-2">
               Knowledge Folders
             </div>
             {folders.map(folder => {
@@ -116,11 +116,11 @@ export const KnowledgeVaultView: React.FC = () => {
                   onClick={() => setActiveFolder(folder)}
                   className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium flex items-center gap-2.5 transition-all ${
                     isSelected
-                      ? 'bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.15)]/20 text-zinc-400 border border-zinc-500/30 font-semibold'
-                      : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-950'
+                      ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)]/20 text-slate-400 border border-zinc-500/30 font-semibold'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-[#0c0a14] border-indigo-500/10'
                   }`}
                 >
-                  <Folder className={`w-4 h-4 ${isSelected ? 'text-zinc-300' : 'text-zinc-500'}`} />
+                  <Folder className={`w-4 h-4 ${isSelected ? 'text-slate-300' : 'text-zinc-500'}`} />
                   <span className="truncate">{folder}</span>
                 </button>
               );
@@ -128,13 +128,13 @@ export const KnowledgeVaultView: React.FC = () => {
           </div>
 
           {/* Right: Indexed Documents List (9 cols) */}
-          <div className="lg:col-span-9 bg-zinc-950/70 backdrop-blur-3xl border border-zinc-800 rounded-2xl p-5 shadow-2xl shadow-black/80 space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800 pb-3">
+          <div className="lg:col-span-9 bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-5 shadow-2xl shadow-black/80 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.08] pb-3">
               <div>
-                <h3 className="text-sm font-bold text-zinc-100">
+                <h3 className="text-sm font-bold text-slate-50">
                   {activeFolder === 'All' ? 'All Indexed Vault Documents' : activeFolder}
                 </h3>
-                <p className="text-[11px] text-zinc-400">
+                <p className="text-[11px] text-slate-400">
                   Vector embeddings stored for semantic retrieval during content synthesis.
                 </p>
               </div>
@@ -153,7 +153,7 @@ export const KnowledgeVaultView: React.FC = () => {
                     };
                     setDocuments([newDoc, ...documents]);
                   }}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:bg-white text-white rounded-lg text-xs font-semibold transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] border-none shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:from-indigo-400 hover:to-violet-500 text-white rounded-lg text-xs font-semibold transition-colors"
                 >
                   <Upload className="w-3.5 h-3.5" />
                   <span>Index New Document</span>
@@ -165,7 +165,7 @@ export const KnowledgeVaultView: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead>
-                  <tr className="border-b border-zinc-800 text-zinc-400">
+                  <tr className="border-b border-white/[0.08] text-slate-400">
                     <th className="pb-3 font-semibold">Document Name</th>
                     <th className="pb-3 font-semibold">Folder</th>
                     <th className="pb-3 font-semibold">Size</th>
@@ -175,14 +175,14 @@ export const KnowledgeVaultView: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-slate-800/60">
                   {filteredDocs.map(doc => (
-                    <tr key={doc.id} className="hover:bg-zinc-950/60 transition-colors">
-                      <td className="py-3 font-medium text-zinc-200 flex items-center gap-2">
-                        <FileText className="w-4 h-4 text-zinc-300 shrink-0" />
+                    <tr key={doc.id} className="hover:bg-[#0c0a14] border-indigo-500/10/60 transition-colors">
+                      <td className="py-3 font-medium text-slate-200 flex items-center gap-2">
+                        <FileText className="w-4 h-4 text-slate-300 shrink-0" />
                         <span className="truncate max-w-xs">{doc.name}</span>
                       </td>
-                      <td className="py-3 text-zinc-400">{doc.folder}</td>
-                      <td className="py-3 text-zinc-400">{doc.size}</td>
-                      <td className="py-3 font-mono text-zinc-400">{doc.chunks} vectors</td>
+                      <td className="py-3 text-slate-400">{doc.folder}</td>
+                      <td className="py-3 text-slate-400">{doc.size}</td>
+                      <td className="py-3 font-mono text-slate-400">{doc.chunks} vectors</td>
                       <td className="py-3">
                         <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-300 border border-emerald-500/30 flex items-center gap-1 w-fit">
                           <CheckCircle2 className="w-3 h-3" />
@@ -198,26 +198,26 @@ export const KnowledgeVaultView: React.FC = () => {
         </div>
       ) : (
         /* Approved Terminology Glossary View */
-        <div className="bg-zinc-950/70 backdrop-blur-3xl border border-zinc-800 rounded-2xl p-6 shadow-2xl shadow-black/80 space-y-5">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800 pb-4">
+        <div className="bg-[#0c0a14] border-indigo-500/10/70 backdrop-blur-3xl border border-white/[0.08] rounded-2xl p-6 shadow-2xl shadow-black/80 space-y-5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.08] pb-4">
             <div>
-              <h3 className="text-base font-bold text-zinc-100 flex items-center gap-2">
-                <Languages className="w-5 h-5 text-zinc-300" />
+              <h3 className="text-base font-bold text-slate-50 flex items-center gap-2">
+                <Languages className="w-5 h-5 text-slate-300" />
                 Approved English ↔ Telugu Glossary
               </h3>
-              <p className="text-xs text-zinc-400 mt-0.5">
+              <p className="text-xs text-slate-400 mt-0.5">
                 AI prioritizes organization-approved terminology for consistent localization.
               </p>
             </div>
 
             <div className="relative w-full sm:w-72">
-              <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-3" />
+              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-3" />
               <input
                 type="text"
                 value={glossarySearch}
                 onChange={(e) => setGlossarySearch(e.target.value)}
                 placeholder="Search English or Telugu terms..."
-                className="w-full pl-9 pr-3 py-2 bg-zinc-950 border border-zinc-800 rounded-xl text-xs text-zinc-200 placeholder-slate-500 focus:outline-none focus:border-blue-300"
+                className="w-full pl-9 pr-3 py-2 bg-[#0c0a14] border-indigo-500/10 border border-white/[0.08] rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-300"
               />
             </div>
           </div>
@@ -226,7 +226,7 @@ export const KnowledgeVaultView: React.FC = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-zinc-800 text-zinc-400">
+                <tr className="border-b border-white/[0.08] text-slate-400">
                   <th className="pb-3 font-semibold">English Standard Term</th>
                   <th className="pb-3 font-semibold">Approved Telugu (తెలుగు)</th>
                   <th className="pb-3 font-semibold">Domain Category</th>
@@ -235,19 +235,19 @@ export const KnowledgeVaultView: React.FC = () => {
               </thead>
               <tbody className="divide-y divide-slate-800/60">
                 {filteredGlossary.map(term => (
-                  <tr key={term.id} className="hover:bg-zinc-950/60 transition-colors">
-                    <td className="py-3 font-bold text-zinc-200">
+                  <tr key={term.id} className="hover:bg-[#0c0a14] border-indigo-500/10/60 transition-colors">
+                    <td className="py-3 font-bold text-slate-200">
                       {term.english}
                     </td>
                     <td className="py-3 text-emerald-700 font-bold text-sm">
                       {term.telugu}
                     </td>
                     <td className="py-3">
-                      <span className="px-2 py-0.5 rounded bg-zinc-950 text-zinc-300 border border-zinc-800 text-[10px]">
+                      <span className="px-2 py-0.5 rounded bg-[#0c0a14] border-indigo-500/10 text-slate-300 border border-white/[0.08] text-[10px]">
                         {term.category}
                       </span>
                     </td>
-                    <td className="py-3 text-zinc-400 max-w-sm">
+                    <td className="py-3 text-slate-400 max-w-sm">
                       {term.usageNote}
                     </td>
                   </tr>
