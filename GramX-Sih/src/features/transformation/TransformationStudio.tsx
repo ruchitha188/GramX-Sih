@@ -107,7 +107,7 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
   };
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center -mt-16">
+    <div className="relative w-full min-h-[calc(100vh-140px)] flex flex-col items-center justify-center">
 
       {/* Centered OmniBar Logic (Perplexity Clone) */}
       <div className="w-full max-w-3xl px-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
