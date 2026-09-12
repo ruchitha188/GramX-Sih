@@ -287,31 +287,25 @@ Return strictly raw JSON.`;
     }
 
     // General high-depth analysis
-    const summaryText = `Exhaustive analysis of the ${type} broadcast "${titleHint}" by ${channelHint || 'Broadcast Source'}. Substantive overview analyzing core developments, empirical evidence, technical frameworks, and strategic takeaways.`;
+    const summaryText = `Analysis of the ${type} titled "${titleHint}" by ${channelHint || 'Broadcast Source'}.`;
     const paragraphs = [
       {
         id: `${type}-1`,
         page: 1,
         paragraph: 1,
-        text: `Source Broadcast Overview: "${titleHint}" presented by ${channelHint || 'Official Source'} (${url}). The presentation investigates key empirical context, contrasting prevalent assumptions against verified evidence and primary source telemetry.`
+        text: `Source Media: "${titleHint}" presented by ${channelHint || 'Official Source'} (${url}).`
       },
       {
         id: `${type}-2`,
         page: 1,
         paragraph: 2,
-        text: `Core Technical & Analytical Framework: Comprehensive breakdown of the primary topic, exploring underlying mechanisms, statistical comparisons, and operational implications for target audiences.`
+        text: `The media content primarily focuses on the topics suggested by the title: ${titleHint}.`
       },
       {
         id: `${type}-3`,
         page: 1,
         paragraph: 3,
-        text: `Stakeholder Alignment & Public Posture: Reviewing operational impact, compliance benchmarks, and strategic implications across diverse sectors and institutional frameworks.`
-      },
-      {
-        id: `${type}-4`,
-        page: 1,
-        paragraph: 4,
-        text: `Actionable Directives & Implementation Roadmap: The source outlines concrete, prioritized steps for policy alignment, educational awareness, and verified multi-channel public dissemination.`
+        text: `Note: Full video transcript processing was unavailable, so this analysis serves as a top-level placeholder based on available metadata.`
       }
     ];
 
@@ -350,6 +344,9 @@ ${source.contextualInfo ? `### OPERATOR CONTEXTUAL DIRECTIVES:\n${source.context
 - Communication Objective: ${config.objective}
 - Detail Level: ${config.detailLevel}
 - Content Style: ${config.contentStyle}
+
+### HALLUCINATION PREVENTION:
+If the SOURCE CONTENT is just a URL (like a YouTube link) and you do not have the ability to fetch its transcript or content natively, DO NOT hallucinate a strategic analysis. Instead, generate a polite message stating that the media content cannot be accessed directly without an integrated extraction pipeline.
 
 ### REQUESTED OUTPUT FORMATS:
 ${selectedTypes.join(', ')}
