@@ -370,9 +370,6 @@ ${source.contextualInfo ? `### OPERATOR CONTEXTUAL DIRECTIVES:\n${source.context
 - Detail Level: ${config.detailLevel}
 - Content Style: ${config.contentStyle}
 
-### HALLUCINATION PREVENTION:
-If the SOURCE CONTENT is just a URL (like a YouTube link) and you do not have the ability to fetch its transcript or content natively, DO NOT hallucinate a strategic analysis. Instead, generate a polite message stating that the media content cannot be accessed directly without an integrated extraction pipeline.
-
 ### REQUESTED OUTPUT FORMATS:
 ${selectedTypes.join(', ')}
 
