@@ -370,6 +370,9 @@ ${source.contextualInfo ? `### OPERATOR CONTEXTUAL DIRECTIVES:\n${source.context
 - Detail Level: ${config.detailLevel}
 - Content Style: ${config.contentStyle}
 
+### LIVE WEB SEARCH & RESEARCH DIRECTIVE:
+You have native access to Google Search Tools. If the Source Content contains ANY URLs or topics lacking context, YOU MUST use your Google Search capability to fetch, research, and summarize the live contents of those domains before synthesizing the report.
+
 ### REQUESTED OUTPUT FORMATS:
 ${selectedTypes.join(', ')}
 
@@ -458,6 +461,7 @@ Return strictly raw JSON without markdown code fences.`;
       try {
         const model = genAI.getGenerativeModel({
           model: modelName,
+          tools: [{ googleSearch: {} }] as any,
           generationConfig: {
             temperature: 0.2,
             responseMimeType: 'application/json'
@@ -477,6 +481,7 @@ Return strictly raw JSON without markdown code fences.`;
         try {
           const modelFallback = genAI.getGenerativeModel({
             model: modelName,
+            tools: [{ googleSearch: {} }] as any,
             generationConfig: { temperature: 0.2 }
           });
           const result = await modelFallback.generateContent(prompt);
