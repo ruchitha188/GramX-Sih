@@ -5,6 +5,8 @@ from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
+from youtube_transcript_api import YouTubeTranscriptApi
+import re
 
 load_dotenv()
 
@@ -49,6 +51,25 @@ def read_root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy", "database": "connected"}
+
+@app.get("/api/youtube")
+def get_youtube_transcript(url: str):
+    try:
+        # Extract video ID
+        video_id = None
+        if "v=" in url:
+            video_id = url.split("v=")[1][:11]
+        elif "youtu.be/" in url:
+            video_id = url.split("youtu.be/")[1][:11]
+            
+        if not video_id:
+            raise HTTPException(status_code=400, detail="Invalid YouTube URL")
+            
+        transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
+        transcript = " ".join([t['text'] for t in transcript_list])
+        return {"transcript": transcript}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/transform")
 async def transform_content(req: TransformationRequest):

@@ -108,9 +108,40 @@ export const TransformationStudio: React.FC<TransformationStudioProps> = ({
       ]);
 
       setTimeout(() => setGenerationSteps(p => p.map((s, i) => i === 0 ? { ...s, status: 'completed' } : i === 1 ? { ...s, status: 'in_progress' } : s)), 500);
-      setTimeout(() => setGenerationSteps(p => p.map((s, i) => i <= 1 ? { ...s, status: 'completed' } : i === 2 ? { ...s, status: 'in_progress' } : s)), 1200);
 
-      const result = await realLlmService.generateWithLlm(source, config, selectedFormats, activeEngine);
+      // Extract transcript if the initial prompt is a YouTube link
+      let finalRawContent = prompt;
+      let finalTitle = source.title;
+
+      const isYoutube = prompt.includes('youtube.com') || prompt.includes('youtu.be');
+      if (isYoutube && !attachedFile) {
+        setGenerationSteps(p => p.map(s => s.id === '2' ? { ...s, label: 'Fetching YouTube Transcript from Backend...', status: 'in_progress' } : s));
+        try {
+          // Extract just the URL in case they typed text around it
+          const ytUrl = prompt.match(/(https?:\/\/[^\s]+)/)?.[0] || prompt;
+          const res = await fetch(`/api/youtube?url=${encodeURIComponent(ytUrl)}`);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.transcript) {
+              finalRawContent = `[YouTube Transcript]: ${data.transcript}`;
+              finalTitle = `YouTube Video Extract`;
+            }
+          }
+        } catch (e) {
+          console.warn('YouTube extraction failed', e);
+        }
+      }
+
+      const enhancedSource = {
+        ...source,
+        title: finalTitle,
+        rawContent: finalRawContent,
+        contextSummary: finalRawContent
+      };
+
+      setTimeout(() => setGenerationSteps(p => p.map((s, i) => i <= 1 ? { ...s, status: 'completed' } : i === 2 ? { ...s, status: 'in_progress' } : s)), isYoutube ? 100 : 1200);
+
+      const result = await realLlmService.generateWithLlm(enhancedSource, config, selectedFormats, activeEngine);
 
       setGenerationSteps(p => p.map(s => ({ ...s, status: 'completed' })));
 
