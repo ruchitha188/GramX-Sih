@@ -1,10 +1,10 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { 
-  SourceDocument, 
-  TransformationConfig, 
-  DeliverableType, 
-  DeliverableOutput, 
-  VerificationReport 
+import {
+  SourceDocument,
+  TransformationConfig,
+  DeliverableType,
+  DeliverableOutput,
+  VerificationReport
 } from '../types';
 import { transformationEngine } from './transformationEngine';
 
@@ -67,7 +67,7 @@ export const realLlmService = {
         const capabilities = await (window as any).ai.languageModel.capabilities();
         return capabilities.available !== 'no';
       }
-    } catch (_) {}
+    } catch (_) { }
     return false;
   },
 
@@ -104,7 +104,7 @@ export const realLlmService = {
               detectedModel: modelName
             };
           }
-        } catch (_) {}
+        } catch (_) { }
       }
 
       return {
@@ -137,7 +137,7 @@ export const realLlmService = {
     const activeKey = (config.apiKey || DEFAULT_GOOGLE_KEY).trim();
     const genAI = new GoogleGenerativeAI(activeKey);
 
-    const prompt = `You are GramX's Media Ingestion & Deep Analysis Engine (SIH AI Content Engine).
+    const prompt = `You are an AI analysis engine tasked with processing the provided media.
 An operator has provided a ${type.toUpperCase()} link to transform into official communications:
 - Media Link: ${url}
 - Title / Headline: ${titleHint}
@@ -198,7 +198,7 @@ Return strictly raw JSON.`;
           const title = parsed.title || titleHint;
           const summaryText = parsed.summary || `${titleHint}. Deep analysis of source stream.`;
           const rawParagraphs: any[] = Array.isArray(parsed.paragraphs) ? parsed.paragraphs : [];
-          
+
           if (rawParagraphs.length >= 3) {
             return {
               title,
@@ -334,8 +334,8 @@ Return strictly raw JSON.`;
     selectedTypes: DeliverableType[],
     llmConfig: LlmConfig
   ): Promise<{ deliverables: DeliverableOutput[]; verification: VerificationReport }> {
-    const prompt = `You are GramX, an enterprise-grade AI transformation platform for GramX (SIH AI Content Engine).
-Transform the provided SOURCE CONTENT into the selected communication deliverables simultaneously.
+    const prompt = `You are an AI transformation engine. Your sole objective is to transform the provided SOURCE CONTENT into the selected communication deliverables.
+CRITICAL INSTRUCTION: DO NOT provide any explanations about yourself, your identity, or the "GramX" platform. Focus STRICTLY on transforming the user's SOURCE CONTENT.
 
 ### SOURCE CONTENT:
 Title: ${source.title || source.filename}
@@ -469,7 +469,7 @@ Return strictly raw JSON without markdown code fences.`;
             this.saveConfig(llmConfig);
             break;
           }
-        } catch (_) {}
+        } catch (_) { }
       }
     }
 
@@ -512,11 +512,11 @@ Return strictly raw JSON without markdown code fences.`;
       if (d.type === 'executive_summary') {
         if (!structuredData.executiveSummary) {
           const text: string = d.contentEn || '';
-          
+
           // Robust multi-paragraph overview extraction
           const overviewMatch = text.match(/(?:1\.\s*EXECUTIVE OVERVIEW|EXECUTIVE OVERVIEW)[\s\S]*?(?=(?:2\.\s*KEY|KEY FINDINGS|$))/i);
           let overview = overviewMatch ? overviewMatch[0].replace(/(?:1\.\s*EXECUTIVE OVERVIEW|EXECUTIVE OVERVIEW)/i, '').trim() : '';
-          
+
           if (!overview) {
             const paragraphs = text.split(/\n\s*\n/).map(p => p.trim()).filter(p => p && !p.startsWith('#') && !p.toLowerCase().startsWith('executive summary'));
             overview = paragraphs.slice(0, 2).join('\n\n') || text;

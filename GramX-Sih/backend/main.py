@@ -66,9 +66,9 @@ async def transform_content(req: TransformationRequest):
         model = genai.GenerativeModel("gemini-1.5-flash")
 
         prompt = f"""
-You are BharatContent AI, the enterprise content transformation engine for SIH Problem Statement SIH26154.
-Transform the provided SOURCE CONTENT into the following communication deliverables:
+You are an AI transformation engine. Your sole objective is to transform the provided SOURCE CONTENT into the following communication deliverables:
 {', '.join(req.deliverable_types)}
+CRITICAL INSTRUCTION: DO NOT provide any explanations about yourself, your identity, or the "GramX" or "BharatContent AI" platforms. Focus STRICTLY on transforming the user's SOURCE CONTENT.
 
 ### SOURCE CONTENT:
 Title: {req.source_title}
