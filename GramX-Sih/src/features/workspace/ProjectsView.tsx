@@ -1,29 +1,44 @@
 import React, { useState } from 'react';
-import { 
-  FolderKanban, 
-  Plus, 
-  FileText, 
-  Sparkles, 
-  Users, 
-  Calendar, 
-  CheckCircle2, 
+import {
+  FolderKanban,
+  Plus,
+  FileText,
+  Sparkles,
+  Users,
+  Calendar,
+  CheckCircle2,
   Clock,
   ArrowRight,
   ShieldCheck
 } from 'lucide-react';
 import { ProjectItem } from '../../types';
 import { INITIAL_PROJECTS } from '../../data/workspaceData';
+import { dbService } from '../../services/dbService';
 
 interface ProjectsViewProps {
   onOpenProject: (projectId: string) => void;
 }
 
 export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenProject }) => {
-  const [projects, setProjects] = useState<ProjectItem[]>(INITIAL_PROJECTS);
+  const [projects, setProjects] = useState<ProjectItem[]>([]);
   const [filter, setFilter] = useState<string>('All');
+  const [loading, setLoading] = useState(true);
 
-  const filteredProjects = filter === 'All' 
-    ? projects 
+  React.useEffect(() => {
+    async function load() {
+      const data = await dbService.getProjectsList();
+      if (data.length > 0) {
+        setProjects(data);
+      } else {
+        setProjects(INITIAL_PROJECTS); // Fallback to mock if db is empty or disconnected
+      }
+      setLoading(false);
+    }
+    load();
+  }, []);
+
+  const filteredProjects = filter === 'All'
+    ? projects
     : projects.filter(p => p.status === filter);
 
   return (
@@ -74,11 +89,10 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenProject }) => 
             <button
               key={status}
               onClick={() => setFilter(status)}
-              className={`px-3 py-1.5 rounded-lg transition-colors ${
-                filter === status
+              className={`px-3 py-1.5 rounded-lg transition-colors ${filter === status
                   ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20 hover:bg-emerald-400 border-none hover:bg-emerald-400 text-white shadow-[0_0_15px_rgba(255,255,255,0.15)] text-neutral-50 font-semibold'
                   : 'bg-neutral-950 border-emerald-500/10 text-neutral-400 hover:text-neutral-200 border border-white/[0.08]'
-              }`}
+                }`}
             >
               {status}
             </button>
@@ -98,15 +112,14 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenProject }) => 
                 <h3 className="text-base font-bold text-neutral-50 leading-snug">
                   {proj.title}
                 </h3>
-                <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold shrink-0 ${
-                  proj.status === 'Approved'
+                <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold shrink-0 ${proj.status === 'Approved'
                     ? 'bg-emerald-100 text-neutral-300 border border-emerald-500/30'
                     : proj.status === 'In Review'
-                    ? 'bg-amber-100 text-amber-300 border border-amber-500/30'
-                    : proj.status === 'Published'
-                    ? 'bg-teal-500/20 text-neutral-300 border border-emerald-500/30'
-                    : 'bg-neutral-950 text-neutral-400'
-                }`}>
+                      ? 'bg-amber-100 text-amber-300 border border-amber-500/30'
+                      : proj.status === 'Published'
+                        ? 'bg-teal-500/20 text-neutral-300 border border-emerald-500/30'
+                        : 'bg-neutral-950 text-neutral-400'
+                  }`}>
                   {proj.status}
                 </span>
               </div>

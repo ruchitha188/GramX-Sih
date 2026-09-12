@@ -17,6 +17,7 @@ import { QuickDemoGuideModal } from './components/shared/QuickDemoGuideModal';
 import { CloudSettingsModal } from './components/shared/CloudSettingsModal';
 import { realLlmService, LlmConfig } from './services/realLlmService';
 import { supabase } from './services/supabaseClient';
+import { dbService } from './services/dbService';
 import { AuthModal } from './components/auth/AuthModal';
 import { INITIAL_PROJECTS, INITIAL_VERSION_HISTORY } from './data/workspaceData';
 
@@ -108,6 +109,11 @@ export function App() {
       snippet: `Generated multi-output content package from ${source.filename}. Fact checking applied.`,
       diffSummary: `${newDeliverables.length} deliverables successfully generated.`
     });
+
+    // Save to real database asynchronously in background
+    if (user) {
+      dbService.saveProject(source, newDeliverables, user).catch(console.error);
+    }
 
     setActiveTab('deliverables');
   };

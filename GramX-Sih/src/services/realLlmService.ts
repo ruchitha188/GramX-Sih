@@ -225,20 +225,45 @@ Return strictly raw JSON.`;
   /**
    * Resilient fallback media analysis generator (domain-aware, deep)
    */
-  generateResilientMediaAnalysis(
+  async generateResilientMediaAnalysis(
     url: string,
     type: 'video' | 'audio',
     titleHint: string,
     channelHint?: string,
     customNotes?: string
-  ): {
+  ): Promise<{
     title: string;
     summaryText: string;
     paragraphs: Array<{ id: string; page: number; paragraph: number; text: string }>;
     facts: { total: number; dates: number; entities: number; numericalValues: number };
     intent: string;
-  } {
+  }> {
     const combined = `${titleHint} ${channelHint || ''} ${customNotes || ''}`.toLowerCase();
+
+    // Try to actually fetch youtube transcript if we are deployed on Vercel
+    try {
+      if (url.includes('youtube.com') || url.includes('youtu.be')) {
+        const response = await fetch(`/api/youtube?url=${encodeURIComponent(url)}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.transcript && data.transcript.length > 50) {
+            return {
+              title: titleHint,
+              summaryText: `Analysis of the ${type} titled "${titleHint}". Transcript successfully extracted.`,
+              paragraphs: [
+                { id: `${type}-1`, page: 1, paragraph: 1, text: `Source Media: "${titleHint}" (${url}).` },
+                { id: `${type}-2`, page: 1, paragraph: 2, text: `Transcription data: ${data.transcript.substring(0, 12000)}` }
+              ],
+              facts: { total: 0, dates: 0, entities: 0, numericalValues: 0 },
+              intent: `Transform ${titleHint} into multi-format deliverables.`
+            };
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to fetch youtube transcript via proxy', e);
+    }
+
     const isMap = combined.includes('map') || combined.includes('india size') || combined.includes('mercator') || combined.includes('jude') || combined.includes('geography');
 
     if (isMap) {
