@@ -190,9 +190,8 @@ Return strictly raw JSON.`;
         const text = result.response.text();
         if (text && text.trim().length > 30) {
           let clean = text.trim();
-          if (clean.startsWith('```json')) clean = clean.slice(7);
-          if (clean.endsWith('```')) clean = clean.slice(0, -3);
-          clean = clean.trim();
+          const match = text.match(/\{[\s\S]*\}/);
+          if (match) clean = match[0];
           const parsed = JSON.parse(clean);
 
           const title = parsed.title || titleHint;
@@ -495,6 +494,10 @@ Return strictly raw JSON without markdown code fences.`;
 
     let parsed: any;
     try {
+      const match = responseText.match(/\{[\s\S]*\}/);
+      if (match) {
+        cleanJson = match[0];
+      }
       parsed = JSON.parse(cleanJson);
     } catch (e) {
       console.error('Failed to parse Google LLM JSON output:', e);

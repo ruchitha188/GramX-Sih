@@ -112,7 +112,7 @@ function createDynamicDeliverable(
   const title = source.title || source.filename;
   // Make the context inherently use the user's prompt (rawContent or intent) to ensure deeply related outputs even during API limits
   const baseInput = source.rawContent || source.intent || source.contextSummary || 'the strategic framework currently under review';
-  const context = `Rigorous analysis and operational directive regarding: ${baseInput}. The underlying strategic dynamics of ${baseInput.substring(0, 50)} demand immediate alignment across all organizational divisions to ensure continuity and mitigate scaling risks.`;
+  const context = `Content overview: ${baseInput}`;
   const extraContext = source.contextualInfo ? `\n\n[Contextual Directive]: ${source.contextualInfo}` : '';
   const isTeluguRequested = config.language.includes('Telugu');
 
